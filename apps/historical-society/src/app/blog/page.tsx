@@ -32,7 +32,7 @@ export default function BlogIndex() {
       return (
         article.title.toLowerCase().includes(search) ||
         article.excerpt.toLowerCase().includes(search) ||
-        article.paragraphs.some((p) => p.toLowerCase().includes(search))
+        article.tags.some((tag) => tag.toLowerCase().includes(search))
       );
     });
     setArticlesToShow(filteredArticles);
@@ -48,7 +48,7 @@ export default function BlogIndex() {
           <input
             type='search'
             onChange={(e) => handleSearch(e)}
-            className='h-8 self-end rounded-sm min-w-60 px-2'
+            className='h-8 self-end rounded-sm min-w-60 px-2 text-black text-sm'
             placeholder='Search for articles...'
           />
           <SearchIcon className='absolute right-2 top-2 text-black w-4 h-4' />

@@ -100,7 +100,7 @@ const ChatWindow = () => {
       >
         <div className='bg-dark-wood text-parchment p-4 rounded-t-lg flex justify-between items-center'>
           <h2 className='text-lg font-semibold'>Messages</h2>
-          <button
+          {/* <button
             onClick={() => setIsChatOpen(false)}
             className='text-white hover:text-gray-200'
             aria-label='Close messages'
@@ -108,7 +108,7 @@ const ChatWindow = () => {
             <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
             </svg>
-          </button>
+          </button> */}
         </div>
 
         <div className='h-96 p-4 overflow-y-auto'>

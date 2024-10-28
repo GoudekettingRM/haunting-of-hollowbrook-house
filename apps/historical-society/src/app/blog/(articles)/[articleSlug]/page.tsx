@@ -7,7 +7,7 @@ interface ArticlePageProps {
 }
 
 const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
-  const article = allArticles.find((article) => article.slug === articleSlug);
+  const article = allArticles.find((art) => art.slug === articleSlug);
 
   if (!article) {
     return <p>Article not found</p>;

@@ -53,6 +53,8 @@ const ChatWindow = () => {
   useEffect(() => {
     if (!isChatOpen) return;
 
+    const timeouts: NodeJS.Timeout[] = [];
+
     const timer = setTimeout(() => {
       setIsTyping(true);
 
@@ -75,11 +77,15 @@ const ChatWindow = () => {
             setIsTyping(false);
           }
         }, currentMessageDelay);
+
+        timeouts.push(showMessageTimer);
       });
     }, 0);
 
+    timeouts.push(timer);
+
     return () => {
-      clearTimeout(timer);
+      timeouts.forEach(clearTimeout);
     };
   }, [isChatOpen]);
 

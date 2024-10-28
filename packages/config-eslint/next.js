@@ -45,6 +45,7 @@ module.exports = {
     'import/no-default-export': 'off',
     'prefer-named-capture-group': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
+    '@typescript-eslint/require-await': 'off',
     'react/jsx-sort-props': 'off',
     'unicorn/filename-case': 'off',
   },

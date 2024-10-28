@@ -22,6 +22,7 @@ module.exports = {
   },
   globals: {
     JSX: true,
+    NodeJS: true,
   },
   settings: {
     'import/resolver': {

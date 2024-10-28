@@ -9,8 +9,8 @@ const ContactPage = () => {
         {/* Introduction */}
         <div className='bg-white bg-opacity-10 p-6'>
           <p className='text-lg mb-4'>
-            Welcome to the Whispering Hollows Historical Society. We're dedicated to preserving and sharing our
-            community's rich history.
+            Welcome to the Whispering Hollows Historical Society. We&apos;re dedicated to preserving and sharing our
+            community&apos;s rich history.
           </p>
         </div>
 

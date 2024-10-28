@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import allArticles from '../../articles.json';
 
-interface IArticlePageProps {
+interface ArticlePageProps {
   params: { articleSlug: string };
 }
 
-const ArticlePage = ({ params: { articleSlug } }: IArticlePageProps) => {
+const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
   const article = allArticles.find((article) => article.slug === articleSlug);
 
   if (!article) {

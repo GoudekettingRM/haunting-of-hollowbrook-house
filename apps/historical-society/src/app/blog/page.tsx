@@ -125,6 +125,7 @@ export default function BlogIndex() {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
+            type='button'
             className={`${
               currentPage === 1 ? 'invisible pointer-events-none' : ''
             } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
@@ -136,6 +137,7 @@ export default function BlogIndex() {
             {getPageNumbers().map((pageNum, index) => (
               <button
                 key={index}
+                type='button'
                 onClick={() => (typeof pageNum === 'number' ? handlePageChange(pageNum) : null)}
                 disabled={typeof pageNum !== 'number'}
                 className={`w-8 h-8 border-b text-lg hover:opacity-80 ${
@@ -150,6 +152,7 @@ export default function BlogIndex() {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
+            type='button'
             className={`${
               currentPage === totalPages ? 'invisible pointer-events-none' : ''
             } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}

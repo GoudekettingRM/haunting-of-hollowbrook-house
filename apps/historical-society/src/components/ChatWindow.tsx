@@ -113,7 +113,7 @@ const ChatWindow = () => {
         <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
           <div
             className='
-            bg-white rounded-b-lg sm:rounded-lg h-full shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
+            bg-parchment rounded-b-lg sm:rounded-lg h-full shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
               transition-all duration-300 ease-in-out opacity-100 translate-y-0
             '
           >
@@ -137,7 +137,7 @@ const ChatWindow = () => {
                   <div
                     className='
                 max-w-[80%] rounded-lg p-3
-                bg-parchment text-dark-wood rounded-bl-none
+                bg-white text-dark-wood rounded-bl-none
               '
                   >
                     {msg}
@@ -146,7 +146,7 @@ const ChatWindow = () => {
               ))}
               {isTyping && (
                 <div className='mb-4 flex justify-start'>
-                  <div className='max-w-[80%] rounded-lg p-3 bg-parchment text-dark-wood rounded-bl-none'>
+                  <div className='max-w-[80%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>
                     <div className='flex gap-1'>
                       <div
                         className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'

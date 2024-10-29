@@ -23,7 +23,7 @@ import articles from './blog/articles.json';
 
 export default function HomePage() {
   return (
-    <div className='min-h-screen bg-light-wood pt-4 max-w-screen-lg'>
+    <div className='bg-light-wood pt-4 max-w-screen-lg'>
       {/* Hero Section */}
       <div className='mb-4'>
         <h1 className='text-4xl'>Whispering Hollows Historical Society</h1>

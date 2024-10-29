@@ -43,7 +43,7 @@ export default function BlogIndex() {
   // Generate page numbers to display
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxVisiblePages = window?.innerWidth < 640 ? 3 : 5; // Show fewer pages on mobile
+    const maxVisiblePages = 5;
 
     if (totalPages <= maxVisiblePages) {
       // If total pages is less than max visible, show all pages

@@ -40,15 +40,61 @@ export default function BlogIndex() {
     setCurrentPage(1);
   };
 
+  // Generate page numbers to display
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    const maxVisiblePages = window.innerWidth < 640 ? 3 : 5; // Show fewer pages on mobile
+
+    if (totalPages <= maxVisiblePages) {
+      // If total pages is less than max visible, show all pages
+      for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+      }
+    } else {
+      // Always show first page
+      pageNumbers.push(1);
+
+      let startPage = Math.max(currentPage - 1, 2);
+      let endPage = Math.min(currentPage + 1, totalPages - 1);
+
+      // Adjust if we're near the start or end
+      if (currentPage <= 2) {
+        endPage = maxVisiblePages - 1;
+      } else if (currentPage >= totalPages - 1) {
+        startPage = totalPages - (maxVisiblePages - 1);
+      }
+
+      // Add ellipsis if needed
+      if (startPage > 2) {
+        pageNumbers.push('...');
+      }
+
+      // Add middle pages
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+      }
+
+      // Add ellipsis if needed
+      if (endPage < totalPages - 1) {
+        pageNumbers.push('...');
+      }
+
+      // Always show last page
+      pageNumbers.push(totalPages);
+    }
+
+    return pageNumbers;
+  };
+
   return (
     <div className='pt-4'>
-      <div className='flex justify-between align-center max-w-screen-lg mb-6'>
+      <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center max-w-screen-lg mb-6 gap-4 px-4 sm:pl-0'>
         <h2 className='text-4xl'>Recent Posts</h2>
         <div className='relative'>
           <input
             type='search'
             onChange={(e) => handleSearch(e)}
-            className='h-8 self-end rounded-sm min-w-60 px-2 text-black text-sm'
+            className='h-8 self-end rounded-sm w-full sm:min-w-60 px-2 text-black text-sm'
             placeholder='Search for articles...'
           />
           <SearchIcon className='absolute right-2 top-2 text-black w-4 h-4' />
@@ -61,7 +107,7 @@ export default function BlogIndex() {
               <h3 className='text-xl text-parchment'>{article.title}</h3>
             </Link>
             <p className='text-parchment'>{article.excerpt}</p>
-            <p className='text-sm text-dark-wood font-serif flex justify-between items-center'>
+            <p className='text-sm text-dark-wood font-serif flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2'>
               <span>Published on {article.date}</span>
               <Link
                 className='text-dark-wood text-base italic underline sm:no-underline sm:hover:underline'
@@ -75,7 +121,7 @@ export default function BlogIndex() {
       </ul>
 
       {totalPages > 1 && (
-        <div className='flex justify-center items-center space-x-2 my-6 max-w-screen-lg'>
+        <div className='flex justify-center items-center space-x-1 sm:space-x-2 my-6 max-w-screen-lg'>
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -86,14 +132,15 @@ export default function BlogIndex() {
             ‹
           </button>
 
-          <div className='flex items-center space-x-2'>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+          <div className='flex items-center space-x-1 sm:space-x-2'>
+            {getPageNumbers().map((pageNum, index) => (
               <button
-                key={pageNum}
-                onClick={() => handlePageChange(pageNum)}
+                key={index}
+                onClick={() => (typeof pageNum === 'number' ? handlePageChange(pageNum) : null)}
+                disabled={typeof pageNum !== 'number'}
                 className={`w-8 h-8 border-b text-lg hover:opacity-80 ${
                   currentPage === pageNum ? 'border-parchment' : 'border-transparent hover:border-parchment'
-                } transition duration-300`}
+                } ${typeof pageNum !== 'number' ? 'cursor-default' : ''} transition duration-300`}
               >
                 {pageNum}
               </button>

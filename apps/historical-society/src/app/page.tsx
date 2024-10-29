@@ -50,8 +50,8 @@ export default function HomePage() {
           In 1972, we achieved a major milestone with the acquisition of our current headquarters – a beautiful
           Victorian mansion donated by the Wilkinson family. This generous gift provided a permanent home for our
           growing collection and allowed for the establishment of our first public museum spaces. Over the decades,
-          we've expanded our mission to include not just the preservation of the past, but also the documentation of the
-          present for future historians.
+          we&apos;ve expanded our mission to include not just the preservation of the past, but also the documentation
+          of the present for future historians.
         </p>
         <p className='indent-6'>
           Today, our research team, a dedicated group of volunteers and professional historians, continues to delve into

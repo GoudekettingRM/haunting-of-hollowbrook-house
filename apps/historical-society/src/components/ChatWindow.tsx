@@ -1,26 +1,32 @@
 'use client';
 
-import { InfoIcon } from 'lucide-react';
+import { BellIcon, InfoIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const ChatWindow = () => {
   const [showWantToChatMessage, setShowWantToChatMessage] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(-1);
-  const [isTyping, setIsTyping] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [hasInitiatedChat, setHasInitiatedChat] = useState(false);
+  const [unreadMessages, setUnreadMessages] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const lastSeenMessageIndexRef = useRef(-1);
 
   const messages = [
     'Hi',
     'Are you who I think you are?',
-    'I have to assume you are, since you are the only one here',
+    'I have to assume you are, since you are the only one current on this website',
     'Please, help me',
     'Follow these instructions',
     '5 12 21 11 24 15 5 22 3 8 20 6 22 1 1 5 4 22 1 29 1 9 21 3 9 25 7 22 2 1 2 12 21 10 8 15 10 21 2 25 2 11 21 10 2 25 7 22 8 22 15 5 22 10 33 15 1 22 11 49 1 9 21 2 55 5 4 22 14 26 20 2 22 4 74 20 2 22 2 38 15 1 22 7 6 10 3 22 3 65 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
+    'Rich paragraphs with chosen words',
+    'Hide secrets meant to be disturbed',
     'In fives, the numbers hold their sway',
     "Like clockwork marking time's display",
-    'The final pair holds secrets deep',
-    'One drops down, one sideways does leap',
+    'The last two show the path to trace',
+    'First down, then right across the space',
     'Did you get all that?',
     'If you are who I think you are, you will know what to do, and I will see you on the other side',
     'Good luck',
@@ -39,6 +45,51 @@ const ChatWindow = () => {
     return 1500;
   };
 
+  const startMessageSequence = () => {
+    setIsTyping(true);
+    let totalDelay = 0;
+
+    messages.forEach((message, index) => {
+      const currentMessageDelay = totalDelay;
+
+      if (index < messages.length - 1) {
+        totalDelay += getTypingDuration(messages[index + 1]) + getPauseDuration();
+      }
+
+      const showMessageTimer = setTimeout(() => {
+        setCurrentMessageIndex(index);
+
+        if (index === messages.length - 1) {
+          setIsTyping(false);
+        }
+      }, currentMessageDelay);
+
+      timeoutsRef.current.push(showMessageTimer);
+    });
+  };
+
+  const handleInitialClick = () => {
+    setShowWantToChatMessage(false);
+    setIsChatOpen(true);
+    setHasInitiatedChat(true);
+    startMessageSequence();
+  };
+
+  useEffect(() => {
+    if (isChatOpen) {
+      setUnreadMessages(0);
+      lastSeenMessageIndexRef.current = currentMessageIndex;
+    } else if (hasInitiatedChat) {
+      lastSeenMessageIndexRef.current = currentMessageIndex;
+    }
+  }, [isChatOpen, hasInitiatedChat]);
+
+  useEffect(() => {
+    if (!isChatOpen && hasInitiatedChat && currentMessageIndex > lastSeenMessageIndexRef.current) {
+      setUnreadMessages(currentMessageIndex - lastSeenMessageIndexRef.current);
+    }
+  }, [currentMessageIndex, isChatOpen, hasInitiatedChat]);
+
   useEffect(() => {
     scrollToBottom();
   }, [currentMessageIndex, isTyping]);
@@ -51,43 +102,10 @@ const ChatWindow = () => {
   }, []);
 
   useEffect(() => {
-    if (!isChatOpen) return;
-
-    const timeouts: NodeJS.Timeout[] = [];
-
-    const timer = setTimeout(() => {
-      setIsTyping(true);
-
-      let totalDelay = 0;
-
-      messages.forEach((message, index) => {
-        // Calculate delay for the next message
-        const currentMessageDelay = totalDelay;
-
-        // Add the delay for the next message
-        if (index < messages.length - 1) {
-          totalDelay += getTypingDuration(messages[index + 1]) + getPauseDuration();
-        }
-
-        const showMessageTimer = setTimeout(() => {
-          setCurrentMessageIndex(index);
-
-          // Set typing to false immediately when showing the last message
-          if (index === messages.length - 1) {
-            setIsTyping(false);
-          }
-        }, currentMessageDelay);
-
-        timeouts.push(showMessageTimer);
-      });
-    }, 0);
-
-    timeouts.push(timer);
-
     return () => {
-      timeouts.forEach(clearTimeout);
+      timeoutsRef.current.forEach(clearTimeout);
     };
-  }, [isChatOpen]);
+  }, []);
 
   return (
     <div className={`fixed ${currentMessageIndex === -1 ? 'bottom-4' : 'bottom-10'} right-4 z-50`}>
@@ -100,15 +118,16 @@ const ChatWindow = () => {
       >
         <div className='bg-dark-wood text-parchment p-4 rounded-t-lg flex justify-between items-center'>
           <h2 className='text-lg font-semibold'>Messages</h2>
-          {/* <button
+          <button
             onClick={() => setIsChatOpen(false)}
             className='text-white hover:text-gray-200'
             aria-label='Close messages'
+            type='button'
           >
             <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
             </svg>
-          </button> */}
+          </button>
         </div>
 
         <div className='h-96 p-4 overflow-y-auto'>
@@ -148,17 +167,34 @@ const ChatWindow = () => {
         </div>
       </div>
 
-      {currentMessageIndex === -1 && showWantToChatMessage && (
+      {!hasInitiatedChat && showWantToChatMessage ? (
         <button
-          onClick={() => setIsChatOpen(true)}
-          className={`mt-4 ml-auto block transition-transform hover:scale-105 hover:animate-none ${isChatOpen ? 'animate-none' : 'animate-pulse'}`}
+          onClick={handleInitialClick}
+          className='mt-4 ml-auto block transition-transform hover:scale-105 animate-pulse hover:animate-none'
           aria-label='Open messages'
+          type='button'
         >
           <div className='flex gap-2 items-center p-4 rounded-md bg-parchment text-dark-wood'>
             <InfoIcon size={32} />
             Someone wants to chat
           </div>
         </button>
+      ) : (
+        <div className='relative'>
+          <button
+            onClick={() => setIsChatOpen((prev) => !prev)}
+            aria-label='Open messages'
+            type='button'
+            className='mt-4 ml-auto block'
+          >
+            <BellIcon size={32} />
+          </button>
+          {unreadMessages > 0 && (
+            <div className='absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center'>
+              {unreadMessages}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

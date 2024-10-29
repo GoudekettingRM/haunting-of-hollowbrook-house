@@ -1,8 +1,8 @@
 'use client';
 import { SearchIcon } from 'lucide-react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
+import ArticleCard, { Article } from '../../components/ArticleCard';
 import allArticles from './articles.json';
 
 const ARTICLES_PER_PAGE = 6;
@@ -11,7 +11,7 @@ export default function BlogIndex() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(Math.ceil(allArticles.length / ARTICLES_PER_PAGE));
-  const [articlesToShow, setArticlesToShow] = useState(allArticles);
+  const [articlesToShow, setArticlesToShow] = useState<Article[]>(allArticles);
   const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
   const endIndex = startIndex + ARTICLES_PER_PAGE;
   const currentArticles = articlesToShow.slice(startIndex, endIndex);
@@ -89,7 +89,7 @@ export default function BlogIndex() {
   return (
     <div className='pt-4'>
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center max-w-screen-lg mb-6 gap-4 px-4 sm:pl-0'>
-        <h2 className='text-4xl'>Recent Posts</h2>
+        <h1 className='text-4xl'>Recent Posts</h1>
         <div className='relative'>
           <input
             type='search'
@@ -102,21 +102,7 @@ export default function BlogIndex() {
       </div>
       <ul className='space-y-4 mb-8'>
         {currentArticles.map((article) => (
-          <li key={article.slug} className='bg-white bg-opacity-10 p-4 space-y-2 max-w-screen-lg'>
-            <Link className='underline hover:underline sm:no-underline' href={`/blog/${article.slug}`}>
-              <h3 className='text-xl text-parchment'>{article.title}</h3>
-            </Link>
-            <p className='text-parchment'>{article.excerpt}</p>
-            <p className='text-sm text-dark-wood font-serif flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2'>
-              <span>Published on {article.date}</span>
-              <Link
-                className='text-dark-wood text-base italic underline sm:no-underline sm:hover:underline'
-                href={`/blog/${article.slug}`}
-              >
-                Read more ›
-              </Link>
-            </p>
-          </li>
+          <ArticleCard article={article} key={article.slug} />
         ))}
       </ul>
 

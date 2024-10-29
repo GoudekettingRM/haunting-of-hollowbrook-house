@@ -57,7 +57,9 @@ export default function BlogIndex() {
       <ul className='space-y-4 mb-8'>
         {currentArticles.map((article) => (
           <li key={article.slug} className='bg-white bg-opacity-10 p-4 space-y-2 max-w-screen-lg'>
-            <h3 className='text-xl text-parchment'>{article.title}</h3>
+            <Link className='underline hover:underline sm:no-underline' href={`/blog/${article.slug}`}>
+              <h3 className='text-xl text-parchment'>{article.title}</h3>
+            </Link>
             <p className='text-parchment'>{article.excerpt}</p>
             <p className='text-sm text-dark-wood font-serif flex justify-between items-center'>
               <span>Published on {article.date}</span>
@@ -73,13 +75,13 @@ export default function BlogIndex() {
       </ul>
 
       {totalPages > 1 && (
-        <div className='flex justify-center items-center space-x-4 my-6 max-w-screen-lg'>
+        <div className='flex justify-center items-center space-x-2 my-6 max-w-screen-lg'>
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             className={`${
               currentPage === 1 ? 'invisible pointer-events-none' : ''
-            } text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
+            } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
           >
             ‹
           </button>
@@ -89,7 +91,7 @@ export default function BlogIndex() {
               <button
                 key={pageNum}
                 onClick={() => handlePageChange(pageNum)}
-                className={`w-4 border-b text-lg hover:opacity-80 ${
+                className={`w-8 h-8 border-b text-lg hover:opacity-80 ${
                   currentPage === pageNum ? 'border-parchment' : 'border-transparent hover:border-parchment'
                 } transition duration-300`}
               >
@@ -103,7 +105,7 @@ export default function BlogIndex() {
             disabled={currentPage === totalPages}
             className={`${
               currentPage === totalPages ? 'invisible pointer-events-none' : ''
-            } text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
+            } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
           >
             ›
           </button>

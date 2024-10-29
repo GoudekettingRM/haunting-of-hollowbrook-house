@@ -105,7 +105,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-dvh`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-dvh relative`}>
         <div className='flex-grow grid grid-cols-1 sm:grid-cols-8 lg:grid-cols-12 gap-4 shrink-0 basis-full'>
           <aside className='col-span-1 sm:col-span-2'>
             <Navbar />

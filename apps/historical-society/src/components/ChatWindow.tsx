@@ -108,69 +108,72 @@ const ChatWindow = () => {
   }, []);
 
   return (
-    <div className='fixed bottom-10 right-0 sm:right-4 z-50 w-full sm:w-fit'>
-      <div
-        className={`
-        bg-white rounded-lg shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
-        transition-all duration-300 ease-in-out
-        ${isChatOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
-      `}
-      >
-        <div className='bg-dark-wood text-parchment p-4 rounded-t-lg flex justify-between items-center'>
-          <h2 className='text-lg font-semibold'>Messages</h2>
-          <button
-            onClick={() => setIsChatOpen(false)}
-            className='text-white hover:text-gray-200'
-            aria-label='Close messages'
-            type='button'
+    <>
+      {isChatOpen && (
+        <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
+          <div
+            className={`
+            bg-white rounded-b-lg sm:rounded-lg h-full shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
+              transition-all duration-300 ease-in-out
+              ${isChatOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
+          `}
           >
-            <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-            </svg>
-          </button>
-        </div>
+            <div className='bg-dark-wood text-parchment p-4 sm:rounded-t-lg flex justify-between items-center'>
+              <h2 className='text-lg font-semibold'>Messages</h2>
+              <button
+                onClick={() => setIsChatOpen(false)}
+                className='text-white hover:text-gray-200'
+                aria-label='Close messages'
+                type='button'
+              >
+                <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                </svg>
+              </button>
+            </div>
 
-        <div className='h-96 p-4 w-full overflow-y-auto overscroll-contain'>
-          {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
-            <div key={i} className='mb-2 flex justify-start'>
-              <div
-                className='
+            <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain'>
+              {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
+                <div key={i} className='mb-2 flex justify-start'>
+                  <div
+                    className='
                 max-w-[80%] rounded-lg p-3
                 bg-parchment text-dark-wood rounded-bl-none
               '
-              >
-                {msg}
-              </div>
-            </div>
-          ))}
-          {isTyping && (
-            <div className='mb-4 flex justify-start'>
-              <div className='max-w-[80%] rounded-lg p-3 bg-parchment text-dark-wood rounded-bl-none'>
-                <div className='flex gap-1'>
-                  <div
-                    className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'
-                    style={{ animationDelay: '0ms' }}
-                  />
-                  <div
-                    className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'
-                    style={{ animationDelay: '200ms' }}
-                  />
-                  <div
-                    className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'
-                    style={{ animationDelay: '400ms' }}
-                  />
+                  >
+                    {msg}
+                  </div>
                 </div>
-              </div>
+              ))}
+              {isTyping && (
+                <div className='mb-4 flex justify-start'>
+                  <div className='max-w-[80%] rounded-lg p-3 bg-parchment text-dark-wood rounded-bl-none'>
+                    <div className='flex gap-1'>
+                      <div
+                        className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'
+                        style={{ animationDelay: '0ms' }}
+                      />
+                      <div
+                        className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'
+                        style={{ animationDelay: '200ms' }}
+                      />
+                      <div
+                        className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'
+                        style={{ animationDelay: '400ms' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
-          )}
-          <div ref={messagesEndRef} />
+          </div>
         </div>
-      </div>
-
+      )}
       {!hasInitiatedChat && showWantToChatMessage ? (
         <button
           onClick={handleInitialClick}
-          className='mt-4 ml-auto block transition-transform hover:scale-105 animate-pulse hover:animate-none'
+          className='fixed bottom-10 right-4 transition-transform hover:scale-105 animate-pulse hover:animate-none'
           aria-label='Open messages'
           type='button'
         >
@@ -180,23 +183,23 @@ const ChatWindow = () => {
           </div>
         </button>
       ) : (
-        <div className='relative'>
+        <div className='fixed bottom-10 right-4'>
           <button
             onClick={() => setIsChatOpen((prev) => !prev)}
             aria-label='Open messages'
             type='button'
-            className={`mt-4 mr-2 ml-auto block p-3 rounded-full bg-parchment text-dark-wood hover:bg-opacity-100 ${isChatOpen ? 'bg-opacity-100' : 'bg-opacity-80'}`}
+            className={`p-3 rounded-full bg-parchment text-dark-wood hover:bg-opacity-100 ${isChatOpen ? 'bg-opacity-100' : 'bg-opacity-80'}`}
           >
             <MessagesSquare size={32} />
           </button>
           {unreadMessages > 0 && (
-            <div className='absolute -top-1 right-1 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center'>
+            <div className='absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center'>
               {unreadMessages}
             </div>
           )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

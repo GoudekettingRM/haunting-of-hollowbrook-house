@@ -122,43 +122,40 @@ export default function BlogIndex() {
 
       {totalPages > 1 && (
         <div className='flex justify-center items-center space-x-1 sm:space-x-2 my-6 max-w-screen-lg'>
-          <button
+          <Link
             onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            type='button'
+            href='#'
             className={`${
               currentPage === 1 ? 'invisible' : ''
-            } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
+            } w-8 h-8 text-parchment transition duration-300 text-center text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
           >
             ‹
-          </button>
+          </Link>
 
           <div className='flex items-center space-x-1 sm:space-x-2'>
             {getPageNumbers().map((pageNum, index) => (
-              <button
+              <Link
                 key={index}
-                type='button'
+                href='#'
                 onClick={() => (typeof pageNum === 'number' ? handlePageChange(pageNum) : null)}
-                disabled={typeof pageNum !== 'number'}
-                className={`w-8 h-8 border-b text-lg hover:opacity-80 ${
+                className={`w-8 h-8 border-b text-lg hover:opacity-80 text-center ${
                   currentPage === pageNum ? 'border-parchment' : 'border-transparent hover:border-parchment'
-                } ${typeof pageNum !== 'number' ? 'cursor-default' : ''} transition duration-300`}
+                } ${typeof pageNum !== 'number' ? 'cursor-default pointer-events-none' : ''} transition duration-300`}
               >
                 {pageNum}
-              </button>
+              </Link>
             ))}
           </div>
 
-          <button
+          <Link
             onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            type='button'
+            href='#'
             className={`${
               currentPage === totalPages ? 'invisible' : ''
-            } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
+            } w-8 h-8 text-parchment transition duration-300 text-center text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
           >
             ›
-          </button>
+          </Link>
         </div>
       )}
     </div>

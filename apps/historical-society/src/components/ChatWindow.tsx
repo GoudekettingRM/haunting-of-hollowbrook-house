@@ -108,10 +108,10 @@ const ChatWindow = () => {
   }, []);
 
   return (
-    <div className={`fixed ${currentMessageIndex === -1 ? 'bottom-4' : 'bottom-10'} right-4 z-50`}>
+    <div className='fixed bottom-10 right-0 sm:right-4 z-50 w-full sm:w-fit'>
       <div
         className={`
-        bg-white rounded-lg shadow-lg w-80
+        bg-white rounded-lg shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
         transition-all duration-300 ease-in-out
         ${isChatOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
       `}
@@ -130,7 +130,7 @@ const ChatWindow = () => {
           </button>
         </div>
 
-        <div className='h-96 p-4 overflow-y-auto'>
+        <div className='h-96 p-4 w-full overflow-y-auto overscroll-contain'>
           {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
             <div key={i} className='mb-2 flex justify-start'>
               <div

@@ -127,7 +127,7 @@ export default function BlogIndex() {
             disabled={currentPage === 1}
             type='button'
             className={`${
-              currentPage === 1 ? 'invisible pointer-events-none' : ''
+              currentPage === 1 ? 'invisible' : ''
             } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
           >
             ‹
@@ -154,7 +154,7 @@ export default function BlogIndex() {
             disabled={currentPage === totalPages}
             type='button'
             className={`${
-              currentPage === totalPages ? 'invisible pointer-events-none' : ''
+              currentPage === totalPages ? 'invisible' : ''
             } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
           >
             ›

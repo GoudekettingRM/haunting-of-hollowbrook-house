@@ -3,7 +3,7 @@ import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 const ContactPage = () => {
   return (
     <div className='pt-4 text-parchment'>
-      <h2 className='text-4xl mb-6'>Contact Us</h2>
+      <h2 className='text-4xl mb-6 px-4 sm:pl-0'>Contact Us</h2>
 
       <div className='space-y-6 max-w-screen-lg'>
         {/* Introduction */}

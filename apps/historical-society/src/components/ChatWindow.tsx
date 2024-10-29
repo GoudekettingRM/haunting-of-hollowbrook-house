@@ -112,11 +112,10 @@ const ChatWindow = () => {
       {isChatOpen && (
         <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
           <div
-            className={`
+            className='
             bg-white rounded-b-lg sm:rounded-lg h-full shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
-              transition-all duration-300 ease-in-out
-              ${isChatOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
-          `}
+              transition-all duration-300 ease-in-out opacity-100 translate-y-0
+            '
           >
             <div className='bg-dark-wood text-parchment p-4 sm:rounded-t-lg flex justify-between items-center'>
               <h2 className='text-lg font-semibold'>Messages</h2>
@@ -173,7 +172,7 @@ const ChatWindow = () => {
       {!hasInitiatedChat && showWantToChatMessage ? (
         <button
           onClick={handleInitialClick}
-          className='fixed bottom-10 right-4 transition-transform hover:scale-105 animate-pulse hover:animate-none'
+          className='fixed bottom-10 right-4 transition-transform hover:scale-105 animate-pulse hover:animate-none drop-shadow-md'
           aria-label='Open messages'
           type='button'
         >
@@ -183,7 +182,7 @@ const ChatWindow = () => {
           </div>
         </button>
       ) : (
-        <div className='fixed bottom-10 right-4'>
+        <div className='fixed bottom-10 right-4 drop-shadow-md'>
           <button
             onClick={() => setIsChatOpen((prev) => !prev)}
             aria-label='Open messages'

@@ -44,10 +44,6 @@ const ChatWindow = () => {
     return Math.max(500, message.length * 50);
   };
 
-  const getPauseDuration = () => {
-    return 1500;
-  };
-
   const startMessageSequence = () => {
     setIsTyping(true);
     let totalDelay = 0;

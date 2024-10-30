@@ -10,7 +10,6 @@ const SearchBar = () => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const input = form.elements.namedItem('search') as HTMLInputElement;
-    console.log(input.value);
     const search = input.value.toLowerCase();
 
     if (search === 'edgar is still alive') {
@@ -23,10 +22,13 @@ const SearchBar = () => {
   return (
     <>
       <form className='flex flex-row flex-wrap items-center gap-1' onSubmit={(e) => handleSearch(e)}>
-        <label className='w-full leading-tight text-sm'>Search</label>
+        <label className='w-full leading-tight text-sm' htmlFor='search'>
+          Search
+        </label>
         <input
           type='search'
           name='search'
+          id='search'
           className='h-7 text-black text-sm px-2 grow shrink-0 border border-gray-300 outline-none focus:border-gray-500 hover:border-gray-500 focus-within:border-gray-500'
           placeholder='Search for articles...'
         />

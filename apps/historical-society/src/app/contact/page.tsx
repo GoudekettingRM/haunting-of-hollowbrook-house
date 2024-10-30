@@ -2,13 +2,13 @@ import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 
 const ContactPage = () => {
   return (
-    <div className='pt-4 text-parchment'>
+    <div className='pt-4 text-dark-wood text-sm'>
       <h2 className='text-4xl mb-6 px-4 sm:pl-0'>Contact Us</h2>
 
       <div className='space-y-6 max-w-screen-lg'>
         {/* Introduction */}
-        <div className='bg-white bg-opacity-10 p-6'>
-          <p className='text-lg mb-4'>
+        <div className='bg-light-wood bg-opacity-10 p-6'>
+          <p className='text-base'>
             Welcome to the Whispering Hollows Historical Society. We&apos;re dedicated to preserving and sharing our
             community&apos;s rich history.
           </p>
@@ -17,10 +17,10 @@ const ContactPage = () => {
         {/* Hours and Location Grid */}
         <div className='grid md:grid-cols-2 gap-6'>
           {/* Visiting Hours */}
-          <div className='bg-white bg-opacity-10 p-6 space-y-4'>
+          <div className='bg-light-wood bg-opacity-10 p-6 space-y-4'>
             <div className='flex items-center gap-2 mb-4'>
               <Clock className='h-5 w-5' />
-              <h3 className='text-xl'>Visiting Hours</h3>
+              <h3 className='text-lg'>Visiting Hours</h3>
             </div>
 
             <div className='space-y-2 font-serif'>
@@ -44,10 +44,10 @@ const ContactPage = () => {
           </div>
 
           {/* Contact Information */}
-          <div className='bg-white bg-opacity-10 p-6 space-y-4'>
+          <div className='bg-light-wood bg-opacity-10 p-6 space-y-4'>
             <div className='flex items-center gap-2 mb-4'>
               <MapPin className='h-5 w-5' />
-              <h3 className='text-xl'>Find Us</h3>
+              <h3 className='text-lg'>Find Us</h3>
             </div>
 
             <div className='space-y-4 font-serif'>
@@ -74,8 +74,8 @@ const ContactPage = () => {
         </div>
 
         {/* Additional Information */}
-        <div className='bg-white bg-opacity-10 p-6 space-y-4'>
-          <h3 className='text-xl mb-4'>Important Information</h3>
+        <div className='bg-light-wood bg-opacity-10 p-6 space-y-4'>
+          <h3 className='text-lg mb-4'>Important Information</h3>
 
           <div className='space-y-4 font-serif'>
             <p>

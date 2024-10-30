@@ -157,13 +157,13 @@ const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
       <Link href='/blog' className='text-sm text-medium-wood hover:text-dark-wood mb-4'>
         ‹ Back to overview
       </Link>
-      <h1 className='text-3xl mb-6 mt-3 text-medium-wood'>{article.title}</h1>
-      <div className=''>
+      <h1 className='text-3xl mb-6 mt-3 text-dark-wood'>{article.title}</h1>
+      <div className='leading-tight text-sm'>
         {article.paragraphs.map((paragraph, index) => {
           return <Fragment key={`${paragraph}_${index}`}>{parseParagraph(paragraph)}</Fragment>;
         })}
       </div>
-      <div className='mt-8 text-sm text-medium-wood italic'>
+      <div className='mt-8 text-sm text-dark-wood italic'>
         <p>
           Published on {article.date} | Last updated on {article.lastEdited}
         </p>

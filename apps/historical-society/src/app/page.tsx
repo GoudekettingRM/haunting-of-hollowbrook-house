@@ -23,17 +23,17 @@ import articles from './blog/articles.json';
 
 export default function HomePage() {
   return (
-    <div className='bg-light-wood pt-4 max-w-screen-lg'>
+    <div className='pt-4 max-w-screen-lg'>
       {/* Hero Section */}
       <div className='mb-4'>
-        <h1 className='text-4xl'>Whispering Hollows Historical Society</h1>
-        <p className='text-base italic text-old-paper mt-2'>
+        <h1 className='text-4xl text-dark-wood'>Whispering Hollows Historical Society</h1>
+        <p className='text-base italic text-dark-wood mt-2'>
           Preserving the rich history and mysterious legends of our community since 1952
         </p>
       </div>
 
       {/* Introduction */}
-      <div className='bg-white bg-opacity-10 p-6 mb-8 text-sm text-parchment space-y-2'>
+      <div className='bg-light-wood bg-opacity-10 p-6 mb-8 text-sm text-dark-wood space-y-2'>
         <p className='indent-6'>
           Welcome to the Whispering Hollows Historical Society. Founded in 1952 by a group of passionate local history
           enthusiasts, we are dedicated to preserving and sharing the fascinating history of our region. From the
@@ -64,7 +64,7 @@ export default function HomePage() {
 
       {/* Featured Articles */}
       <section className='mb-12'>
-        <h2 className='text-4xl font-serif mb-6 text-parchment'>Featured Articles</h2>
+        <h2 className='text-4xl font-serif mb-3 text-dark-wood'>Featured Articles</h2>
         <ul className='space-y-4'>
           {[articles[0], articles[8], articles[10]].map((article) => (
             <ArticleCard article={article} key={article.slug} />

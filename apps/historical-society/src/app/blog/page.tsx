@@ -1,17 +1,33 @@
 'use client';
-import { SearchIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { ChangeEvent, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useMemo, useState } from 'react';
 import ArticleCard, { Article } from '../../components/ArticleCard';
 import allArticles from './articles.json';
 
 const ARTICLES_PER_PAGE = 6;
 
 export default function BlogIndex() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const articlesToShow = useMemo<Article[]>(() => {
+    const search = searchParams.get('search');
+
+    if (search) {
+      const searchTerm = search.toLowerCase();
+      return allArticles.filter((article) => {
+        return (
+          article.title.toLowerCase().includes(searchTerm) ||
+          article.excerpt.toLowerCase().includes(searchTerm) ||
+          article.tags.some((tag) => tag.toLowerCase().includes(search))
+        );
+      });
+    } else {
+      return allArticles;
+    }
+  }, [searchParams]);
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(Math.ceil(allArticles.length / ARTICLES_PER_PAGE));
-  const [articlesToShow, setArticlesToShow] = useState<Article[]>(allArticles);
+  const totalPages = Math.ceil(articlesToShow.length / ARTICLES_PER_PAGE);
   const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
   const endIndex = startIndex + ARTICLES_PER_PAGE;
   const currentArticles = articlesToShow.slice(startIndex, endIndex);
@@ -19,25 +35,6 @@ export default function BlogIndex() {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    const search = event.target.value.toLowerCase();
-
-    if (search === 'edgar is still alive') {
-      router.push('/blog/whhs-secret-archives/is-edgar-still-alive');
-    }
-
-    const filteredArticles = allArticles.filter((article) => {
-      return (
-        article.title.toLowerCase().includes(search) ||
-        article.excerpt.toLowerCase().includes(search) ||
-        article.tags.some((tag) => tag.toLowerCase().includes(search))
-      );
-    });
-    setArticlesToShow(filteredArticles);
-    setTotalPages(Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE));
-    setCurrentPage(1);
   };
 
   // Generate page numbers to display
@@ -89,16 +86,7 @@ export default function BlogIndex() {
   return (
     <div className='pt-4'>
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center max-w-screen-lg mb-6 gap-4 px-4 sm:pl-0'>
-        <h1 className='text-4xl'>Recent Posts</h1>
-        <div className='relative'>
-          <input
-            type='search'
-            onChange={(e) => handleSearch(e)}
-            className='h-8 self-end rounded-sm w-full sm:min-w-60 px-2 text-black text-sm'
-            placeholder='Search for articles...'
-          />
-          <SearchIcon className='absolute right-2 top-2 text-black w-4 h-4' />
-        </div>
+        <h1 className='text-4xl text-dark-wood'>Recent Posts</h1>
       </div>
       <ul className='space-y-4 mb-8'>
         {currentArticles.map((article) => (
@@ -114,7 +102,7 @@ export default function BlogIndex() {
             type='button'
             className={`${
               currentPage === 1 ? 'invisible' : ''
-            } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
+            } w-8 h-8 text-dark-wood transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-dark-wood`}
           >
             ‹
           </button>
@@ -127,7 +115,7 @@ export default function BlogIndex() {
                 onClick={() => (typeof pageNum === 'number' ? handlePageChange(pageNum) : null)}
                 disabled={typeof pageNum !== 'number'}
                 className={`w-8 h-8 border-b text-lg hover:opacity-80 ${
-                  currentPage === pageNum ? 'border-parchment' : 'border-transparent hover:border-parchment'
+                  currentPage === pageNum ? 'border-dark-wood' : 'border-transparent hover:border-dark-wood'
                 } ${typeof pageNum !== 'number' ? 'cursor-default' : ''} transition duration-300`}
               >
                 {pageNum}
@@ -141,7 +129,7 @@ export default function BlogIndex() {
             type='button'
             className={`${
               currentPage === totalPages ? 'invisible' : ''
-            } w-8 h-8 text-parchment transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-parchment`}
+            } w-8 h-8 text-dark-wood transition duration-300 text-2xl relative bottom-0.5 border-b border-transparent sm:hover:border-dark-wood`}
           >
             ›
           </button>

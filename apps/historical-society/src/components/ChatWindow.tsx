@@ -113,15 +113,15 @@ const ChatWindow = () => {
         <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
           <div
             className='
-            bg-parchment rounded-b-lg sm:rounded-lg h-full shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
+            bg-parchment rounded-b-lg sm:rounded-lg h-full drop-shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
               transition-all duration-300 ease-in-out opacity-100 translate-y-0
             '
           >
-            <div className='bg-dark-wood text-parchment p-4 sm:rounded-t-lg flex justify-between items-center'>
+            <div className='bg-parchment text-dark-wood p-4 sm:rounded-t-lg flex justify-between items-center border border-medium-wood'>
               <h2 className='text-lg font-semibold'>Messages</h2>
               <button
                 onClick={() => setIsChatOpen(false)}
-                className='text-white hover:text-gray-200'
+                className='text-dark-wood hover:text-light-wood'
                 aria-label='Close messages'
                 type='button'
               >
@@ -131,7 +131,7 @@ const ChatWindow = () => {
               </button>
             </div>
 
-            <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain'>
+            <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain border border-medium-wood border-t-0 rounded-bl-lg'>
               {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
                 <div key={i} className='mb-2 flex justify-start'>
                   <div
@@ -172,22 +172,22 @@ const ChatWindow = () => {
       {!hasInitiatedChat && showWantToChatMessage ? (
         <button
           onClick={handleInitialClick}
-          className='fixed bottom-10 right-4 transition-transform hover:scale-105 animate-pulse hover:animate-none drop-shadow-md'
+          className='fixed bottom-10 right-4 transition-transform hover:scale-105 animate-pulse hover:animate-none drop-shadow-lg'
           aria-label='Open messages'
           type='button'
         >
-          <div className='flex gap-2 items-center p-4 rounded-md bg-parchment text-dark-wood'>
+          <div className='flex gap-2 items-center p-4 rounded-md bg-white text-dark-wood'>
             <InfoIcon size={32} />
             Someone wants to chat
           </div>
         </button>
       ) : (
-        <div className='fixed bottom-10 right-4 drop-shadow-md'>
+        <div className='fixed bottom-10 right-4 drop-shadow-lg'>
           <button
             onClick={() => setIsChatOpen((prev) => !prev)}
             aria-label='Open messages'
             type='button'
-            className={`p-3 rounded-full bg-parchment text-dark-wood hover:bg-opacity-100 ${isChatOpen ? 'bg-opacity-100' : 'bg-opacity-80'}`}
+            className={`p-3 rounded-full bg-white text-dark-wood hover:bg-opacity-100 ${isChatOpen ? 'bg-opacity-100' : 'bg-opacity-80'}`}
           >
             <MessagesSquare size={32} />
           </button>

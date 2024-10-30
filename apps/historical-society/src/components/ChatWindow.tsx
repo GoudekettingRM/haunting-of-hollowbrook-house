@@ -3,6 +3,8 @@
 import { InfoIcon, MessagesSquare } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+const PAUSE_DURATION = 1500;
+
 const ChatWindow = () => {
   const [showWantToChatMessage, setShowWantToChatMessage] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(-1);
@@ -29,8 +31,9 @@ const ChatWindow = () => {
     'Once you reveal what is true',
     'Enter it where search is due',
     '25 7 22 2 1 5 4 22 1 29 15 10 21 2 25 25 7 22 8 22 15 5 22 10 33 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
-    'If you are who I think you are, you will know what to do, and I will see you on the other side',
-    'Good luck, JC.',
+    'If you are who I think you are, you will know what to do',
+    'I hope to see you on the other side',
+    'Oh, before I forget',
   ];
 
   const scrollToBottom = () => {
@@ -53,23 +56,23 @@ const ChatWindow = () => {
       const currentMessageDelay = totalDelay;
 
       if (index < messages.length - 1) {
-        totalDelay += getTypingDuration(messages[index + 1]) + getPauseDuration();
+        totalDelay += getTypingDuration(messages[index + 1]) + PAUSE_DURATION;
       }
 
       const showMessageTimer = setTimeout(() => {
         setCurrentMessageIndex(index);
-
-        if (index === messages.length - 1) {
-          setIsTyping(false);
-        }
       }, currentMessageDelay);
 
       timeoutsRef.current.push(showMessageTimer);
     });
 
-    setTimeout(() => {
-      setIsDoneTyping(true);
-    }, totalDelay);
+    setTimeout(
+      () => {
+        setIsTyping(false);
+        setIsDoneTyping(true);
+      },
+      totalDelay + PAUSE_DURATION + PAUSE_DURATION,
+    );
   };
 
   const handleInitialClick = () => {
@@ -170,7 +173,7 @@ const ChatWindow = () => {
               )}
               {isDoneTyping && (
                 <>
-                  <p className='mb-2 w-full text-center text-sm flex mx-auto items-center justify-center gap-1'>
+                  <p className='mt-4 mb-2 w-full text-center text-sm flex mx-auto items-center justify-center gap-1 text-red-700'>
                     <InfoIcon className='h-4 w-4' /> Connection lost
                   </p>
                 </>

@@ -13,12 +13,12 @@ const ChatWindow = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const lastSeenMessageIndexRef = useRef(-1);
+  const [isDoneTyping, setIsDoneTyping] = useState(false);
 
   const messages = [
-    'Hi',
-    'Are you who I think you are?',
+    'Hey, are you who I think you are?',
     'I have to assume you are, since you are the only one currently on this website',
-    'Please, help me',
+    'Please, help',
     'Follow these instructions',
     'Rich paragraphs with chosen words',
     'Hide secrets meant to be disturbed',
@@ -26,11 +26,11 @@ const ChatWindow = () => {
     "Like clockwork marking time's display",
     'The last two show the path to trace',
     'First down, then right across the space',
-    '5 12 21 11 24 15 5 22 3 8 20 6 22 1 1 5 4 22 1 29 1 9 21 3 9 25 7 22 2 1 2 12 21 10 8 15 10 21 2 25 2 11 21 10 2 25 7 22 8 22 15 5 22 10 33 15 1 22 11 49 1 9 21 3 55 5 4 22 14 26 20 2 22 4 74 20 2 22 2 38 15 1 22 7 6 10 3 22 3 65 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
-    'Did you get all that?',
+    'Once you reveal what is true',
+    'Enter it where search is due',
+    '25 7 22 2 1 5 4 22 1 29 15 10 21 2 25 25 7 22 8 22 15 5 22 10 33 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
     'If you are who I think you are, you will know what to do, and I will see you on the other side',
-    'Good luck',
-    'JC.',
+    'Good luck, JC.',
   ];
 
   const scrollToBottom = () => {
@@ -66,6 +66,10 @@ const ChatWindow = () => {
 
       timeoutsRef.current.push(showMessageTimer);
     });
+
+    setTimeout(() => {
+      setIsDoneTyping(true);
+    }, totalDelay);
   };
 
   const handleInitialClick = () => {
@@ -92,7 +96,7 @@ const ChatWindow = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [currentMessageIndex, isTyping]);
+  }, [currentMessageIndex, isTyping, isDoneTyping]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -164,6 +168,13 @@ const ChatWindow = () => {
                   </div>
                 </div>
               )}
+              {isDoneTyping && (
+                <>
+                  <p className='mb-2 w-full text-center text-sm flex mx-auto items-center justify-center gap-1'>
+                    <InfoIcon className='h-4 w-4' /> Connection lost
+                  </p>
+                </>
+              )}
               <div ref={messagesEndRef} />
             </div>
           </div>
@@ -173,7 +184,7 @@ const ChatWindow = () => {
         <button
           onClick={handleInitialClick}
           className='fixed bottom-10 right-4 transition-transform hover:scale-105 animate-pulse hover:animate-none drop-shadow-lg'
-          aria-label='Open messages'
+          aria-label='Someone wants to chat'
           type='button'
         >
           <div className='flex gap-2 items-center p-4 rounded-md bg-white text-dark-wood'>

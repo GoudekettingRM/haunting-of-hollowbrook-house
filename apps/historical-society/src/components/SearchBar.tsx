@@ -22,7 +22,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <form className='flex flex-row flex-wrap items-center gap-1 max-w-' onSubmit={(e) => handleSearch(e)}>
+      <form className='flex flex-row flex-wrap items-center gap-1' onSubmit={(e) => handleSearch(e)}>
         <label className='w-full leading-tight text-sm'>Search</label>
         <input
           type='search'
@@ -30,7 +30,10 @@ const SearchBar = () => {
           className='h-7 text-black text-sm px-2 grow shrink-0 border border-gray-300 outline-none focus:border-gray-500 hover:border-gray-500 focus-within:border-gray-500'
           placeholder='Search for articles...'
         />
-        <button type='submit' className='border border-gray-300 px-2 h-7 bg-gray-200'>
+        <button
+          type='submit'
+          className='border border-gray-300 px-2 h-7 bg-gray-200 hover:bg-gray-300 hover:border-gray-400 rounded'
+        >
           Go
         </button>
       </form>

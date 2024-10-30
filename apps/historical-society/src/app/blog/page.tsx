@@ -1,24 +1,23 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import ArticleCard, { Article } from '../../components/ArticleCard';
 import allArticles from './articles.json';
 
 const ARTICLES_PER_PAGE = 6;
 
-export default function BlogIndex() {
-  const searchParams = useSearchParams();
+interface BlogIndexProps {
+  searchParams: { search?: string };
+}
 
+export default function BlogIndex({ searchParams }: BlogIndexProps) {
   const articlesToShow = useMemo<Article[]>(() => {
-    const search = searchParams.get('search');
-
-    if (search) {
-      const searchTerm = search.toLowerCase();
+    if (searchParams.search) {
+      const searchTerm = searchParams.search.toLowerCase();
       return allArticles.filter((article) => {
         return (
           article.title.toLowerCase().includes(searchTerm) ||
           article.excerpt.toLowerCase().includes(searchTerm) ||
-          article.tags.some((tag) => tag.toLowerCase().includes(search))
+          article.tags.some((tag) => tag.toLowerCase().includes(searchTerm))
         );
       });
     } else {

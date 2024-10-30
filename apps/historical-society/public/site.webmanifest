@@ -1,0 +1,26 @@
+{
+  "name": "Whispering Hollows Historical Society",
+  "short_name": "WHHS",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#402e1e",
+  "background_color": "#f0e6d9",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "https://whhs.goudeketting.nl",
+  "scope": "https://whhs.goudeketting.nl",
+  "lang": "en",
+  "dir": "ltr",
+  "description": "Preserving and sharing the rich history of Whispering Hollows since 1952. Explore our region's fascinating past, from its founding through the present day.",
+  "categories": ["education", "history", "entertainment"]
+}

@@ -6,16 +6,33 @@ import { FormEvent } from 'react';
 const SearchBar = () => {
   const router = useRouter();
 
-  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const input = form.elements.namedItem('search') as HTMLInputElement;
-    const search = input.value.toLowerCase();
+    const search = input.value.toLowerCase().replace(/\s+/g, '');
 
-    if (search === 'edgar is still alive') {
-      router.push('/blog/whhs-secret-archives/is-edgar-still-alive');
-    } else {
-      router.push(`/blog?search=${encodeURIComponent(search)}`);
+    try {
+      const response = await fetch('/api/sys-redirect', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ search }),
+      });
+
+      if (response.status === 200) {
+        const { redirectUrl } = await response.json();
+        if (redirectUrl) {
+          router.push(redirectUrl);
+        } else {
+          router.push(`/blog?search=${encodeURIComponent(search)}`);
+        }
+      } else if (response.status === 204) {
+        router.push(`/blog?search=${encodeURIComponent(search)}`);
+      }
+    } catch (error) {
+      console.error('Error redirecting search:', error);
     }
   };
 

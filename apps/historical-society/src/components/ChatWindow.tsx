@@ -1,9 +1,11 @@
 'use client';
 
+import Cookies from 'js-cookie';
 import { InfoIcon, MessagesSquare } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const PAUSE_DURATION = 1500;
+const COOKIE_NAME = 'chat_state';
 
 const ChatWindow = () => {
   const [showWantToChatMessage, setShowWantToChatMessage] = useState(false);
@@ -12,10 +14,12 @@ const ChatWindow = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasInitiatedChat, setHasInitiatedChat] = useState(false);
   const [unreadMessages, setUnreadMessages] = useState(0);
+  const [isDoneTyping, setIsDoneTyping] = useState(false);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const lastSeenMessageIndexRef = useRef(-1);
-  const [isDoneTyping, setIsDoneTyping] = useState(false);
+  const isChatOpenRef = useRef(isChatOpen);
 
   const messages = [
     'Hey, are you who I think you are?',
@@ -36,27 +40,66 @@ const ChatWindow = () => {
     'Oh, before I forget',
   ];
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToBottom = (scrollMethod: 'smooth' | 'instant' | 'auto') => {
+    messagesEndRef.current?.scrollIntoView({ behavior: scrollMethod });
   };
 
   const getTypingDuration = (message: string) => {
     return Math.max(500, message.length * 50);
   };
 
-  const startMessageSequence = () => {
+  const saveChatState = () => {
+    const state = {
+      hasInitiatedChat,
+      currentMessageIndex,
+      isDoneTyping,
+      lastSeenMessageIndex: lastSeenMessageIndexRef.current,
+    };
+    Cookies.set(COOKIE_NAME, JSON.stringify(state), { expires: 7 });
+  };
+
+  const loadChatState = () => {
+    const savedState = Cookies.get(COOKIE_NAME);
+    if (savedState) {
+      const state = JSON.parse(savedState);
+      setHasInitiatedChat(state.hasInitiatedChat);
+      lastSeenMessageIndexRef.current = state.lastSeenMessageIndex;
+      setShowWantToChatMessage(false);
+
+      // If the sequence was complete
+      if (state.isDoneTyping) {
+        setCurrentMessageIndex(state.currentMessageIndex);
+        setIsDoneTyping(true);
+        setIsTyping(false);
+      } else {
+        // Resume the sequence from where it left off
+        startMessageSequence(state.currentMessageIndex + 1);
+      }
+      return true;
+    }
+    return false;
+  };
+
+  const startMessageSequence = (startFromIndex = 0) => {
     setIsTyping(true);
     let totalDelay = 0;
 
-    messages.forEach((message, index) => {
-      const currentMessageDelay = totalDelay;
+    // Immediately show all messages up to startFromIndex
+    if (startFromIndex > 0) {
+      setCurrentMessageIndex(startFromIndex - 1);
+    }
 
-      if (index < messages.length - 1) {
-        totalDelay += getTypingDuration(messages[index + 1]) + PAUSE_DURATION;
+    // Continue with remaining messages
+    messages.slice(startFromIndex).forEach((message, index) => {
+      const currentMessageDelay = totalDelay;
+      const actualIndex = startFromIndex + index;
+
+      if (actualIndex < messages.length - 1) {
+        totalDelay += getTypingDuration(messages[actualIndex + 1]) + PAUSE_DURATION;
       }
 
       const showMessageTimer = setTimeout(() => {
-        setCurrentMessageIndex(index);
+        setCurrentMessageIndex(actualIndex);
       }, currentMessageDelay);
 
       timeoutsRef.current.push(showMessageTimer);
@@ -78,6 +121,28 @@ const ChatWindow = () => {
     startMessageSequence();
   };
 
+  // Initial load effect
+  useEffect(() => {
+    const hasExistingState = loadChatState();
+    if (!hasExistingState) {
+      const timer = setTimeout(() => {
+        if (isChatOpenRef.current) {
+          handleInitialClick();
+        } else {
+          setShowWantToChatMessage(true);
+        }
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Save state effect
+  useEffect(() => {
+    if (hasInitiatedChat) {
+      saveChatState();
+    }
+  }, [hasInitiatedChat, currentMessageIndex, isDoneTyping]);
+
   useEffect(() => {
     if (isChatOpen) {
       setUnreadMessages(0);
@@ -94,15 +159,15 @@ const ChatWindow = () => {
   }, [currentMessageIndex, isChatOpen, hasInitiatedChat]);
 
   useEffect(() => {
-    scrollToBottom();
+    scrollToBottom('smooth');
   }, [currentMessageIndex, isTyping, isDoneTyping]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowWantToChatMessage(true);
-    }, 10000);
-    return () => clearTimeout(timer);
-  }, []);
+    isChatOpenRef.current = isChatOpen;
+    if (isChatOpen) {
+      scrollToBottom('instant');
+    }
+  }, [isChatOpen]);
 
   useEffect(() => {
     return () => {
@@ -114,12 +179,7 @@ const ChatWindow = () => {
     <>
       {isChatOpen && (
         <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
-          <div
-            className='
-            bg-parchment rounded-b-lg sm:rounded-lg h-full drop-shadow-lg w-full min-w-full sm:min-w-80 sm:w-80
-              transition-all duration-300 ease-in-out opacity-100 translate-y-0
-            '
-          >
+          <div className='bg-parchment rounded-b-lg sm:rounded-lg h-full drop-shadow-lg w-full min-w-full sm:min-w-80 sm:w-80 transition-all duration-300 ease-in-out opacity-100 translate-y-0'>
             <div className='bg-parchment text-dark-wood p-4 sm:rounded-t-lg flex justify-between items-center border border-medium-wood'>
               <h2 className='text-lg font-semibold'>Messages</h2>
               <button
@@ -137,14 +197,7 @@ const ChatWindow = () => {
             <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain border border-medium-wood border-t-0 rounded-bl-lg'>
               {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
                 <div key={i} className='mb-2 flex justify-start'>
-                  <div
-                    className='
-                max-w-[80%] rounded-lg p-3
-                bg-white text-dark-wood rounded-bl-none
-              '
-                  >
-                    {msg}
-                  </div>
+                  <div className='max-w-[80%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>{msg}</div>
                 </div>
               ))}
               {isTyping && (
@@ -168,11 +221,9 @@ const ChatWindow = () => {
                 </div>
               )}
               {isDoneTyping && (
-                <>
-                  <p className='mt-4 mb-2 w-full text-center text-sm flex mx-auto items-center justify-center gap-1 text-red-700'>
-                    <InfoIcon className='h-4 w-4' /> Connection lost
-                  </p>
-                </>
+                <p className='mt-4 mb-2 w-full text-center text-sm flex mx-auto items-center justify-center gap-1 text-red-700'>
+                  <InfoIcon className='h-4 w-4' /> Connection lost
+                </p>
               )}
               <div ref={messagesEndRef} />
             </div>

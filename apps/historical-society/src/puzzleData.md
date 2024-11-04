@@ -39,6 +39,20 @@ In fives, the numbers hold their sway
 Like clockwork marking time's display
 The final pair holds secrets deep
 One drops down, one sideways does leap
+Once you reveal what is true
+Enter it where search is due
 
-Once the truth has been revealed,
 
+# Newspaper archives
+
+Margaret article:
+
+key: worship
+
+map:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+T U V W X Y Z A B C D E F G H I J K L M N O P Q R S
+
+
+LKNHY SPCLZ. OL MVBUK H DHF AV JYVZZ AOL YPMA. THYNHYLA PZ MVSSVDPUN AV IYPUN OUT IHJR. AOL JVUKBJLY PZ AOL RLF.
+EDGAR LIVES. HE FOUND A WAY TO CROSS THE RIFT. MARGARET IS FOLLOWING TO BRING HIM BACK. THE CONDUCER IS THE KEY.

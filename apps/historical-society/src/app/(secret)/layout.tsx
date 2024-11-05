@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import '../globals.css';
+import './secret.css';
 
 export const metadata: Metadata = {
   title: 'Console',

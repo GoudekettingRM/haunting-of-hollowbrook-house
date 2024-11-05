@@ -13,7 +13,7 @@ const ArticlePage = ({ params: { articleSlug }, searchParams: { title, date } }:
   return (
     <div className='max-w-4xl mx-auto p-8 font-serif'>
       <div className='mb-8'>
-        <a href='/gazette/archives?q=hollowbrook' className='text-blue-800 hover:underline text-sm'>
+        <a href='/archives?q=hollowbrook' className='text-blue-800 hover:underline text-sm'>
           ← Return to Archives
         </a>
       </div>
@@ -31,7 +31,7 @@ const ArticlePage = ({ params: { articleSlug }, searchParams: { title, date } }:
 
       <div className='w-full h-[min(800px,80dvh)] bg-gray-100'>
         <iframe
-          src={`/gazette/${articleSlug.replace('hbtl-', '')}.pdf#toolbar=0&navpanes=0`}
+          src={`/pdfs/${articleSlug.replace('hbtl-', '')}.pdf#toolbar=0&navpanes=0`}
           className='w-full h-full'
           title={`Whispering Hollows Gazette - ${date}`}
         />

@@ -31,7 +31,7 @@ const RetroConsole = () => {
     "Most people don't see it, but you do. You see the connections.",
     'The answer is hidden in history.',
     'Where the words cross, the key is revealed, the message is exposed.',
-    'https://whhs.goudeketting.nl/gazette/19031980.pdf',
+    'https://gazette.goudeketting.nl/archives?q=hollowbrook',
   ];
 
   // Handle loading animation

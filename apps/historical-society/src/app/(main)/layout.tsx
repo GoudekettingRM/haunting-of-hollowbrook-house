@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ChatWindow from '../../components/ChatWindow';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
-import '../globals.css';
+import './main.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://whisperinghollows.org'),

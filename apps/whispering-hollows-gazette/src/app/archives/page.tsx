@@ -3,8 +3,11 @@ import Link from 'next/link';
 const ArchivesPage = ({ searchParams: { q } }: { searchParams: { q?: string } }) => {
   if (!q || !q.includes('hollowbrook')) {
     return (
-      <div className='p-4 font-serif'>
-        <p>404 - Not Found</p>
+      <div className='p-4 font-serif w-dvw h-dvh grid place-items-center'>
+        <div className='text-center'>
+          <p>500 - Internal Server error</p>
+          <p>There was an error and the page could not be loaded.</p>
+        </div>
       </div>
     );
   }
@@ -21,9 +24,9 @@ const ArchivesPage = ({ searchParams: { q } }: { searchParams: { q?: string } })
       filename: 'hbtl-02091939',
     },
     {
-      date: '1960-09-01',
+      date: '1960-09-05',
       title: 'Court Declares Edgar Hollowbrook Legally Dead',
-      filename: 'hbtl-01091960',
+      filename: 'hbtl-05091960',
     },
     {
       date: '1980-03-19',
@@ -59,7 +62,7 @@ const ArchivesPage = ({ searchParams: { q } }: { searchParams: { q?: string } })
             <div className='w-24 text-gray-600 shrink-0'>[{article.date}]</div>
             <div>
               <Link
-                href={`/gazette/archives/${article.filename}?title=${encodeURIComponent(article.title)}&date=${article.date}`}
+                href={`/archives/${article.filename}?title=${encodeURIComponent(article.title)}&date=${article.date}`}
                 className='text-blue-800 hover:underline visited:text-purple-900'
                 rel='noopener noreferrer'
               >
@@ -72,7 +75,9 @@ const ArchivesPage = ({ searchParams: { q } }: { searchParams: { q?: string } })
 
       <hr className='mt-6 mb-4 border-gray-300' />
       <footer className='text-sm text-gray-600'>
-        <p>Archive maintained by Whispering Hollows Historical Society</p>
+        <p>
+          Archive maintained by <Link href='https://whhs.goudeketting.nl/'>Whispering Hollows Historical Society</Link>
+        </p>
       </footer>
     </div>
   );

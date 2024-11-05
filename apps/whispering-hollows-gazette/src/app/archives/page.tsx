@@ -78,7 +78,10 @@ const ArchivesPage = async (props: { searchParams: Promise<{ q?: string }> }) =>
       <hr className='mt-6 mb-4 border-gray-300' />
       <footer className='text-sm text-gray-600'>
         <p>
-          Archive maintained by <Link href='https://whhs.goudeketting.nl/'>Whispering Hollows Historical Society</Link>
+          Archive maintained by{' '}
+          <Link href='https://whhs.goudeketting.nl/' className='underline'>
+            Whispering Hollows Historical Society
+          </Link>
         </p>
       </footer>
     </div>

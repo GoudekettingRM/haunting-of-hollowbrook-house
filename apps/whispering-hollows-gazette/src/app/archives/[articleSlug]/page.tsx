@@ -45,7 +45,12 @@ const ArticlePage = async (props: ArticlePageProps) => {
       <hr className='my-8 border-gray-300' />
 
       <footer className='text-sm text-gray-600'>
-        <p>From the Archives of the Whispering Hollows Historical Society</p>
+        <p>
+          From the Archives of the{' '}
+          <Link href='https://whhs.goudeketting.nl/' className='underline'>
+            Whispering Hollows Historical Society
+          </Link>
+        </p>
         <p className='mt-1'>Digitized and preserved for historical research</p>
       </footer>
     </div>

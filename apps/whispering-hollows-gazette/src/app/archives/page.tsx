@@ -1,6 +1,8 @@
 import Link from 'next/link';
 
-const ArchivesPage = ({ searchParams: { q } }: { searchParams: { q?: string } }) => {
+const ArchivesPage = async (props: { searchParams: Promise<{ q?: string }> }) => {
+  const { q } = await props.searchParams;
+
   if (!q || !q.includes('hollowbrook')) {
     return (
       <div className='p-4 font-serif w-dvw h-dvh grid place-items-center'>

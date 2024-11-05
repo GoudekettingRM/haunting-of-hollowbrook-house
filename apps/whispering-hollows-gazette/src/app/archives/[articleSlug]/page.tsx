@@ -1,16 +1,20 @@
 import Link from 'next/link';
 
 interface ArticlePageProps {
-  params: {
+  params: Promise<{
     articleSlug: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     title: string;
     date: string;
-  };
+  }>;
 }
 
-const ArticlePage = ({ params: { articleSlug }, searchParams: { title, date } }: ArticlePageProps) => {
+const ArticlePage = async (props: ArticlePageProps) => {
+  const { title, date } = await props.searchParams;
+
+  const { articleSlug } = await props.params;
+
   return (
     <div className='max-w-4xl mx-auto p-8 font-serif'>
       <div className='mb-8'>

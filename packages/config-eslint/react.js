@@ -43,6 +43,13 @@ module.exports = {
     '@typescript-eslint/require-await': 'off',
     'react/jsx-sort-props': 'off',
     'unicorn/filename-case': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'no-console': [
+      'error',
+      {
+        allow: ['info', 'warn', 'error'],
+      },
+    ],
   },
   overrides: [
     {

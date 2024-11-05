@@ -10,8 +10,9 @@ const ARTICLES_PER_PAGE = 6;
 const BlogIndexPage = () => {
   const searchParams = useSearchParams() as { get: (str: string) => string | undefined };
   const articlesToShow = useMemo<Article[]>(() => {
-    if (searchParams.get('search')) {
-      const searchTerm = searchParams.get('search')!.toLowerCase();
+    const search = searchParams.get('search');
+    if (search) {
+      const searchTerm = search.toLowerCase();
       return allArticles.filter((article) => {
         return (
           article.title.toLowerCase().includes(searchTerm) ||

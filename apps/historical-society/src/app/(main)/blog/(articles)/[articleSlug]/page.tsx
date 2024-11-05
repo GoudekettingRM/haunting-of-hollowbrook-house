@@ -1,5 +1,5 @@
 // app/blog/[articleSlug]/page.tsx
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import allArticles from '../../articles.json';
@@ -92,7 +92,7 @@ function generateArticleJsonLd(article: Article) {
   };
 }
 
-const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
+function ArticlePage({ params: { articleSlug } }: ArticlePageProps) {
   const article = allArticles.find((art) => art.slug === articleSlug);
 
   if (!article) {
@@ -122,13 +122,13 @@ const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
           {parseInlineElements(paragraph.slice(5))}
         </p>
       );
-    } else {
+    } 
       return (
         <p key={paragraph} className='indent-6 mb-3 sm:mb-5'>
           {parseInlineElements(paragraph)}
         </p>
       );
-    }
+    
   };
 
   const parseInlineElements = (text: string) => {
@@ -136,7 +136,7 @@ const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
     return splitText.map((part, index) => {
       if (part.startsWith('<a')) {
         const pattern = /<a href='([^']*)'>(.*?)<\/a>/;
-        const match = part.match(pattern);
+        const match = pattern.exec(part);
 
         if (match) {
           const [, hrefValue, content] = match;
@@ -180,6 +180,6 @@ const ArticlePage = ({ params: { articleSlug } }: ArticlePageProps) => {
       </div>
     </>
   );
-};
+}
 
 export default ArticlePage;

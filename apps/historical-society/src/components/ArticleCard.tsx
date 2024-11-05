@@ -14,7 +14,7 @@ interface ArticleCardProps {
   article: Article;
 }
 
-const ArticleCard = ({ article }: ArticleCardProps) => {
+function ArticleCard({ article }: ArticleCardProps) {
   return (
     <li className='bg-light-wood bg-opacity-10 p-4 space-y-2 max-w-screen-lg'>
       <Link className='underline hover:underline sm:no-underline' href={`/blog/${article.slug}`}>
@@ -32,5 +32,5 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
       </p>
     </li>
   );
-};
+}
 export default ArticleCard;

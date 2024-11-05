@@ -1,6 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
-import ArticleCard, { Article } from '../../../components/ArticleCard';
+import type { Article } from '../../../components/ArticleCard';
+import ArticleCard from '../../../components/ArticleCard';
 import allArticles from './articles.json';
 
 const ARTICLES_PER_PAGE = 6;
@@ -20,9 +21,9 @@ export default function BlogIndex({ searchParams }: BlogIndexProps) {
           article.tags.some((tag) => tag.toLowerCase().includes(searchTerm))
         );
       });
-    } else {
+    } 
       return allArticles;
-    }
+    
   }, [searchParams]);
 
   const [currentPage, setCurrentPage] = useState(1);

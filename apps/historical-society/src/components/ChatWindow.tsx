@@ -7,7 +7,14 @@ import { useEffect, useRef, useState } from 'react';
 const PAUSE_DURATION = 1500;
 const COOKIE_NAME = 'chat_state';
 
-const ChatWindow = () => {
+interface ChatState {
+  hasInitiatedChat: boolean;
+  currentMessageIndex: number;
+  isDoneTyping: boolean;
+  lastSeenMessageIndex: number;
+}
+
+function ChatWindow() {
   const [showWantToChatMessage, setShowWantToChatMessage] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(-1);
   const [isTyping, setIsTyping] = useState(false);
@@ -61,7 +68,7 @@ const ChatWindow = () => {
   const loadChatState = () => {
     const savedState = Cookies.get(COOKIE_NAME);
     if (savedState) {
-      const state = JSON.parse(savedState);
+      const state = JSON.parse(savedState) as ChatState;
       setHasInitiatedChat(state.hasInitiatedChat);
       lastSeenMessageIndexRef.current = state.lastSeenMessageIndex;
       setShowWantToChatMessage(false);
@@ -177,7 +184,7 @@ const ChatWindow = () => {
 
   return (
     <>
-      {isChatOpen && (
+      {isChatOpen ? (
         <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
           <div className='bg-parchment rounded-b-lg sm:rounded-lg h-full drop-shadow-lg w-full min-w-full sm:min-w-80 sm:w-80 transition-all duration-300 ease-in-out opacity-100 translate-y-0'>
             <div className='bg-parchment text-dark-wood p-4 sm:rounded-t-lg flex justify-between items-center border border-medium-wood'>
@@ -200,7 +207,7 @@ const ChatWindow = () => {
                   <div className='max-w-[80%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>{msg}</div>
                 </div>
               ))}
-              {isTyping && (
+              {isTyping ? (
                 <div className='mb-4 flex justify-start'>
                   <div className='max-w-[80%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>
                     <div className='flex gap-1'>
@@ -219,17 +226,17 @@ const ChatWindow = () => {
                     </div>
                   </div>
                 </div>
-              )}
-              {isDoneTyping && (
+              ) : null}
+              {isDoneTyping ? (
                 <p className='mt-4 mb-2 w-full text-center text-sm flex mx-auto items-center justify-center gap-1 text-red-700'>
                   <InfoIcon className='h-4 w-4' /> Connection lost
                 </p>
-              )}
+              ) : null}
               <div ref={messagesEndRef} />
             </div>
           </div>
         </div>
-      )}
+      ) : null}
       {!hasInitiatedChat && showWantToChatMessage ? (
         <button
           onClick={handleInitialClick}
@@ -261,6 +268,6 @@ const ChatWindow = () => {
       )}
     </>
   );
-};
+}
 
 export default ChatWindow;

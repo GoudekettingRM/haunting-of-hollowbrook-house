@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SearchBar from './SearchBar';
 
-const Navbar = () => {
+function Navbar() {
   return (
     <nav className='flex flex-col p-4'>
       <Link href='/' className='text-2xl' title='Whispering Hollows Historical Society'>
@@ -20,10 +20,10 @@ const Navbar = () => {
       <NavLink name='Contact' href='/contact' />
     </nav>
   );
-};
+}
 export default Navbar;
 
-const NavLink = ({ name, href }: { name: string; href: string }) => {
+function NavLink({ name, href }: { name: string; href: string }) {
   return (
     <Link
       className='flex justify-between w-full flex-nowrap border-b border-b-dark-wood border-opacity-30 last-of-type:border-b-0 py-2 underline sm:no-underline sm:hover:underline'
@@ -32,4 +32,4 @@ const NavLink = ({ name, href }: { name: string; href: string }) => {
       <span className='block'>{name}</span> <span className='block'>›</span>
     </Link>
   );
-};
+}

@@ -1,16 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body: { search: string } = await request.json();
+    const body = (await request.json()) as { search: string };
 
     if (body.search.toLowerCase().replace(/\s+/g, '') === 'edgarisstillalive') {
       return NextResponse.json({ redirectUrl: '/sys-admin/protocol-9139' }, { status: 200 });
-    } else {
-      return new Response(undefined, { status: 204 });
     }
+    return new Response(undefined, { status: 204 });
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Redirect API error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }

@@ -1,6 +1,6 @@
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 
-const ContactPage = () => {
+function ContactPage() {
   return (
     <div className='pt-4 text-dark-wood text-sm'>
       <h2 className='text-4xl mb-6 px-4 sm:pl-0'>Contact Us</h2>
@@ -99,6 +99,6 @@ const ContactPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ContactPage;

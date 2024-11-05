@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 interface ArticlePageProps {
   params: {
     articleSlug: string;
@@ -12,9 +14,9 @@ const ArticlePage = ({ params: { articleSlug }, searchParams: { title, date } }:
   return (
     <div className='max-w-4xl mx-auto p-8 font-serif'>
       <div className='mb-8'>
-        <a href='/archives?q=hollowbrook' className='text-blue-800 hover:underline text-sm'>
-          ← Return to Archives
-        </a>
+        <Link href='/archives?q=hollowbrook' className='text-blue-800 hover:underline text-sm'>
+          ← Return to Archive
+        </Link>
       </div>
 
       <div className='mb-8 text-center'>

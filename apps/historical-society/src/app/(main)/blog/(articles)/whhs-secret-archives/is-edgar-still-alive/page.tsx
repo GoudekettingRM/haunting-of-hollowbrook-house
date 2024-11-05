@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Secret Archives | Is Edgar Still Alive?',
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   robots: 'noindex, nofollow',
 };
 
-const IsEdgarStillAlive = () => {
+function IsEdgarStillAlive() {
   return <div>IsEdgarStillAlive</div>;
-};
+}
 export default IsEdgarStillAlive;

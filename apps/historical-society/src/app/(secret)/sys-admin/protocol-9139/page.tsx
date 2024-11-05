@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-const RetroConsole = () => {
+function RetroConsole() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingDots, setLoadingDots] = useState('');
   const [bootSequence, setBootSequence] = useState('');
@@ -54,7 +54,7 @@ const RetroConsole = () => {
     let dots = '';
 
     const interval = setInterval(() => {
-      dots = dots.length >= 3 ? '' : dots + '.';
+      dots = dots.length >= 3 ? '' : `${dots  }.`;
       const message = loadingMessages[currentMessageIndex];
       setLoadingDots(`${message}${dots}`);
 
@@ -83,7 +83,7 @@ const RetroConsole = () => {
   useEffect(() => {
     if (isLoading) return;
 
-    let timeouts: NodeJS.Timeout[] = [];
+    const timeouts: NodeJS.Timeout[] = [];
     initialBootMessages.forEach((message, index) => {
       const timeout = setTimeout(() => {
         setBootSequence(message.text);
@@ -145,8 +145,7 @@ const RetroConsole = () => {
               </div>
             ) : (
               <>
-                {bootSequence && (
-                  <div
+                {bootSequence ? <div
                     className={`
                       ${bootSequence === '[INCOMING TRANSMISSION]' ? 'font-bold' : ''}
                       ${
@@ -160,8 +159,7 @@ const RetroConsole = () => {
                     {bootSequence !== '[INCOMING TRANSMISSION]'
                       ? `[*] ${bootSequence}`
                       : incomingTransmissionMessage(completedLines[completedLines.length - 1])}
-                  </div>
-                )}
+                  </div> : null}
                 {completedLines.map((line, index) => (
                   <div
                     key={`completed-${index}`}
@@ -170,12 +168,10 @@ const RetroConsole = () => {
                     {line === '[TRANSMISSION ENDED]' ? 'TRANSMISSION ENDED\n\n' : `> ${line}`}
                   </div>
                 ))}
-                {currentLine && (
-                  <div className='text-[#0f0]'>
+                {currentLine ? <div className='text-[#0f0]'>
                     {currentLine}
                     <span className='animate-pulse'>_</span>
-                  </div>
-                )}
+                  </div> : null}
               </>
             )}
           </div>
@@ -183,6 +179,6 @@ const RetroConsole = () => {
       </div>
     </div>
   );
-};
+}
 
 export default RetroConsole;

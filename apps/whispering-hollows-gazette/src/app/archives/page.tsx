@@ -53,7 +53,7 @@ const ArchivesPage = ({ searchParams: { q } }: { searchParams: { q?: string } })
   return (
     <div className='p-8 max-w-3xl mx-auto font-serif bg-white'>
       <h1 className='text-2xl mb-6'>Whispering Hollows Gazette Archives</h1>
-      <p className='text-sm mb-4'>Found {articles.length} results for "hollowbrook"</p>
+      <p className='text-sm mb-4'>Found {articles.length} results for &ldquo;hollowbrook&rdquo;</p>
       <hr className='mb-6 border-gray-300' />
 
       <div className='space-y-4'>

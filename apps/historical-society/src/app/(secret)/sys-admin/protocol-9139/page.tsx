@@ -54,7 +54,7 @@ function RetroConsole() {
     let dots = '';
 
     const interval = setInterval(() => {
-      dots = dots.length >= 3 ? '' : `${dots  }.`;
+      dots = dots.length >= 3 ? '' : `${dots}.`;
       const message = loadingMessages[currentMessageIndex];
       setLoadingDots(`${message}${dots}`);
 
@@ -145,7 +145,8 @@ function RetroConsole() {
               </div>
             ) : (
               <>
-                {bootSequence ? <div
+                {bootSequence ? (
+                  <div
                     className={`
                       ${bootSequence === '[INCOMING TRANSMISSION]' ? 'font-bold' : ''}
                       ${
@@ -159,7 +160,8 @@ function RetroConsole() {
                     {bootSequence !== '[INCOMING TRANSMISSION]'
                       ? `[*] ${bootSequence}`
                       : incomingTransmissionMessage(completedLines[completedLines.length - 1])}
-                  </div> : null}
+                  </div>
+                ) : null}
                 {completedLines.map((line, index) => (
                   <div
                     key={`completed-${index}`}
@@ -168,10 +170,12 @@ function RetroConsole() {
                     {line === '[TRANSMISSION ENDED]' ? 'TRANSMISSION ENDED\n\n' : `> ${line}`}
                   </div>
                 ))}
-                {currentLine ? <div className='text-[#0f0]'>
+                {currentLine ? (
+                  <div className='text-[#0f0]'>
                     {currentLine}
                     <span className='animate-pulse'>_</span>
-                  </div> : null}
+                  </div>
+                ) : null}
               </>
             )}
           </div>

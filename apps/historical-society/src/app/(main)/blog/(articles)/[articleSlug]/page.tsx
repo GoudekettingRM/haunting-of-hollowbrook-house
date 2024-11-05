@@ -15,7 +15,7 @@ interface Article {
 }
 
 interface ArticlePageProps {
-  params: { articleSlug: string };
+  params: Promise<{ articleSlug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -24,7 +24,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+export async function generateMetadata(props: ArticlePageProps): Promise<Metadata> {
+  const params = await props.params;
   const article = allArticles.find((art) => art.slug === params.articleSlug);
 
   if (!article) {
@@ -92,7 +93,9 @@ function generateArticleJsonLd(article: Article) {
   };
 }
 
-function ArticlePage({ params: { articleSlug } }: ArticlePageProps) {
+async function ArticlePage(props: ArticlePageProps) {
+  const { articleSlug } = await props.params;
+
   const article = allArticles.find((art) => art.slug === articleSlug);
 
   if (!article) {
@@ -122,13 +125,12 @@ function ArticlePage({ params: { articleSlug } }: ArticlePageProps) {
           {parseInlineElements(paragraph.slice(5))}
         </p>
       );
-    } 
-      return (
-        <p key={paragraph} className='indent-6 mb-3 sm:mb-5'>
-          {parseInlineElements(paragraph)}
-        </p>
-      );
-    
+    }
+    return (
+      <p key={paragraph} className='indent-6 mb-3 sm:mb-5'>
+        {parseInlineElements(paragraph)}
+      </p>
+    );
   };
 
   const parseInlineElements = (text: string) => {

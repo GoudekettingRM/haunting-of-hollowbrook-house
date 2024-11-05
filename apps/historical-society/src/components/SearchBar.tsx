@@ -32,6 +32,7 @@ const SearchBar = () => {
         router.push(`/blog?search=${encodeURIComponent(search)}`);
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error redirecting search:', error);
     }
   };

@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
       return new Response(undefined, { status: 204 });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Redirect API error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }

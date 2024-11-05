@@ -9,7 +9,6 @@ interface ArticlePageProps {
 }
 
 const ArticlePage = ({ params: { articleSlug }, searchParams: { title, date } }: ArticlePageProps) => {
-  console.log('articleSlug', articleSlug);
   return (
     <div className='max-w-4xl mx-auto p-8 font-serif'>
       <div className='mb-8'>

@@ -126,6 +126,10 @@ const RetroConsole = () => {
     return () => clearTimeout(timeout);
   }, [isBooted, currentLineIndex, currentCharIndex]);
 
+  const incomingTransmissionMessage = (currentMessage: string) => {
+    return currentMessage === '[TRANSMISSION ENDED]' ? '' : '>_ INCOMING TRANSMISSION _<\n\n';
+  };
+
   return (
     <div className='min-h-screen bg-black p-6'>
       <div className='mx-auto max-w-4xl'>
@@ -153,11 +157,9 @@ const RetroConsole = () => {
                       }
                     `}
                   >
-                    {bootSequence === '[INCOMING TRANSMISSION]'
-                      ? completedLines[completedLines.length - 1] === '[TRANSMISSION ENDED]'
-                        ? ''
-                        : '>_ INCOMING TRANSMISSION _<\n\n'
-                      : `[*] ${bootSequence}`}
+                    {bootSequence !== '[INCOMING TRANSMISSION]'
+                      ? `[*] ${bootSequence}`
+                      : incomingTransmissionMessage(completedLines[completedLines.length - 1])}
                   </div>
                 )}
                 {completedLines.map((line, index) => (

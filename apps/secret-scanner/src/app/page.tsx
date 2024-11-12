@@ -1,101 +1,136 @@
-import Image from "next/image";
+'use client';
+import ScanAnimation from '@/components/ScanAnimation';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { AlertCircle, Loader2, Scan } from 'lucide-react';
+import { FormEventHandler, useEffect, useState } from 'react';
 
-export default function Home() {
+export const SCAN_TIME_FORWARDS = 10000;
+export const SCAN_TIME_REVERSE = 1500;
+
+const PdfScanner = () => {
+  const [url, setUrl] = useState('');
+  const [isScanning, setIsScanning] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [hasTargetText, setHasTargetText] = useState(false);
+  const [isIframeLoading, setIsIframeLoading] = useState(false);
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
+
+  const PDF = 'http://localhost:3002/pdfs/02091939.pdf';
+
+  const getPdfUrl = (url: string) => {
+    if (!url) return '';
+
+    const splitUrlFull = url.split('?');
+    const urlWithoutQuery = splitUrlFull[0];
+    const splitUrl = urlWithoutQuery.split('/');
+    const fileName = splitUrl[splitUrl.length - 1];
+    const date = fileName.split('-')[fileName.split('-').length - 1];
+
+    return `http://localhost:3002/pdfs/${date}.pdf`;
+  };
+
+  const addPdfViewerParams = (url: string) => {
+    return `${url}#toolbar=0&navpanes=0&scrollbar=0&view=FitV`;
+  };
+
+  // Handle URL changes with separate loading states
+  useEffect(() => {
+    if (url) {
+      setIsIframeLoading(true);
+      setIsButtonLoading(true);
+
+      // Clear iframe loading after 1.5 seconds
+      const iframeTimer = setTimeout(() => {
+        setIsIframeLoading(false);
+      }, 1500);
+
+      // Clear button loading after 2.5 seconds
+      const buttonTimer = setTimeout(() => {
+        setIsButtonLoading(false);
+      }, 2500);
+
+      return () => {
+        clearTimeout(iframeTimer);
+        clearTimeout(buttonTimer);
+      };
+    }
+  }, [url]);
+
+  const startScan: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    if (!url) return;
+
+    const containsTarget = url.toLowerCase().includes('19031980');
+    setHasTargetText(containsTarget);
+    setIsScanning(true);
+    setShowResult(false);
+
+    setTimeout(() => {
+      setIsScanning(false);
+      setShowResult(true);
+    }, SCAN_TIME_FORWARDS + SCAN_TIME_REVERSE);
+  };
+
+  const getCurrentPdf = () => {
+    if (!url) return '';
+
+    if (showResult) {
+      return hasTargetText ? addPdfViewerParams(PDF) : addPdfViewerParams(getPdfUrl(url));
+    }
+    return addPdfViewerParams(getPdfUrl(url));
+  };
+
+  const handleScanComplete = () => {
+    setIsScanning(false);
+    setShowResult(true);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className='max-w-4xl mx-auto p-6 space-y-6'>
+      <form onSubmit={startScan} className='space-y-4'>
+        <div className='flex gap-4'>
+          <input
+            type='text'
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder='Enter document URL...'
+            className='flex-1 p-2 border rounded-lg'
+          />
+          <button
+            type='submit'
+            disabled={isScanning || isButtonLoading}
+            className='px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-blue-300 flex items-center gap-2'
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {isButtonLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : <Scan className='w-4 h-4' />}
+            {isButtonLoading ? 'Loading...' : isScanning ? 'Scanning...' : 'Start Scan'}
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </form>
+
+      {getCurrentPdf() && (
+        <div className='relative w-full border rounded-lg overflow-hidden bg-white h-[800px]'>
+          {/* PDF Display */}
+          {isIframeLoading ? (
+            <div className='absolute inset-0 flex items-center justify-center bg-gray-50'>
+              <Loader2 className='w-8 h-8 animate-spin text-blue-500' />
+            </div>
+          ) : (
+            <iframe src={getCurrentPdf()} className='w-full h-full' title='PDF Document' />
+          )}
+
+          {/* Scanning Animation Overlay */}
+          {isScanning && <ScanAnimation isScanning={isScanning} onComplete={handleScanComplete} />}
+        </div>
+      )}
+
+      {isScanning && (
+        <Alert>
+          <AlertCircle className='h-4 w-4' />
+          <AlertDescription>Scanning document for hidden content...</AlertDescription>
+        </Alert>
+      )}
     </div>
   );
-}
+};
+
+export default PdfScanner;

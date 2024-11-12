@@ -44,10 +44,6 @@ export const metadata = {
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
   robots: {
     index: false,
     follow: false,

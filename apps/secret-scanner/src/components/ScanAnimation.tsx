@@ -1,5 +1,5 @@
 'use client';
-import { SCAN_TIME_FORWARDS, SCAN_TIME_REVERSE } from '@/app/page';
+import { SCAN_TIME_FORWARDS, SCAN_TIME_REVERSE } from '@/app/reveal/page';
 import { useEffect, useRef, useState } from 'react';
 
 interface ScanAnimationProps {

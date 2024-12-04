@@ -10,7 +10,9 @@
   "exports": {
     "./styles.css": "./dist/index.css",
     "./card": "./src/card.tsx",
-    "./draggable-images": "./src/DraggableImages.tsx"
+    "./draggable-images": "./src/DraggableImages.tsx",
+    "./with-disappearing-letters": "./src/letters/WithDisappearingLetters.tsx",
+    "./letter-effect": "./src/letters/LetterEffects.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -26,10 +28,18 @@
     "@repo/eslint-config": "*",
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
+    "@types/lodash": "^4.17.13",
+    "@types/matter-js": "^0.19.7",
     "@types/react": "^18.2.61",
     "autoprefixer": "^10.4.18",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "@goudekettingrm/parameterize": "^1.1.1",
+    "framer-motion": "^11.11.17",
+    "lodash": "^4.17.21",
+    "matter-js": "^0.20.0"
   }
 }

@@ -9,8 +9,7 @@ export default function Home() {
           { src: '/cat.jpeg', alt: 'test2' },
         ]}
         layout='horizontal'
-        imageWidth={350}
-        imageHeight={400}
+        imageHeight={280}
         spacing={40}
         imagePosition='bottom'
         containerClassName='mx-auto my-8 px-4'

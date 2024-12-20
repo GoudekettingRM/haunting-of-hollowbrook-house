@@ -3,19 +3,38 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: rgb(243, 243, 243);
+  --foreground: rgb(68, 68, 68);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-container {
+  display: grid;
+  grid-template-areas:
+    'nav' 'nav' 'nav' 'nav' 'nav'
+    'main' 'main' 'main' 'main' 'aside';
+}
+
+nav {
+  grid-area: 'nav';
+}
+
+main {
+  grid-area: 'main';
+}
+
+aside {
+  grid-area: 'aside';
 }

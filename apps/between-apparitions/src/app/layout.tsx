@@ -1,16 +1,17 @@
+import Aside from '@/components/Aside';
+import NavBar from '@/components/NavBar';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const minerva = localFont({
+  src: [
+    {
+      path: '../../public/fonts/minerva.woff2',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-minerva',
 });
 
 export const metadata: Metadata = {
@@ -25,8 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-dvh`}>
-        <main className='flex-1 w-full'>{children}</main>
+      <body className={`${minerva.variable} antialiased flex flex-col h-dvh`}>
+        <div className='flex-1 w-full'>
+          <NavBar />
+          <div className='max-w-screen-xl w-11/12 mx-auto flex flex-col sm:flex-row'>
+            <main className='p-8 shadow-lg bg-white rounded sm:grow overflow-hidden'>{children}</main>
+            <Aside />
+          </div>
+        </div>
         <footer className='row-start-3 flex gap-6 flex-wrap items-center justify-center'>fooooter</footer>
       </body>
     </html>

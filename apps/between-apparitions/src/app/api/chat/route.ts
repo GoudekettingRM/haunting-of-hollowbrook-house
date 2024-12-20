@@ -1,3 +1,4 @@
+/* eslint-disable */
 import OpenAI from 'openai';
 
 const apiKey = process.env.OPEN_AI_KEY ?? '';

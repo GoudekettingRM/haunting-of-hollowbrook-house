@@ -12,6 +12,9 @@
       "cache": false,
       "persistent": true
     },
+    "between-apparitions#build": {
+      "env": ["OPEN_AI_KEY"]
+    },
     "clean": {
       "cache": false
     }

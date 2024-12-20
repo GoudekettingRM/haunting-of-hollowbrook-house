@@ -13,7 +13,9 @@
       "persistent": true
     },
     "between-apparitions#build": {
-      "env": ["OPEN_AI_KEY"]
+      "dependsOn": ["^build"],
+      "env": ["OPEN_AI_KEY"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "clean": {
       "cache": false

@@ -1,5 +1,6 @@
 import articles from '@/data/articles.json';
 import Link from 'next/link';
+
 const BlogIndex = () => {
   return (
     <div>

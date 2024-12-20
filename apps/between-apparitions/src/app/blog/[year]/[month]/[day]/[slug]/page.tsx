@@ -15,7 +15,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
   const { year, month, day, slug } = await params;
 
   const article = articles.find(
-    (article) => article.slug === slug && year === article.year && month === article.month && day === article.day,
+    (art) => art.slug === slug && year === art.year && month === art.month && day === art.day,
   );
 
   if (!article) {

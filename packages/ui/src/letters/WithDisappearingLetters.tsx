@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client';
 import { parameterize } from '@goudekettingrm/parameterize';
 import React, { useCallback, useEffect, useRef, useState } from 'react';

@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable -- There's all kinds of errors here that I don't about */
 import OpenAI from 'openai';
 
 const apiKey = process.env.OPEN_AI_KEY ?? '';

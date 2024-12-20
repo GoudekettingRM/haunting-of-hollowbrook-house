@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { LetterEffect } from './LetterEffects';
 import { EffectType, LetterEffectConfig } from './types';

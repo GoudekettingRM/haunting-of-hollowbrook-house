@@ -1,10 +1,11 @@
 'use client';
+import { preventDanglingPromise } from '@repo/utils/preventDanglingPromise';
 import { useState } from 'react';
 import { remark } from 'remark';
 import html from 'remark-html';
 
 const ChatPage = () => {
-  const [response, setResponse] = useState<string | any>(
+  const [response, setResponse] = useState<string>(
     "Oh my, you figured it out. you know the secret now. You know who I am, don't you?",
   );
   const [value, setValue] = useState<string>('');
@@ -13,18 +14,18 @@ const ChatPage = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/chat', { method: 'POST', body: JSON.stringify({ question: value }) });
-      const parsedResponse = await response.json();
+      const resp = await fetch('/api/chat', { method: 'POST', body: JSON.stringify({ question: value }) });
+      const parsedResponse: { choices: { message: { content: string } }[] } = await resp.json();
 
       setResponse(
-        await remark()
+        (await remark()
           .use(html)
           .data('settings', {
             bulletOrdered: ')',
             incrementListMarker: false,
             setext: true,
           })
-          .process(parsedResponse.choices[0].message.content),
+          .process(parsedResponse.choices[0].message.content)) as unknown as string,
       );
 
       setValue('');
@@ -39,7 +40,7 @@ const ChatPage = () => {
         <textarea className='px-2 py-1 rounded' rows={3} cols={100} value={value} onChange={onChange}></textarea>
       </div>
       <div>
-        <button onClick={handleSubmit}>Click me for answers!</button>
+        <button onClick={preventDanglingPromise(handleSubmit)}>Click me for answers!</button>
       </div>
       <div>
         <p dangerouslySetInnerHTML={{ __html: response }}></p>

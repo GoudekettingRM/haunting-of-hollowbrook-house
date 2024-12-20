@@ -50,6 +50,7 @@ module.exports = {
     'react/jsx-sort-props': 'off',
     'unicorn/filename-case': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
     'no-console': [
       'error',
       {

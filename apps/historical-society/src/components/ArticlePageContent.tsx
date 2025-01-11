@@ -1,4 +1,3 @@
-// eslint-disable  @typescript-eslint/no-unnecessary-condition -- I want to check for undefined
 'use client';
 import Link from 'next/link';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -99,6 +98,7 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
             })}
           </ul>
         );
+        // eslint-disable-next-line  @typescript-eslint/no-unnecessary-condition
       } else if (type === 'p') {
         const paragraphType = paragraph.startsWith('no-i:') ? 'no-i' : 'normal';
         const content = paragraphType === 'no-i' ? paragraph.slice(5) : paragraph;

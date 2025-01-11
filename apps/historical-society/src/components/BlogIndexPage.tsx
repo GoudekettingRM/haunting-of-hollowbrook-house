@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import allArticles from '../app/(main)/blog/articles.json';
 import ArticleCard, { Article } from './ArticleCard';
+import SwingingDiv from './SwingingBoard';
 
 const ARTICLES_PER_PAGE = 6;
 
@@ -29,6 +30,14 @@ const BlogIndexPage = () => {
   const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
   const endIndex = startIndex + ARTICLES_PER_PAGE;
   const currentArticles = articlesToShow.slice(startIndex, endIndex);
+
+  const randomBrokenArticleIndexes = useMemo(() => {
+    const indexes = new Set<number>();
+    while (indexes.size < 2) {
+      indexes.add(Math.floor(Math.random() * currentArticles.length));
+    }
+    return Array.from(indexes);
+  }, [currentArticles]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -87,9 +96,16 @@ const BlogIndexPage = () => {
         <h1 className='text-4xl text-dark-wood'>Recent Posts</h1>
       </div>
       <ul className='space-y-4 mb-8'>
-        {currentArticles.map((article) => (
-          <ArticleCard article={article} key={article.slug} />
-        ))}
+        {currentArticles.map((article) => {
+          if (randomBrokenArticleIndexes.includes(currentArticles.indexOf(article))) {
+            return (
+              <SwingingDiv originSide={Math.random() > 0.5 ? 'left' : 'right'}>
+                <ArticleCard article={article} key={article.slug} />
+              </SwingingDiv>
+            );
+          }
+          return <ArticleCard article={article} key={article.slug} />;
+        })}
       </ul>
 
       {totalPages > 1 && (

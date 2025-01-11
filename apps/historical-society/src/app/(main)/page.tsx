@@ -1,5 +1,6 @@
 // https://www.namecheap.com/domains/registration/results/?domain=whisperinghollowshistory.org
 'use client';
+import SwingingDiv from '@/components/SwingingBoard';
 import ArticleCard from '../../components/ArticleCard';
 import articles from './blog/articles.json';
 
@@ -48,9 +49,11 @@ export default function HomePage() {
       <section className='mb-12'>
         <h2 className='text-4xl font-serif mb-3 text-dark-wood'>Featured Articles</h2>
         <ul className='space-y-4'>
-          {[articles[0], articles[8], articles[10]].map((article) => (
-            <ArticleCard article={article} key={article.slug} />
-          ))}
+          <SwingingDiv>
+            <ArticleCard article={articles[0]} key={articles[0].slug} />
+          </SwingingDiv>
+          <ArticleCard article={articles[8]} key={articles[8].slug} />
+          <ArticleCard article={articles[10]} key={articles[10].slug} />
         </ul>
       </section>
 

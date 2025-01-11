@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Article } from './ArticleCard';
 import { useBuggingContext } from './useBuggingContext';
 
@@ -18,9 +18,17 @@ const getSidewaysSlide = (isBugged: boolean) => {
 };
 
 const ArticlePageContent = ({ article }: { article: Article }) => {
+  const [isClient, setIsClient] = useState(false);
   const { isBugged } = useBuggingContext();
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return <></>;
+
   const parseParagraph = (paragraph: string) => {
+    console.log('isBugged', isBugged);
     const positiveOrNegativeRotation = getPositiveOrNegativeRotation(isBugged);
     const sidewaysSlide = getSidewaysSlide(isBugged);
 

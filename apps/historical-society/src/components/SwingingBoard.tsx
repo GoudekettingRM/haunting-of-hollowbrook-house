@@ -21,7 +21,7 @@ const SwingingDiv = ({
       () => {
         setIsReleased(true);
       },
-      Math.random() * 15000 + 5000,
+      Math.random() * 10000 + 5000,
     );
     return () => clearTimeout(timeout);
   }, [isReleased]);
@@ -51,7 +51,7 @@ const SwingingDiv = ({
   if (!isBugged) return children;
 
   return (
-    <motion.div animate={controls} initial={{ rotate: 0 }} className='' style={origin}>
+    <motion.div animate={controls} initial={{ rotate: 0 }} className='max-w-screen-lg' style={origin}>
       {children}
     </motion.div>
   );

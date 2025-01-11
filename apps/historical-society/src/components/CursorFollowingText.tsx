@@ -18,6 +18,7 @@ const getRandomEdgePosition = () => {
 };
 
 const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: string }) => {
+  const [isClient, setIsClient] = useState(false);
   const [cursorPos, setCursorPos] = useState(getRandomEdgePosition());
   const [textPos, setTextPos] = useState(getRandomEdgePosition());
   const [isMoving, setIsMoving] = useState(false);
@@ -40,6 +41,8 @@ const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: st
     }, 150);
     return () => clearTimeout(timer);
   }, [text]);
+
+  if (!isClient) return <></>;
 
   const updateTextPosition = useCallback(() => {
     const springStrength = isMoving ? movingSpringStrength : stoppedSpringStrength;

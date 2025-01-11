@@ -32,16 +32,15 @@ const BlogIndexPage = () => {
   const currentArticles = articlesToShow.slice(startIndex, endIndex);
 
   const randomBrokenArticleIndexes = useMemo(() => {
-    const indexes = new Set<number>();
-    while (indexes.size < 2) {
-      indexes.add(Math.floor(Math.random() * currentArticles.length));
+    const indexes: number[] = [];
+    while (indexes.length < 2) {
+      indexes.push(Math.floor(Math.random() * currentArticles.length));
     }
     return Array.from(indexes);
   }, [currentArticles]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
-    if (typeof window === 'undefined') return;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -99,8 +98,9 @@ const BlogIndexPage = () => {
       <ul className='space-y-4 mb-8'>
         {currentArticles.map((article) => {
           if (randomBrokenArticleIndexes.includes(currentArticles.indexOf(article))) {
+            const index = currentArticles.indexOf(article);
             return (
-              <SwingingDiv originSide={Math.random() > 0.5 ? 'left' : 'right'} key={article.slug}>
+              <SwingingDiv originSide={randomBrokenArticleIndexes[0] === index ? 'left' : 'right'} key={article.slug}>
                 <ArticleCard article={article} />
               </SwingingDiv>
             );

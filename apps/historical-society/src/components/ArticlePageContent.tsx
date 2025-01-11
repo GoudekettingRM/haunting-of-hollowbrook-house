@@ -1,3 +1,4 @@
+// eslint-disable  @typescript-eslint/no-unnecessary-condition -- I want to check for undefined
 'use client';
 import Link from 'next/link';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -74,7 +75,6 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
             className={`${positiveOrNegativeRotation} ${sidewaysSlide} list-[circle] list-inside mb-3 sm:mb-5 pl-2 sm:pl-6`}
           >
             {listItems.map((item, itemIndex) => {
-              // Create a unique seed for each list item
               const itemSeed = `${seed}-li-${itemIndex}-${item.slice(0, 20)}`;
               const itemRandom = createSeededRandom(itemSeed);
 

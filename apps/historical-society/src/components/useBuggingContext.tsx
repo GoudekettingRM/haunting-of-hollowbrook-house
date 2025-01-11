@@ -1,6 +1,6 @@
 'use client';
 import { isBugged } from '@/utils/isBugged';
-import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
+import { createContext, type Dispatch, type SetStateAction, useContext, useState } from 'react';
 
 export type FollowingItem =
   | 'title'
@@ -12,11 +12,11 @@ export type FollowingItem =
   | 'help'
   | 'read more';
 
-type BuggingContextType = {
+interface BuggingContextType {
   followingItem: FollowingItem;
   setFollowingItem: Dispatch<SetStateAction<FollowingItem>>;
   isBugged: boolean;
-};
+}
 
 const BuggingContext = createContext<BuggingContextType | undefined>(undefined);
 

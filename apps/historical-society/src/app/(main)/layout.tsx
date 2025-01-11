@@ -1,3 +1,5 @@
+import CursorFollower from '@/components/CursorFollower';
+import { BuggingProvider } from '@/components/useBuggingContext';
 import type { Metadata } from 'next';
 import ChatWindow from '../../components/ChatWindow';
 import Footer from '../../components/Footer';
@@ -94,14 +96,17 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='antialiased flex flex-col min-h-dvh relative'>
-        <div className='flex-grow grid grid-cols-1 sm:grid-cols-8 lg:grid-cols-12 gap-4 shrink-0 basis-full bg-parchment text-dark-wood'>
-          <aside className='col-span-1 sm:col-span-2'>
-            <Navbar />
-          </aside>
-          <main className='col-span-1 sm:col-span-6 lg:col-span-10'>{children}</main>
-          <ChatWindow />
-        </div>
-        <Footer />
+        <BuggingProvider>
+          <CursorFollower />
+          <div className='flex-grow grid grid-cols-1 sm:grid-cols-8 lg:grid-cols-12 gap-4 shrink-0 basis-full bg-parchment text-dark-wood'>
+            <aside className='col-span-1 sm:col-span-2'>
+              <Navbar />
+            </aside>
+            <main className='col-span-1 sm:col-span-6 lg:col-span-10'>{children}</main>
+            <ChatWindow />
+          </div>
+          <Footer />
+        </BuggingProvider>
       </body>
     </html>
   );

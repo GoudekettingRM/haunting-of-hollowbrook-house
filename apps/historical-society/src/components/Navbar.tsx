@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import SearchBar from './SearchBar';
+import { useBuggingContext } from './useBuggingContext';
 
 function Navbar() {
+  const { isBugged, followingItem } = useBuggingContext();
   return (
     <nav className='flex flex-col p-4'>
       <Link href='/' className='text-2xl' title='Whispering Hollows Historical Society'>

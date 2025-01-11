@@ -105,15 +105,32 @@ async function ArticlePage(props: ArticlePageProps) {
   const jsonLd = generateArticleJsonLd(article);
 
   const parseParagraph = (paragraph: string) => {
+    const positiveOrNegativeRotation =
+      Math.random() > 0.5
+        ? Math.random() > 0.5
+          ? 'rotate-3'
+          : 'rotate-1'
+        : Math.random() > 0.5
+          ? '-rotate-3'
+          : '-rotate-1';
+
+    const sidewaysSlide = Math.random() > 0.7 ? (Math.random() > 0.5 ? 'relative right-8' : 'relative left-8') : '';
+
     if (paragraph.startsWith('h2:')) {
       const title = paragraph.replace('h2:', '');
-      return <h2 className='text-xl font-semibold mt-5 sm:mt-8 mb-2'>{title}</h2>;
+      return (
+        <h2 className={`${positiveOrNegativeRotation} ${sidewaysSlide} text-xl font-semibold mt-5 sm:mt-8 mb-2`}>
+          {title}
+        </h2>
+      );
     } else if (paragraph.startsWith('ul:')) {
       const listItems = paragraph.slice(3).split('|');
       return (
-        <ul className='list-[circle] list-inside mb-3 sm:mb-5 pl-2 sm:pl-6'>
+        <ul
+          className={`${positiveOrNegativeRotation} ${sidewaysSlide} list-[circle] list-inside mb-3 sm:mb-5 pl-2 sm:pl-6`}
+        >
           {listItems.map((item, index) => (
-            <li key={index} className='mb-1'>
+            <li key={index} className={`${positiveOrNegativeRotation} ${sidewaysSlide} mb-1`}>
               {parseInlineElements(item.trim())}
             </li>
           ))}
@@ -121,13 +138,13 @@ async function ArticlePage(props: ArticlePageProps) {
       );
     } else if (paragraph.startsWith('no-i:')) {
       return (
-        <p key={paragraph} className=''>
+        <p key={paragraph} className={`${positiveOrNegativeRotation} ${sidewaysSlide} `}>
           {parseInlineElements(paragraph.slice(5))}
         </p>
       );
     }
     return (
-      <p key={paragraph} className='indent-6 mb-3 sm:mb-5'>
+      <p key={paragraph} className={`${positiveOrNegativeRotation} ${sidewaysSlide} indent-6 mb-3 sm:mb-5`}>
         {parseInlineElements(paragraph)}
       </p>
     );

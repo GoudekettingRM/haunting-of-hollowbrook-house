@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 const getRandomEdgePosition = () => {
   const edge = Math.floor(Math.random() * 4);
-  const w = window.innerWidth;
-  const h = window.innerHeight;
+  const w = typeof window !== 'undefined' ? window.innerWidth : 300;
+  const h = typeof window !== 'undefined' ? window.innerHeight : 300;
 
   switch (edge) {
     case 0:

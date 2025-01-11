@@ -42,8 +42,6 @@ const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: st
     return () => clearTimeout(timer);
   }, [text]);
 
-  if (!isClient) return <></>;
-
   const updateTextPosition = useCallback(() => {
     const springStrength = isMoving ? movingSpringStrength : stoppedSpringStrength;
     const distanceX = cursorPos.x - textPos.x;
@@ -94,6 +92,14 @@ const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: st
 
     return () => cancelAnimationFrame(animationFrame);
   }, [updateTextPosition]);
+
+  useEffect(() => {
+    if (!isClient) {
+      setIsClient(true);
+    }
+  }, []);
+
+  if (!isClient) return <></>;
 
   return (
     <div

@@ -28,7 +28,6 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
   if (!isClient) return <></>;
 
   const parseParagraph = (paragraph: string) => {
-    console.log('isBugged', isBugged);
     const positiveOrNegativeRotation = getPositiveOrNegativeRotation(isBugged);
     const sidewaysSlide = getSidewaysSlide(isBugged);
 

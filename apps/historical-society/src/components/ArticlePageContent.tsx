@@ -98,7 +98,7 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
             })}
           </ul>
         );
-        // eslint-disable-next-line  @typescript-eslint/no-unnecessary-condition
+        // eslint-disable-next-line  @typescript-eslint/no-unnecessary-condition -- false positive
       } else if (type === 'p') {
         const paragraphType = paragraph.startsWith('no-i:') ? 'no-i' : 'normal';
         const content = paragraphType === 'no-i' ? paragraph.slice(5) : paragraph;

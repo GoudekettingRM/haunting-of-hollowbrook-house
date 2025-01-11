@@ -33,7 +33,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
             height: '300px',
           }}
         />
-        <div className='pl-8 my-4'>
+        <div className='px-8 my-4'>
           <h1 className='font-serif text-2xl text-blue-900'>{article.title}</h1>
           <time className='font-mono text-xs/tight text-gray-500'>
             {year}-{month}-{day}
@@ -56,7 +56,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           );
         }
         return (
-          <p className='proce text-base/snug text-gray-900 font-minerva mb-3' key={paragraph.replaceAll(' ', '')}>
+          <p className='prose text-base/snug text-gray-900 font-minerva mb-3' key={paragraph.replaceAll(' ', '')}>
             {paragraph}
           </p>
         );

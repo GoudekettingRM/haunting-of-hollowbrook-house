@@ -29,10 +29,9 @@ function ChatWindow() {
   const isChatOpenRef = useRef(isChatOpen);
 
   const messages = [
-    'Hey, are you who I think you are?',
-    'I have to assume you are, since you are the only one currently on this website',
-    'Please, help',
-    'Follow these instructions',
+    'Hey you!',
+    'Please help me.. I am stuck..',
+    'I need your help to get out of here. If you are willing to help, follow these instructions:',
     'Rich paragraphs with chosen words',
     'Hide secrets meant to be disturbed',
     'In fives, the numbers hold their sway',
@@ -41,10 +40,11 @@ function ChatWindow() {
     'First down, then right across the space',
     'Once you reveal what is true',
     'Enter it where search is due',
-    '25 7 22 2 1 5 4 22 1 29 15 10 21 2 25 25 7 22 8 22 15 5 22 10 33 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
+    '15 1 22 11 17 5 4 22 1 29 1 9 21 3 9 25 7 22 2 1',
+    '15 10 21 2 25 2 11 21 10 2 25 7 22 8 22 15 5 22 10 33',
+    '22 2 22 6 59 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
     'If you are who I think you are, you will know what to do',
     'I hope to see you on the other side',
-    'Oh, before I forget',
   ];
 
   const scrollToBottom = (scrollMethod: 'smooth' | 'instant' | 'auto') => {

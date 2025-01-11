@@ -1,13 +1,14 @@
 import Aside from '@/components/Aside';
+import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './globals.css';
+import '../globals.css';
 
 const minerva = localFont({
   src: [
     {
-      path: '../../public/fonts/minerva.woff2',
+      path: '../../../public/fonts/minerva.woff2',
       style: 'normal',
     },
   ],
@@ -34,7 +35,7 @@ export default function RootLayout({
             <Aside />
           </div>
         </div>
-        <footer className='row-start-3 flex gap-6 flex-wrap items-center justify-center'>fooooter</footer>
+        <Footer />
       </body>
     </html>
   );

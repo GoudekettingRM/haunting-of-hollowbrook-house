@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { Article } from './ArticleCard';
@@ -81,6 +80,9 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
 
   return (
     <>
+      <Link href='/blog' className='text-sm text-medium-wood hover:text-dark-wood mb-4'>
+        ‹ Back to overview
+      </Link>
       <h1 className='text-3xl mb-6 mt-3 text-dark-wood'>{article.title}</h1>
       <div className='leading-tight text-sm'>
         {article.paragraphs.map((paragraph, index) => {

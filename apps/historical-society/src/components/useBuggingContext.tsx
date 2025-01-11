@@ -1,6 +1,6 @@
 'use client';
-import { isBugged } from '@/utils/isBugged';
 import { createContext, type Dispatch, type SetStateAction, useContext, useState } from 'react';
+import { isBugged } from '@/utils/isBugged';
 
 export type FollowingItem =
   | 'title'

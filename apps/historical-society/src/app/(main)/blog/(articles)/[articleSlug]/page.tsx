@@ -1,7 +1,6 @@
 // app/blog/[articleSlug]/page.tsx
 import ArticlePageContent from '@/components/ArticlePageContent';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import allArticles from '../../articles.json';
 
 export interface Article {
@@ -107,9 +106,6 @@ async function ArticlePage(props: ArticlePageProps) {
   return (
     <>
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Link href='/blog' className='text-sm text-medium-wood hover:text-dark-wood mb-4'>
-        ‹ Back to overview
-      </Link>
       <ArticlePageContent article={article} />
     </>
   );

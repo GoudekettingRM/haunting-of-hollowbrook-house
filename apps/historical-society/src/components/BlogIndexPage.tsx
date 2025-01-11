@@ -41,6 +41,7 @@ const BlogIndexPage = () => {
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
+    if (typeof window === 'undefined') return;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

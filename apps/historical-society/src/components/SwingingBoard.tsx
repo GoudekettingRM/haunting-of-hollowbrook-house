@@ -29,6 +29,7 @@ const SwingingDiv = ({
   useEffect(() => {
     if (!isReleased) return;
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises -- I don't want to await, just fire and forget
     controls.start({
       rotate: originSide === 'left' ? 90 : -90,
       transition: {

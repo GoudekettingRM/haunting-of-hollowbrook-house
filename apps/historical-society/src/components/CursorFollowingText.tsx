@@ -26,8 +26,8 @@ const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: st
   const [rotation, setRotation] = useState(Math.random() * 360);
   const [scale, setScale] = useState(0);
 
-  const movingSpringStrength = 0.1;
-  const stoppedSpringStrength = 0.2;
+  const movingSpringStrength = 0.01;
+  const stoppedSpringStrength = 0.02;
 
   useEffect(() => {
     setScale(0);
@@ -37,7 +37,7 @@ const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: st
       setScale(1);
       setRotation(0);
       setIsEntering(false);
-    }, 50);
+    }, 150);
     return () => clearTimeout(timer);
   }, [text]);
 
@@ -69,7 +69,7 @@ const CursorFollowingText = ({ text, textClass }: { text: string; textClass?: st
 
       const timeoutId = window.setTimeout(() => {
         setIsMoving(false);
-      }, 50);
+      }, 150);
       setMoveTimeout(timeoutId as unknown as number);
     };
 

@@ -1,4 +1,3 @@
-// app/blog/[articleSlug]/page.tsx
 import ArticlePageContent from '@/components/ArticlePageContent';
 import type { Metadata } from 'next';
 import allArticles from '../../articles.json';

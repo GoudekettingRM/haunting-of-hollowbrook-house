@@ -99,8 +99,8 @@ const BlogIndexPage = () => {
         {currentArticles.map((article) => {
           if (randomBrokenArticleIndexes.includes(currentArticles.indexOf(article))) {
             return (
-              <SwingingDiv originSide={Math.random() > 0.5 ? 'left' : 'right'}>
-                <ArticleCard article={article} key={article.slug} />
+              <SwingingDiv originSide={Math.random() > 0.5 ? 'left' : 'right'} key={article.slug}>
+                <ArticleCard article={article} />
               </SwingingDiv>
             );
           }

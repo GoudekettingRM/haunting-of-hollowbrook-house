@@ -5,22 +5,25 @@ import { Fragment } from 'react';
 import { Article } from './ArticleCard';
 import { useBuggingContext } from './useBuggingContext';
 
+const getPositiveOrNegativeRotation = (isBugged: boolean) => {
+  if (!isBugged) return '';
+  const bigOrSmall = Math.random() > 0.5 ? '3' : '1';
+
+  return Math.random() > 0.5 ? `rotate-${bigOrSmall}` : `-rotate-${bigOrSmall}`;
+};
+
+const getSidewaysSlide = (isBugged: boolean) => {
+  if (!isBugged || Math.random() < 0.7) return '';
+
+  return Math.random() > 0.5 ? 'right-8' : 'left-8';
+};
+
 const ArticlePageContent = ({ article }: { article: Article }) => {
   const { isBugged } = useBuggingContext();
 
   const parseParagraph = (paragraph: string) => {
-    const positiveOrNegativeRotation = isBugged
-      ? Math.random() > 0.5
-        ? Math.random() > 0.5
-          ? 'rotate-3'
-          : 'rotate-1'
-        : Math.random() > 0.5
-          ? '-rotate-3'
-          : '-rotate-1'
-      : '';
-
-    const sidewaysSlide =
-      isBugged && Math.random() > 0.7 ? (Math.random() > 0.5 ? 'relative right-8' : 'relative left-8') : '';
+    const positiveOrNegativeRotation = getPositiveOrNegativeRotation(isBugged);
+    const sidewaysSlide = getSidewaysSlide(isBugged);
 
     if (paragraph.startsWith('h2:')) {
       const title = paragraph.replace('h2:', '');

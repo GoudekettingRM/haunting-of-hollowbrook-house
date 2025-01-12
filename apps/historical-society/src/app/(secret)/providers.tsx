@@ -1,10 +1,13 @@
 import { DashboardPageContextProvider } from '@/components/secret/sys/context/useDashboardPageContext';
 import { GeneralSysAdminContextProvider } from '@/components/secret/sys/context/useGeneralSysAdminContext';
+import { PuzzleAnswerContextProvider } from '@/components/secret/sys/context/usePuzzleAnswersContext';
 
 const SystemAdminProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <GeneralSysAdminContextProvider>
-      <DashboardPageContextProvider>{children}</DashboardPageContextProvider>
+      <DashboardPageContextProvider>
+        <PuzzleAnswerContextProvider>{children}</PuzzleAnswerContextProvider>
+      </DashboardPageContextProvider>
     </GeneralSysAdminContextProvider>
   );
 };

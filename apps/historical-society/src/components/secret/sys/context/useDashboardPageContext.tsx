@@ -7,10 +7,10 @@ const COOKIE_NAME = 'whhs-dashboard-page-context';
 
 export type TPuzzles =
   | 'newspaper_archive'
-  | 'document_scan'
+  | 'document_scan' // archive pdf -> blue light -> frequency
   | 'apparitions_image'
-  | 'apparitions_articles'
-  | 'apparitions_postcards';
+  | 'apparitions_article_images' // EMF readings -> frequency
+  | 'audio-recordings';
 
 interface DashboardPageContextType {
   page: TPage;

@@ -5,7 +5,7 @@ import { InfoIcon, MessagesSquare } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const PAUSE_DURATION = 1500;
-const COOKIE_NAME = 'chat_state';
+const COOKIE_NAME = 'whhs-chat-state';
 
 interface ChatState {
   hasInitiatedChat: boolean;

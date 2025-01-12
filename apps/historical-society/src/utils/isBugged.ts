@@ -1,7 +1,9 @@
 import Cookies from 'js-cookie';
 
+const COOKIE_NAME = 'whhs-bugged-state';
+
 export const isBugged = () => {
-  const state = Cookies.get('whhs_state');
+  const state = Cookies.get(COOKIE_NAME);
 
   if (state === 'bugged') {
     return true;
@@ -11,6 +13,6 @@ export const isBugged = () => {
     return false;
   }
 
-  Cookies.set('whhs_state', 'bugged');
+  Cookies.set(COOKIE_NAME, 'bugged');
   return true;
 };

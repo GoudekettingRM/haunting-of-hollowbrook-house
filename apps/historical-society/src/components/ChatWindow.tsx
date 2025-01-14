@@ -1,11 +1,11 @@
 'use client';
 
+import { CHAT_STATE_COOKIE_NAME, DEFAULT_OPTIONS } from '@/utils/cookieConfig';
 import Cookies from 'js-cookie';
 import { InfoIcon, MessagesSquare } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const PAUSE_DURATION = 1500;
-const COOKIE_NAME = 'whhs-chat-state';
 
 interface ChatState {
   hasInitiatedChat: boolean;
@@ -62,11 +62,11 @@ function ChatWindow() {
       isDoneTyping,
       lastSeenMessageIndex: lastSeenMessageIndexRef.current,
     };
-    Cookies.set(COOKIE_NAME, JSON.stringify(state), { expires: 7 });
+    Cookies.set(CHAT_STATE_COOKIE_NAME, JSON.stringify(state), DEFAULT_OPTIONS);
   };
 
   const loadChatState = () => {
-    const savedState = Cookies.get(COOKIE_NAME);
+    const savedState = Cookies.get(CHAT_STATE_COOKIE_NAME);
     if (savedState) {
       const state = JSON.parse(savedState) as ChatState;
       setHasInitiatedChat(state.hasInitiatedChat);

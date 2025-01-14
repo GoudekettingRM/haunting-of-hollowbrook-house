@@ -1,9 +1,8 @@
 'use client';
+import { DASHBOARD_CONTEXT_COOKIE_NAME, DEFAULT_OPTIONS } from '@/utils/cookieConfig';
 import Cookies from 'js-cookie';
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { TPage } from '../Dashboard';
-
-const COOKIE_NAME = 'whhs-dashboard-page-context';
 
 export type TPuzzles =
   | 'newspaper_archive'
@@ -32,11 +31,11 @@ export function DashboardPageContextProvider({ children }: { children: React.Rea
       completedPuzzles,
       page,
     };
-    Cookies.set(COOKIE_NAME, JSON.stringify(state), { expires: 7 });
+    Cookies.set(DASHBOARD_CONTEXT_COOKIE_NAME, JSON.stringify(state), DEFAULT_OPTIONS);
   }, [completedPuzzles, page]);
 
   useEffect(() => {
-    const cookie = Cookies.get(COOKIE_NAME);
+    const cookie = Cookies.get(DASHBOARD_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
       const state = JSON.parse(cookie);

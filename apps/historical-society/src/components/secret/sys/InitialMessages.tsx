@@ -1,7 +1,7 @@
 'use client';
 import DashboardButton from '@/components/DashboardButton';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import TypingAnimation from '@/components/TypingAnimation';
+import { useState } from 'react';
 import { useDashboardPageContext } from './context/useDashboardPageContext';
 import { useGeneralSysAdminContext } from './context/useGeneralSysAdminContext';
 
@@ -16,63 +16,24 @@ const secretMessages = [
 ];
 
 export default function InitialMessages({ completed = false }: { completed: boolean }) {
-  const router = useRouter();
   const { setPage } = useDashboardPageContext();
-  const { setInitialAccessComplete } = useGeneralSysAdminContext();
+  const { setInitialAccessComplete, initialTypingAnimationCompleted, setInitialTypingAnimationCompleted } =
+    useGeneralSysAdminContext();
   const [showButton, setShowButton] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [currentLine, setCurrentLine] = useState('');
-  const [completedLines, setCompletedLines] = useState<string[]>(completed ? secretMessages : []);
-  const [currentLineIndex, setCurrentLineIndex] = useState(completed ? secretMessages.length : 0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
-  useEffect(() => {
-    if (currentLineIndex >= secretMessages.length) {
-      setShowButton(true);
-      setTyping(false);
-      return;
-    }
-    if (!typing) setTyping(true);
-
-    const currentMessageLine = secretMessages[currentLineIndex];
-
-    if (currentCharIndex === currentMessageLine.length) {
-      const timeout = setTimeout(() => {
-        setCompletedLines((prev) => [...prev, currentMessageLine]);
-        setCurrentLine('');
-        setCurrentCharIndex(0);
-        setCurrentLineIndex((prev) => prev + 1);
-      }, 1000);
-      return () => clearTimeout(timeout);
-    }
-
-    const timeout = setTimeout(() => {
-      setCurrentLine((prev) => prev + currentMessageLine[currentCharIndex]);
-      setCurrentCharIndex((prev) => prev + 1);
-    }, 40);
-
-    return () => clearTimeout(timeout);
-  }, [currentLineIndex, currentCharIndex, router]);
+  const handleTypingComplete = () => {
+    setShowButton(true);
+    setInitialTypingAnimationCompleted(true);
+  };
 
   return (
     <div className='space-y-2'>
-      {typing && <div className='text-[#0f0] animate-pulse font-bold'>[INCOMING TRANSMISSION]</div>}
-      {completedLines.map((line, index) => (
-        <div
-          key={`completed-${index}`}
-          className={`text-[#0f0] ${
-            line === '[INCOMING TRANSMISSION]' || line === '[TRANSMISSION ENDED]' ? 'animate-pulse font-bold' : ''
-          }`}
-        >
-          {line.startsWith('[') ? line : `> ${line}`}
-        </div>
-      ))}
-      {currentLine && (
-        <div className='text-[#0f0]'>
-          {currentLine}
-          <span className='animate-pulse'>_</span>
-        </div>
-      )}
+      <TypingAnimation
+        lines={secretMessages}
+        completed={completed || initialTypingAnimationCompleted}
+        onComplete={handleTypingComplete}
+        showTransmissionLabels={true}
+      />
       {showButton && !completed && (
         <DashboardButton
           onKeyDown={(event) => {

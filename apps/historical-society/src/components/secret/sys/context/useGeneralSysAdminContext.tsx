@@ -1,14 +1,15 @@
 'use client';
+import { DEFAULT_OPTIONS, GENERAL_SYS_ADMIN_CONTEXT_COOKIE_NAME } from '@/utils/cookieConfig';
 import Cookies from 'js-cookie';
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
-
-const COOKIE_NAME = 'whhs-general-sys-admin-context';
 
 interface GeneralSysAdminContextType {
   initialAccessComplete: boolean;
   setInitialAccessComplete: Dispatch<SetStateAction<boolean>>;
   initialBootComplete: boolean;
   setInitialBootComplete: Dispatch<SetStateAction<boolean>>;
+  initialTypingAnimationCompleted: boolean;
+  setInitialTypingAnimationCompleted: Dispatch<SetStateAction<boolean>>;
 }
 
 const GeneralSysAdminContext = createContext<GeneralSysAdminContextType | undefined>(undefined);
@@ -17,30 +18,40 @@ export function GeneralSysAdminContextProvider({ children }: { children: React.R
   const [loaded, setLoaded] = useState(false);
   const [initialAccessComplete, setInitialAccessComplete] = useState(false);
   const [initialBootComplete, setInitialBootComplete] = useState(false);
+  const [initialTypingAnimationCompleted, setInitialTypingAnimationCompleted] = useState(false);
 
   useEffect(() => {
     if (!loaded) return;
     const state = {
       initialAccessComplete,
       initialBootComplete,
+      initialTypingAnimationCompleted,
     };
-    Cookies.set(COOKIE_NAME, JSON.stringify(state), { expires: 7 });
-  }, [initialAccessComplete, initialBootComplete]);
+    Cookies.set(GENERAL_SYS_ADMIN_CONTEXT_COOKIE_NAME, JSON.stringify(state), DEFAULT_OPTIONS);
+  }, [initialAccessComplete, initialBootComplete, initialTypingAnimationCompleted]);
 
   useEffect(() => {
-    const cookie = Cookies.get(COOKIE_NAME);
+    const cookie = Cookies.get(GENERAL_SYS_ADMIN_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
       const state = JSON.parse(cookie);
       setInitialAccessComplete(state.initialAccessComplete);
       setInitialBootComplete(state.initialBootComplete);
+      setInitialTypingAnimationCompleted(state.initialTypingAnimationCompleted);
     }
     setLoaded(true);
   }, []);
 
   return (
     <GeneralSysAdminContext.Provider
-      value={{ initialAccessComplete, setInitialAccessComplete, initialBootComplete, setInitialBootComplete }}
+      value={{
+        initialAccessComplete,
+        setInitialAccessComplete,
+        initialBootComplete,
+        setInitialBootComplete,
+        initialTypingAnimationCompleted,
+        setInitialTypingAnimationCompleted,
+      }}
     >
       {children}
     </GeneralSysAdminContext.Provider>

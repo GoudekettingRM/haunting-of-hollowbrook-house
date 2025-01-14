@@ -5,29 +5,19 @@ import { useDashboardPageContext } from './context/useDashboardPageContext';
 import { useGeneralSysAdminContext } from './context/useGeneralSysAdminContext';
 import InitialMessages from './InitialMessages';
 import ExecuteProtocol from './pages/ExecuteProtocol';
-import FragmentFive from './pages/FragmentFive';
 import FragmentFour from './pages/FragmentFour';
 import FragmentOne from './pages/FragmentOne';
 import FragmentThree from './pages/FragmentThree';
 import FragmentTwo from './pages/FragmentTwo';
 import Messages from './pages/Messages';
 
-export type TPage =
-  | 'messages'
-  | 'dashboard'
-  | 'fragment_1'
-  | 'fragment_2'
-  | 'fragment_3'
-  | 'fragment_4'
-  | 'fragment_5'
-  | 'protocol';
+export type TPage = 'messages' | 'dashboard' | 'fragment_1' | 'fragment_2' | 'fragment_3' | 'fragment_4' | 'protocol';
 
 const encourageMessages = [
-  "I've managed to put the locations of the fragments here. Please hurry...",
-  'Good, you found the first one. Keep going...',
-  'You are doing well. Hurry, I cannot keep this dashboard open for long...',
-  "You are almost there. One more fragment to go... we're so close...",
-  'You did it! You found all protocol fragments. Now, quickly, go to the console and execute the protocol.',
+  "I've managed to put the first location of the fragments here. Please hurry...",
+  'Good, you found the first one. I also tracked down the second location. I linked it below.',
+  'You are doing well. I found the third fragment, hurry, I cannot keep this dashboard open for long...',
+  "Good job! I found the last one too. Quickly now, once you're done, execute the protocol. We're so close...",
 ];
 
 const Dashboard = () => {
@@ -56,7 +46,6 @@ const Dashboard = () => {
       {page === 'fragment_2' && <FragmentTwo />}
       {page === 'fragment_3' && <FragmentThree />}
       {page === 'fragment_4' && <FragmentFour />}
-      {page === 'fragment_5' && <FragmentFive />}
       {page === 'protocol' && <ExecuteProtocol />}
     </>
   );

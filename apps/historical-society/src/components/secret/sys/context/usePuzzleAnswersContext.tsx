@@ -1,8 +1,7 @@
 'use client';
+import { DEFAULT_OPTIONS, PUZZLE_ANSWERS_CONTEXT_COOKIE_NAME } from '@/utils/cookieConfig';
 import Cookies from 'js-cookie';
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
-
-const COOKIE_NAME = 'whhs-puzzle-answers-context';
 
 interface PuzzleAnswerContextType {
   frequencyOne: number | null;
@@ -28,11 +27,11 @@ export function PuzzleAnswerContextProvider({ children }: { children: React.Reac
       frequencyTwo,
       frequencyThree,
     };
-    Cookies.set(COOKIE_NAME, JSON.stringify(state), { expires: 7 });
+    Cookies.set(PUZZLE_ANSWERS_CONTEXT_COOKIE_NAME, JSON.stringify(state), DEFAULT_OPTIONS);
   }, [frequencyOne, frequencyTwo, frequencyThree]);
 
   useEffect(() => {
-    const cookie = Cookies.get(COOKIE_NAME);
+    const cookie = Cookies.get(PUZZLE_ANSWERS_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
       const state = JSON.parse(cookie);

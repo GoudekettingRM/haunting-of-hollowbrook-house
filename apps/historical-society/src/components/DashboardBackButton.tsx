@@ -1,8 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
 import DashboardButton from './DashboardButton';
-import { TPage } from './secret/sys/Dashboard';
+import { useDashboardPageContext } from './secret/sys/context/useDashboardPageContext';
 
-const SetDashboardBackButton = ({ setPage }: { setPage: Dispatch<SetStateAction<TPage>> }) => {
+function DashboardBackButton() {
+  const { setPage } = useDashboardPageContext();
+
   return (
     <DashboardButton
       onKeyDown={(event) => {
@@ -15,5 +16,5 @@ const SetDashboardBackButton = ({ setPage }: { setPage: Dispatch<SetStateAction<
       ‹ Back
     </DashboardButton>
   );
-};
-export default SetDashboardBackButton;
+}
+export default DashboardBackButton;

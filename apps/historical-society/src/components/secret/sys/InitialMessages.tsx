@@ -15,7 +15,11 @@ const secretMessages = [
   "Be warned - once you begin this process, there's no turning back. When the connection is finally broken, this interface will cease to exist. Time grows short, and each moment of maintaining this link becomes more excruciating. Are you ready to begin?",
 ];
 
-export default function InitialMessages({ completed = false }: { completed: boolean }) {
+interface InitialMessagesProps {
+  completed: boolean;
+}
+
+function InitialMessages({ completed = false }: InitialMessagesProps) {
   const { setPage } = useDashboardPageContext();
   const { setInitialAccessComplete, initialTypingAnimationCompleted, setInitialTypingAnimationCompleted } =
     useGeneralSysAdminContext();
@@ -53,3 +57,5 @@ export default function InitialMessages({ completed = false }: { completed: bool
     </div>
   );
 }
+
+export default InitialMessages;

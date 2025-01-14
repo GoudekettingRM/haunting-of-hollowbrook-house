@@ -2,7 +2,7 @@
 import { DASHBOARD_CONTEXT_COOKIE_NAME, DEFAULT_OPTIONS } from '@/utils/cookieConfig';
 import Cookies from 'js-cookie';
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
-import { TPage } from '../Dashboard';
+import { TPage } from '../types';
 
 export type TPuzzles =
   | 'newspaper_archive'
@@ -38,7 +38,11 @@ export function DashboardPageContextProvider({ children }: { children: React.Rea
     const cookie = Cookies.get(DASHBOARD_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
-      const state = JSON.parse(cookie);
+      const state: {
+        completedPuzzles: TPuzzles[];
+        page: TPage;
+      } = JSON.parse(cookie);
+
       setPage(state.page);
       setCompletedPuzzles(state.completedPuzzles);
     }

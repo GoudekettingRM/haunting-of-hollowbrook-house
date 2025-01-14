@@ -29,7 +29,7 @@ const FragmentOne = () => {
     }
     setFrequencyOne(847392);
 
-    console.log('Value!', value);
+    // console.log('Value!', value);
   };
 
   return (
@@ -38,15 +38,15 @@ const FragmentOne = () => {
         <HintSystem
           className='absolute top-0 right-0'
           hints={[
-            'Where words cross, the answer lies.',
-            'Letter that seem scrambled, hide the truth.',
-            'Each character yearns to shift.',
-            'What is the solution to the crossword puzzle?',
-            'Caesar would love to be worshipped.',
+            'Where words cross, the answer lies',
+            'Letters that seem scrambled, hide the truth',
+            'Each character yearns to be shifted',
+            'What is the solution to the crossword?',
+            'Caesar prefers to be worshipped.',
             'How many letters does the solution to the crossword have?',
             'What happens if you shift the letters in the solution by the same number of letters as the solution itself?',
             'If you shift the letters of the first word, it reveals `frequency`.',
-            'The answer to the Caesar cipher is; Frequency one should be set to eight four seven three nine two (847392) Hertz. Fill this number in in the input field on the page.',
+            'The answer to the Caesar cipher is; Frequency one should be set to eight four seven three nine two Hertz. Fill in this number (847392) in the input field on the page.',
           ]}
           fragment='1'
         />

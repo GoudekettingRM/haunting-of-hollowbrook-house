@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 const PREFIX = 'whhs';
 
 export const STATUS_COOKIE_NAME = `${PREFIX}.status`;
@@ -9,6 +11,6 @@ export const PUZZLE_ANSWERS_CONTEXT_COOKIE_NAME = `${PREFIX}.context.puzzleAnswe
 
 export const DEFAULT_EXPIRATION = 7;
 
-export const DEFAULT_OPTIONS = {
+export const DEFAULT_OPTIONS: typeof Cookies.attributes = {
   expires: DEFAULT_EXPIRATION,
-} as Cookies.CookieAttributes;
+};

@@ -1,7 +1,7 @@
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 export const encode = (str: string, shift: number): string => {
-  shift = ((shift % alphabet.length) + alphabet.length) % alphabet.length;
+  const useableShift = ((shift % alphabet.length) + alphabet.length) % alphabet.length;
 
   return str
     .toLowerCase()
@@ -11,13 +11,13 @@ export const encode = (str: string, shift: number): string => {
       if (index === -1) {
         return char;
       }
-      return alphabet[(index + shift) % alphabet.length];
+      return alphabet[(index + useableShift) % alphabet.length];
     })
     .join('');
 };
 
 export const decode = (str: string, shift: number): string => {
-  shift = ((-shift % alphabet.length) + alphabet.length) % alphabet.length;
+  const useableShift = ((-shift % alphabet.length) + alphabet.length) % alphabet.length;
 
   return str
     .toLowerCase()
@@ -27,7 +27,7 @@ export const decode = (str: string, shift: number): string => {
       if (index === -1) {
         return char;
       }
-      return alphabet[(index + shift) % alphabet.length];
+      return alphabet[(index + useableShift) % alphabet.length];
     })
     .join('');
 };

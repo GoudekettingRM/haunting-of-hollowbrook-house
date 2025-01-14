@@ -63,7 +63,16 @@ export function FragmentsContextProvider({ children }: { children: React.ReactNo
     const cookie = Cookies.get(FRAGMENTS_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
-      const state = JSON.parse(cookie);
+      const state: {
+        accessedFragmentOneOnce: boolean;
+        fragmentOneNextHintNumber: number;
+        accessedFragmentTwoOnce: boolean;
+        fragmentTwoNextHintNumber: number;
+        accessedFragmentThreeOnce: boolean;
+        fragmentThreeNextHintNumber: number;
+        accessedFragmentFourOnce: boolean;
+        fragmentFourNextHintNumber: number;
+      } = JSON.parse(cookie);
       setAccessedFragmentOneOnce(state.accessedFragmentOneOnce);
       setAccessedFragmentTwoOnce(state.accessedFragmentTwoOnce);
       setAccessedFragmentThreeOnce(state.accessedFragmentThreeOnce);

@@ -34,7 +34,11 @@ export function GeneralSysAdminContextProvider({ children }: { children: React.R
     const cookie = Cookies.get(GENERAL_SYS_ADMIN_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
-      const state = JSON.parse(cookie);
+      const state: {
+        initialAccessComplete: boolean;
+        initialBootComplete: boolean;
+        initialTypingAnimationCompleted: boolean;
+      } = JSON.parse(cookie);
       setInitialAccessComplete(state.initialAccessComplete);
       setInitialBootComplete(state.initialBootComplete);
       setInitialTypingAnimationCompleted(state.initialTypingAnimationCompleted);

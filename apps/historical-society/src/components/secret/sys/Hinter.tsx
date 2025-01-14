@@ -1,5 +1,6 @@
 'use client';
 import DashboardButton from '@/components/DashboardButton';
+import TypingAnimation from '@/components/TypingAnimation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Terminal, XIcon } from 'lucide-react';
 import { useCallback, useState } from 'react';
@@ -16,6 +17,7 @@ const HintSystem = ({
   className?: string;
   fragment: '1' | '2' | '3' | '4';
 }) => {
+  const [showingNewLine, setShowingNewLine] = useState(false);
   const {
     fragmentOneNextHintNumber,
     setFragmentOneNextHintNumber,
@@ -62,21 +64,18 @@ const HintSystem = ({
   );
   const [isOpen, setIsOpen] = useState(false);
 
-  const [showingHints, setShowingHints] = useState(() => {
-    return nextHintToShow > 1 && nextHintToShow <= hints.length;
-  });
-
   const showNextHint = () => {
     if (nextHintToShow <= hints.length) {
       setNextHintToShow(nextHintToShow + 1);
       updateContextMethod(nextHintToShow + 1);
+      setShowingNewLine(true);
     }
   };
 
   const handleShowFirstHint = () => {
     setNextHintToShow(2);
     updateContextMethod(2);
-    setShowingHints(true);
+    setShowingNewLine(true);
   };
 
   return (
@@ -101,23 +100,22 @@ const HintSystem = ({
         </DialogHeader>
 
         <div className='font-mono text-[#0f0] min-h-[100px] flex flex-col gap-4'>
-          <p>If you're stuck, you can get some help here.</p>
+          <p>If you&apos;re stuck, you can get some help here.</p>
           {nextHintToShow === 1 ? (
-            <DashboardButton onClick={handleShowFirstHint}>Show First Hint {'>'}</DashboardButton>
+            <DashboardButton onClick={handleShowFirstHint}>Show First Hint</DashboardButton>
           ) : (
             <>
-              {/* Show hints up to nextHintToShow */}
-              {hints.slice(0, nextHintToShow - 1).map((hint, index) => (
-                <div key={index} className='bg-black/50 p-4 rounded border border-[#0f0]/30'>
-                  <span className='text-[#0f0]/70'>{'>'}</span> {hint}
-                </div>
-              ))}
+              <TypingAnimation
+                lines={hints.slice(0, nextHintToShow - 1)}
+                completed={!showingNewLine}
+                onComplete={() => setShowingNewLine(false)}
+              />
 
               {/* Navigation button */}
               {nextHintToShow <= hints.length && (
                 <div className='flex justify-end items-center'>
                   <DashboardButton onClick={showNextHint}>
-                    {nextHintToShow === hints.length ? 'Reveal Answer >' : 'Next Hint >'}
+                    {nextHintToShow === hints.length ? 'Reveal Answer' : 'Next Hint'}
                   </DashboardButton>
                 </div>
               )}

@@ -1,5 +1,6 @@
 'use client';
-import SetDashboardBackButton from '@/components/SetDashboardBackButton';
+
+import DashboardBackButton from '@/components/DashboardBackButton';
 import Buttons from './Buttons';
 import { useDashboardPageContext } from './context/useDashboardPageContext';
 import { useGeneralSysAdminContext } from './context/useGeneralSysAdminContext';
@@ -11,8 +12,6 @@ import FragmentThree from './pages/FragmentThree';
 import FragmentTwo from './pages/FragmentTwo';
 import Messages from './pages/Messages';
 
-export type TPage = 'messages' | 'dashboard' | 'fragment_1' | 'fragment_2' | 'fragment_3' | 'fragment_4' | 'protocol';
-
 const encourageMessages = [
   "I've managed to put the first location of the fragments here. Please hurry...",
   'Good, you found the first one. I also tracked down the second location. I linked it below.',
@@ -21,7 +20,7 @@ const encourageMessages = [
 ];
 
 const Dashboard = () => {
-  const { page, setPage, completedPuzzles } = useDashboardPageContext();
+  const { page, completedPuzzles } = useDashboardPageContext();
   const { initialAccessComplete } = useGeneralSysAdminContext();
 
   if (!initialAccessComplete) {
@@ -39,7 +38,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <SetDashboardBackButton setPage={setPage} />
+      <DashboardBackButton />
       <div className='w-full h-[1px] bg-[#0f0] !mt-4 !mb-1' />
       {page === 'messages' && <Messages />}
       {page === 'fragment_1' && <FragmentOne />}

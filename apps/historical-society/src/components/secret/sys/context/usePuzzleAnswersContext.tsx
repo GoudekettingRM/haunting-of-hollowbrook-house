@@ -34,7 +34,11 @@ export function PuzzleAnswerContextProvider({ children }: { children: React.Reac
     const cookie = Cookies.get(PUZZLE_ANSWERS_CONTEXT_COOKIE_NAME);
 
     if (cookie) {
-      const state = JSON.parse(cookie);
+      const state: {
+        frequencyOne: number | null;
+        frequencyTwo: number | null;
+        frequencyThree: number | null;
+      } = JSON.parse(cookie);
       setFrequencyOne(state.frequencyOne);
       setFrequencyTwo(state.frequencyTwo);
       setFrequencyThree(state.frequencyThree);

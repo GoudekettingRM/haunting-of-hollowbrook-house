@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-type TypingAnimationProps = {
+interface TypingAnimationProps {
   lines: string[];
   completed?: boolean;
   onComplete?: () => void;
@@ -9,7 +9,7 @@ type TypingAnimationProps = {
   showTransmissionLabels?: boolean;
   className?: string;
   linePrefix?: string;
-};
+}
 
 const TypingAnimation = ({
   lines,

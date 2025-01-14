@@ -11,7 +11,7 @@ const Buttons = () => {
     <div>
       <div className='flex flex-col gap-4 mb-4'>
         <DashboardButton
-          disabled={!!frequencyOne}
+          disabled={frequencyOne !== null}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               setPage('fragment_1');
@@ -21,9 +21,9 @@ const Buttons = () => {
         >
           Fragment 1
         </DashboardButton>
-        {frequencyOne && (
+        {frequencyOne !== null && (
           <DashboardButton
-            disabled={!!frequencyTwo}
+            disabled={frequencyTwo !== null}
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
                 setPage('fragment_2');
@@ -34,9 +34,9 @@ const Buttons = () => {
             Fragment 2
           </DashboardButton>
         )}
-        {frequencyTwo && (
+        {frequencyTwo !== null && (
           <DashboardButton
-            disabled={!!frequencyThree}
+            disabled={frequencyThree !== null}
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
                 setPage('fragment_3');
@@ -47,7 +47,7 @@ const Buttons = () => {
             Fragment 3
           </DashboardButton>
         )}
-        {frequencyThree && (
+        {frequencyThree !== null && (
           <DashboardButton
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
@@ -87,4 +87,5 @@ const Buttons = () => {
     </div>
   );
 };
+
 export default Buttons;

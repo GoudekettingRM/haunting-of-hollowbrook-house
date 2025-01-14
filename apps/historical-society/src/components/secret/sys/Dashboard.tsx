@@ -1,9 +1,11 @@
 'use client';
 
 import DashboardBackButton from '@/components/DashboardBackButton';
+import { useState } from 'react';
 import Buttons from './Buttons';
 import { useDashboardPageContext } from './context/useDashboardPageContext';
 import { useGeneralSysAdminContext } from './context/useGeneralSysAdminContext';
+import CRTFirework from './Firework';
 import InitialMessages from './InitialMessages';
 import ExecuteProtocol from './pages/ExecuteProtocol';
 import FragmentFour from './pages/FragmentFour';
@@ -20,32 +22,39 @@ const encourageMessages = [
 ];
 
 const Dashboard = () => {
-  const { page, completedPuzzles } = useDashboardPageContext();
+  const [showFirework, setShowFirework] = useState(false);
+  const { page, setPage, completedPuzzles } = useDashboardPageContext();
   const { initialAccessComplete } = useGeneralSysAdminContext();
+
+  const handleSuccessfulFragment = () => {
+    setShowFirework(true);
+    setTimeout(() => setPage('dashboard'), 500);
+  };
 
   if (!initialAccessComplete) {
     return <InitialMessages completed={false} />;
   }
 
-  if (page === 'dashboard') {
-    return (
-      <>
-        <p>{encourageMessages[completedPuzzles.length]}</p>
-        <Buttons />
-      </>
-    );
-  }
-
   return (
     <>
-      <DashboardBackButton />
-      <div className='w-full h-[1px] bg-[#0f0] !mt-4 !mb-1' />
+      {page === 'dashboard' ? (
+        <>
+          <p>{encourageMessages[completedPuzzles.length]}</p>
+          <Buttons />
+        </>
+      ) : (
+        <>
+          <DashboardBackButton />
+          <div className='w-full h-[1px] bg-[#0f0] !mt-4 !mb-1' />
+        </>
+      )}
       {page === 'messages' && <Messages />}
-      {page === 'fragment_1' && <FragmentOne />}
+      {page === 'fragment_1' && <FragmentOne onSuccess={handleSuccessfulFragment} />}
       {page === 'fragment_2' && <FragmentTwo />}
       {page === 'fragment_3' && <FragmentThree />}
       {page === 'fragment_4' && <FragmentFour />}
       {page === 'protocol' && <ExecuteProtocol />}
+      <CRTFirework isVisible={showFirework} onAnimationComplete={() => setShowFirework(false)} />
     </>
   );
 };

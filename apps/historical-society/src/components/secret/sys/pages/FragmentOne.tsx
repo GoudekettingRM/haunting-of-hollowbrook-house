@@ -8,7 +8,7 @@ import { usePuzzleAnswerContext } from '../context/usePuzzleAnswersContext';
 import DashboardInput from '../DashboardInput';
 import HintSystem from '../Hinter';
 
-const FragmentOne = () => {
+function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
   const [showFragmentContent, setShowFragmentContent] = useState(false);
   const { accessedFragmentOneOnce, setAccessedFragmentOneOnce } = useFragmentsContext();
   const { frequencyOne, setFrequencyOne } = usePuzzleAnswerContext();
@@ -30,6 +30,7 @@ const FragmentOne = () => {
     setFrequencyOne(847392);
 
     // console.log('Value!', value);
+    onSuccess();
   };
 
   return (
@@ -51,6 +52,7 @@ const FragmentOne = () => {
           fragment='1'
         />
       )}
+
       <div className='!mt-6'>
         <TypingAnimation
           lines={[
@@ -114,5 +116,5 @@ const FragmentOne = () => {
       </div>
     </>
   );
-};
+}
 export default FragmentOne;

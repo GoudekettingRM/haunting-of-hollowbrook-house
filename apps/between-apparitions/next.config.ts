@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       'upload.wikimedia.org',
       'freerangestock.com',
       'cache.getarchive.net',
+      'live.staticflickr.com',
     ],
   },
 };

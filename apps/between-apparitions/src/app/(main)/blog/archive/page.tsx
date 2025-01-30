@@ -1,13 +1,13 @@
 import ArchivePageContent from '@/components/ArchivePageContent';
 
-interface IArchiveParams {
-  searchParams: {
+interface ArchiveParams {
+  searchParams: Promise<{
     q?: string;
-  };
+  }>;
 }
 
-const Archive = async (props: Promise<IArchiveParams>) => {
-  const query = await (await (await props).searchParams).q;
+const Archive = async (props: ArchiveParams) => {
+  const query = (await props.searchParams).q;
 
   return (
     <>
@@ -15,4 +15,5 @@ const Archive = async (props: Promise<IArchiveParams>) => {
     </>
   );
 };
+
 export default Archive;

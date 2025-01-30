@@ -6,7 +6,7 @@ const AboutPage = () => {
           About me
         </h1>
         <p className='mb-4'>
-          I started my research into the unknown back in the mid 90's. I was a young - but ambitious - anthropology
+          I started my research into the unknown back in the mid 90&apos;s. I was a young - but ambitious - anthropology
           student. During one of my classes I got introduced to the different beliefs people have. I felt in my bones
           that this was not always merely about belief.
         </p>
@@ -14,26 +14,26 @@ const AboutPage = () => {
           My first real paranormal investigation was in 1997 at the abandoned Blackwater Shipyard in Newport, Rhode
           Island. What started as an anthropological study of local maritime folklore turned into something far more
           profound. Workers had reported tools moving on their own and mysterious footsteps echoing through empty dry
-          docks. I went in expecting to document how these stories reflected the community's relationship with its
-          maritime heritage. Instead, I witnessed phenomena that couldn't be explained by cultural beliefs alone. When I
-          recorded distinct footsteps in a sealed dry dock that hadn't been accessed in years, I realized I needed to
-          expand my research beyond traditional anthropology.
+          docks. I went in expecting to document how these stories reflected the community&apos;s relationship with its
+          maritime heritage. Instead, I witnessed phenomena that couldn&apos;t be explained by cultural beliefs alone.
+          When I recorded distinct footsteps in a sealed dry dock that hadn&apos;t been accessed in years, I realized I
+          needed to expand my research beyond traditional anthropology.
         </p>
         <p className='mb-4'>
           While I completed my anthropology degree, my focus shifted. I spent weekends investigating reported hauntings
-          across New England, developing a more scientific approach to paranormal research. I've never wanted to
+          across New England, developing a more scientific approach to paranormal research. I&apos;ve never wanted to
           monetize this work - keeping my day job has allowed me to maintain objectivity and research independence.
         </p>
         <p className='mb-4'>
-          Over the years, I've worked various jobs - museum curator, research assistant, even a brief stint as a high
-          school teacher. But my passion has always been investigating the unexplained. I started this blog in 2001 to
-          document my findings and connect with others in the field.
+          Over the years, I&apos;ve worked various jobs - museum curator, research assistant, even a brief stint as a
+          high school teacher. But my passion has always been investigating the unexplained. I started this blog in 2001
+          to document my findings and connect with others in the field.
         </p>
         <p className='mb-4'>
           In 2011, I came across the fascinating case of Hollowbrook House and its multiple disappearances. What started
           as casual research has evolved into a deep investigation that continues to this day. The more I uncover about
-          the Hollowbrook mystery, the more convinced I become that we've barely scratched the surface of what really
-          happened there.
+          the Hollowbrook mystery, the more convinced I become that we&apos;ve barely scratched the surface of what
+          really happened there.
         </p>
         <p className='mb-4'>
           My research into Hollowbrook House eventually led me to accept a position at the Whispering Hollows Historical
@@ -49,8 +49,8 @@ const AboutPage = () => {
         </p>
         <p className='mb-4'>
           Feel free to reach out if you have questions or want to discuss any of the cases documented here. While I
-          can't investigate every lead, I'm always interested in hearing about new phenomena that challenge our
-          understanding of reality.
+          can&apos;t investigate every lead, I&apos;m always interested in hearing about new phenomena that challenge
+          our understanding of reality.
         </p>
         <p className='flex flex-col mx-auto text-center'>
           <span className='block'>-</span>

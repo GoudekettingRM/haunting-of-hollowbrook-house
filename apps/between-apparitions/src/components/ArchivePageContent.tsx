@@ -6,11 +6,11 @@ import { useEffect, useMemo, useState } from 'react';
 
 const ITEMS_PER_PAGE = 10;
 
-interface IArchivePageContentParams {
+interface ArchivePageContentParams {
   query?: string;
 }
 
-const ArchivePageContent = ({ query }: IArchivePageContentParams) => {
+const ArchivePageContent = ({ query }: ArchivePageContentParams) => {
   const [page, setPage] = useState(1);
   const [articles] = useState(() => arts.reverse());
   const [articlesToShow, setArticlesToShow] = useState(() => {
@@ -27,7 +27,7 @@ const ArchivePageContent = ({ query }: IArchivePageContentParams) => {
     const end = start + ITEMS_PER_PAGE;
 
     setArticlesOnPage(() => articlesToShow.slice(start, end));
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
     }
   }, [page]);

@@ -50,7 +50,7 @@ const Dashboard = () => {
       )}
       {page === 'messages' && <Messages />}
       {page === 'fragment_1' && <FragmentOne onSuccess={handleSuccessfulFragment} />}
-      {page === 'fragment_2' && <FragmentTwo />}
+      {page === 'fragment_2' && <FragmentTwo onSuccess={handleSuccessfulFragment} />}
       {page === 'fragment_3' && <FragmentThree />}
       {page === 'fragment_4' && <FragmentFour />}
       {page === 'protocol' && <ExecuteProtocol />}

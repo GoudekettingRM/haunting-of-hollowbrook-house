@@ -15,8 +15,8 @@ function Navbar() {
     const contactPageLink = contactPageLinkRef.current;
     if (!contactPageLink) return;
 
-    var x = Math.random() * (window.innerWidth - contactPageLink.offsetWidth);
-    var y = Math.random() * (window.innerHeight - contactPageLink.offsetHeight);
+    const x = Math.random() * (window.innerWidth - contactPageLink.offsetWidth);
+    const y = Math.random() * (window.innerHeight - contactPageLink.offsetHeight);
 
     contactPageLink.style.position = 'absolute';
     contactPageLink.style.left = `${x}px`;

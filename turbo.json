@@ -12,6 +12,11 @@
       "cache": false,
       "persistent": true
     },
+    "historical-society#build": {
+      "dependsOn": ["^build"],
+      "env": ["API_ORIGIN_AUTHENTICATION", "RESEND_API_KEY", "NEXT_PUBLIC_GAZETTE_URL"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
     "between-apparitions#build": {
       "dependsOn": ["^build"],
       "env": ["OPEN_AI_KEY"],

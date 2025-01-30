@@ -9,20 +9,21 @@ const ContactRequestConfirmation = ({ name }: { name: string }) => {
         <Section style={section}>
           <Text style={text}>Dear {name},</Text>
           <Text style={text}>
-            Thank you for reaching out and offering your assistance with our technical issues. We've been experiencing
-            some very unusual problems with the Historical Society's website (www.whhs.info) over the past week.
+            Thank you for reaching out and offering your assistance with our technical issues. We&apos;ve been
+            experiencing some very unusual problems with the Historical Society&apos;s website (www.whhs.info) over the
+            past week.
           </Text>
           <Text style={text}>
             Initially, we thought it was just typical website glitches, but things have escalated. Content seems to be
             rearranging itself, and some of our digital archives are behaving erratically - documents appearing and
-            disappearing, that sort of thing. Most concerning are the reports from visitors who claim they're seeing
-            different content than what we've actually posted.
+            disappearing, that sort of thing. Most concerning are the reports from visitors who claim they&apos;re
+            seeing different content than what we&apos;ve actually posted.
           </Text>
 
           <Text style={text}>
-            I've already consulted with our regular website maintainer (Robin Goudeketting), but they can't find
-            anything wrong with the code or hosting setup. Given your background, I was hoping you might be able to take
-            a look and see if you can spot anything unusual in the system.
+            I&apos;ve already consulted with our regular website maintainer (Robin Goudeketting), but they can&apos;t
+            find anything wrong with the code or hosting setup. Given your background, I was hoping you might be able to
+            take a look and see if you can spot anything unusual in the system.
           </Text>
 
           <Text style={text}>I appreciate any insights you can provide.</Text>

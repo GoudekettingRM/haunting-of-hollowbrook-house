@@ -22,7 +22,7 @@ export const sendEmail = async (email: string, name: string) => {
       success: true,
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return {
       error: (error as Error).message,
       success: false,

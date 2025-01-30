@@ -1,10 +1,14 @@
+'use client';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import SearchBar from './SearchBar';
 
 const Aside = () => {
   return (
     <aside className='min-w-48 sm:max-w-[20%] lg:min-w-80 sm:ml-12 mt-8 sm:mt-0'>
-      <SearchBar />
+      <Suspense>
+        <SearchBar />
+      </Suspense>
       <div className='flex flex-col items-center'>
         <h2 className='text-lg mt-4 mb-2 lg:my-4 lg:text-2xl text-indigo-900 w-fit'>Who am I</h2>
         <div className='w-full max-w-48'>

@@ -6,10 +6,10 @@ import { TPage } from '../types';
 
 export type TPuzzles =
   | 'newspaper_archive'
+  | 'emf_readings'
   | 'document_scan' // archive pdf -> blue light -> frequency
   | 'apparitions_image'
-  | 'apparitions_article_images' // EMF readings -> frequency
-  | 'audio-recordings';
+  | 'audio_recordings';
 
 interface DashboardPageContextType {
   page: TPage;

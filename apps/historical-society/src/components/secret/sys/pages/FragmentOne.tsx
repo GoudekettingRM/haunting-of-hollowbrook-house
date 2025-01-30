@@ -3,6 +3,7 @@ import DashboardButton from '@/components/DashboardButton';
 import TypingAnimation from '@/components/TypingAnimation';
 import Link from 'next/link';
 import { FormEvent, useState } from 'react';
+import { useDashboardPageContext } from '../context/useDashboardPageContext';
 import { useFragmentsContext } from '../context/useFragmentsContext';
 import { usePuzzleAnswerContext } from '../context/usePuzzleAnswersContext';
 import DashboardInput from '../DashboardInput';
@@ -10,6 +11,7 @@ import HintSystem from '../Hinter';
 
 function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
   const [showFragmentContent, setShowFragmentContent] = useState(false);
+  const { setCompletedPuzzles } = useDashboardPageContext();
   const { accessedFragmentOneOnce, setAccessedFragmentOneOnce } = useFragmentsContext();
   const { frequencyOne, setFrequencyOne } = usePuzzleAnswerContext();
   const [value, setValue] = useState(frequencyOne !== null ? frequencyOne.toString() : '');
@@ -28,6 +30,7 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
       return;
     }
     setFrequencyOne(847392);
+    setCompletedPuzzles((prev) => [...prev, 'newspaper_archive']);
 
     // console.log('Value!', value);
     onSuccess();

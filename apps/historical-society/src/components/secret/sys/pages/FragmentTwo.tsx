@@ -3,6 +3,7 @@
 import DashboardButton from '@/components/DashboardButton';
 import TypingAnimation from '@/components/TypingAnimation';
 import { FormEvent, useState } from 'react';
+import { useDashboardPageContext } from '../context/useDashboardPageContext';
 import { useFragmentsContext } from '../context/useFragmentsContext';
 import { usePuzzleAnswerContext } from '../context/usePuzzleAnswersContext';
 import DashboardInput from '../DashboardInput';
@@ -10,6 +11,7 @@ import HintSystem from '../Hinter';
 
 function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
   const [showFragmentContent, setShowFragmentContent] = useState(false);
+  const { setCompletedPuzzles } = useDashboardPageContext();
   const { accessedFragmentTwoOnce, setAccessedFragmentTwoOnce } = useFragmentsContext();
   const { frequencyTwo, setFrequencyTwo } = usePuzzleAnswerContext();
   const [value, setValue] = useState(frequencyTwo !== null ? frequencyTwo.toString() : '');
@@ -28,6 +30,7 @@ function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
       return;
     }
     setFrequencyTwo(258350);
+    setCompletedPuzzles((prev) => [...prev, 'emf_readings']);
 
     // console.log('Value!', value);
     onSuccess();

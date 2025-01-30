@@ -1,10 +1,11 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 
 const SearchBar = () => {
   const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState('');
+  const params = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(params.get('q') ?? '');
 
   const handleSearch = (event: FormEvent) => {
     event.preventDefault();
@@ -15,7 +16,7 @@ const SearchBar = () => {
   return (
     <form className='w-full' onSubmit={handleSearch}>
       <label htmlFor='search-field' className='font-semibold mb-1 inline-block'>
-        Search for blog posts:
+        Access the blog archive:
       </label>
       <div className='w-full relative'>
         <input

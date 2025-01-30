@@ -1,4 +1,5 @@
 import Aside from '@/components/Aside';
+import BackToBlogIndexLink from '@/components/BackToBlogIndexLink';
 import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import type { Metadata } from 'next';
@@ -30,8 +31,9 @@ export default function RootLayout({
       <body className={`${minerva.variable} antialiased flex flex-col h-dvh`}>
         <div className='flex-1 w-full'>
           <NavBar />
+          <BackToBlogIndexLink />
           <div className='max-w-screen-xl w-11/12 mx-auto flex flex-col sm:flex-row'>
-            <main className='p-8 shadow-lg bg-white rounded sm:grow overflow-hidden'>{children}</main>
+            <main className='p-4 sm:p-8 shadow-lg bg-white rounded sm:grow overflow-hidden'>{children}</main>
             <Aside />
           </div>
         </div>

@@ -1,9 +1,45 @@
 'use client';
 
 import Link from 'next/link';
+import { useCallback, useEffect, useRef } from 'react';
 import SearchBar from './SearchBar';
+import { useBuggingContext } from './useBuggingContext';
 
 function Navbar() {
+  const contactPageLinkRef = useRef<HTMLAnchorElement>(null);
+  const { isBugged } = useBuggingContext();
+
+  const moveContactPageLink = useCallback(() => {
+    if (!isBugged) return;
+
+    const contactPageLink = contactPageLinkRef.current;
+    if (!contactPageLink) return;
+
+    var x = Math.random() * (window.innerWidth - contactPageLink.offsetWidth);
+    var y = Math.random() * (window.innerHeight - contactPageLink.offsetHeight);
+
+    contactPageLink.style.position = 'absolute';
+    contactPageLink.style.left = `${x}px`;
+    contactPageLink.style.top = `${y}px`;
+    contactPageLink.style.zIndex = '9999';
+    contactPageLink.style.width = 'fit-content';
+  }, [isBugged, contactPageLinkRef.current]);
+
+  useEffect(() => {
+    if (!isBugged) return;
+
+    const contactPageLink = contactPageLinkRef.current;
+    if (!contactPageLink) return;
+
+    contactPageLink.addEventListener('mouseover', moveContactPageLink);
+    contactPageLink.addEventListener('click', moveContactPageLink);
+
+    return () => {
+      contactPageLink.removeEventListener('mouseover', moveContactPageLink);
+      contactPageLink.removeEventListener('click', moveContactPageLink);
+    };
+  }, [contactPageLinkRef.current, moveContactPageLink, isBugged]);
+
   return (
     <nav className='flex flex-col p-4'>
       <Link href='/' className='text-2xl' title='Whispering Hollows Historical Society'>
@@ -19,7 +55,13 @@ function Navbar() {
 
       <NavLink name='Home' href='/' />
       <NavLink name='Blog' href='/blog' />
-      <NavLink name='Contact' href='/contact' />
+      <Link
+        ref={contactPageLinkRef}
+        className='transition-all ease-in-out duration-500 flex justify-between w-full flex-nowrap border-b border-b-dark-wood border-opacity-30 last-of-type:border-b-0 py-2 underline sm:no-underline sm:hover:underline'
+        href={'/contact'}
+      >
+        <span className='block'>Contact</span> <span className='block'>›</span>
+      </Link>
     </nav>
   );
 }

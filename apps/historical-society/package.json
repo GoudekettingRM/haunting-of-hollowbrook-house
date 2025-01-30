@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
+    "dev": "next dev --port 4000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
+    "@react-email/components": "^0.0.32",
+    "@react-email/render": "^1.0.4",
     "@repo/ui": "*",
     "@repo/utils": "*",
     "class-variance-authority": "^0.7.1",
@@ -21,6 +23,7 @@
     "next": "^14.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "resend": "^4.1.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },

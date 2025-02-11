@@ -21,7 +21,7 @@ const SwingingDiv = ({
       () => {
         setIsReleased(true);
       },
-      Math.random() * 10000 + 5000,
+      Math.random() * 10000 + 2000,
     );
     return () => clearTimeout(timeout);
   }, [isReleased]);

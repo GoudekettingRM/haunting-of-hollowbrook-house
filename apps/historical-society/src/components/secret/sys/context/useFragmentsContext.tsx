@@ -16,10 +16,10 @@ interface FragmentsContextType {
   setAccessedFragmentThreeOnce: Dispatch<SetStateAction<boolean>>;
   fragmentThreeNextHintNumber: number;
   setFragmentThreeNextHintNumber: Dispatch<SetStateAction<number>>;
-  accessedFragmentFourOnce: boolean;
-  setAccessedFragmentFourOnce: Dispatch<SetStateAction<boolean>>;
-  fragmentFourNextHintNumber: number;
-  setFragmentFourNextHintNumber: Dispatch<SetStateAction<number>>;
+  accessedProtocolExecutionOnce: boolean;
+  setAccessedProtocolExecutionOnce: Dispatch<SetStateAction<boolean>>;
+  protocolExecutionNextHintNumber: number;
+  setProtocolExecutionNextHintNumber: Dispatch<SetStateAction<number>>;
 }
 
 const FragmentsContext = createContext<FragmentsContextType | undefined>(undefined);
@@ -32,8 +32,8 @@ export function FragmentsContextProvider({ children }: { children: React.ReactNo
   const [fragmentTwoNextHintNumber, setFragmentTwoNextHintNumber] = useState<number>(1);
   const [accessedFragmentThreeOnce, setAccessedFragmentThreeOnce] = useState<boolean>(false);
   const [fragmentThreeNextHintNumber, setFragmentThreeNextHintNumber] = useState<number>(1);
-  const [accessedFragmentFourOnce, setAccessedFragmentFourOnce] = useState<boolean>(false);
-  const [fragmentFourNextHintNumber, setFragmentFourNextHintNumber] = useState<number>(1);
+  const [accessedProtocolExecutionOnce, setAccessedProtocolExecutionOnce] = useState<boolean>(false);
+  const [protocolExecutionNextHintNumber, setProtocolExecutionNextHintNumber] = useState<number>(1);
 
   useEffect(() => {
     if (!loaded) return;
@@ -44,8 +44,8 @@ export function FragmentsContextProvider({ children }: { children: React.ReactNo
       fragmentTwoNextHintNumber,
       accessedFragmentThreeOnce,
       fragmentThreeNextHintNumber,
-      accessedFragmentFourOnce,
-      fragmentFourNextHintNumber,
+      accessedProtocolExecutionOnce,
+      protocolExecutionNextHintNumber,
     };
     Cookies.set(FRAGMENTS_CONTEXT_COOKIE_NAME, JSON.stringify(state), DEFAULT_OPTIONS);
   }, [
@@ -55,8 +55,8 @@ export function FragmentsContextProvider({ children }: { children: React.ReactNo
     fragmentTwoNextHintNumber,
     accessedFragmentThreeOnce,
     fragmentThreeNextHintNumber,
-    accessedFragmentFourOnce,
-    fragmentFourNextHintNumber,
+    accessedProtocolExecutionOnce,
+    protocolExecutionNextHintNumber,
   ]);
 
   useEffect(() => {
@@ -70,17 +70,17 @@ export function FragmentsContextProvider({ children }: { children: React.ReactNo
         fragmentTwoNextHintNumber: number;
         accessedFragmentThreeOnce: boolean;
         fragmentThreeNextHintNumber: number;
-        accessedFragmentFourOnce: boolean;
-        fragmentFourNextHintNumber: number;
+        accessedProtocolExecutionOnce: boolean;
+        protocolExecutionNextHintNumber: number;
       } = JSON.parse(cookie);
       setAccessedFragmentOneOnce(state.accessedFragmentOneOnce);
       setAccessedFragmentTwoOnce(state.accessedFragmentTwoOnce);
       setAccessedFragmentThreeOnce(state.accessedFragmentThreeOnce);
-      setAccessedFragmentFourOnce(state.accessedFragmentFourOnce);
+      setAccessedProtocolExecutionOnce(state.accessedProtocolExecutionOnce);
       setFragmentOneNextHintNumber(state.fragmentOneNextHintNumber);
       setFragmentTwoNextHintNumber(state.fragmentTwoNextHintNumber);
       setFragmentThreeNextHintNumber(state.fragmentThreeNextHintNumber);
-      setFragmentFourNextHintNumber(state.fragmentFourNextHintNumber);
+      setProtocolExecutionNextHintNumber(state.protocolExecutionNextHintNumber);
     }
     setLoaded(true);
   }, []);
@@ -100,10 +100,10 @@ export function FragmentsContextProvider({ children }: { children: React.ReactNo
         setAccessedFragmentThreeOnce,
         fragmentThreeNextHintNumber,
         setFragmentThreeNextHintNumber,
-        accessedFragmentFourOnce,
-        setAccessedFragmentFourOnce,
-        fragmentFourNextHintNumber,
-        setFragmentFourNextHintNumber,
+        accessedProtocolExecutionOnce,
+        setAccessedProtocolExecutionOnce,
+        protocolExecutionNextHintNumber,
+        setProtocolExecutionNextHintNumber,
       }}
     >
       {children}

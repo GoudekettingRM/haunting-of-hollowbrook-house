@@ -8,7 +8,6 @@ import { useGeneralSysAdminContext } from './context/useGeneralSysAdminContext';
 import CRTFirework from './Firework';
 import InitialMessages from './InitialMessages';
 import ExecuteProtocol from './pages/ExecuteProtocol';
-import FragmentFour from './pages/FragmentFour';
 import FragmentOne from './pages/FragmentOne';
 import FragmentThree from './pages/FragmentThree';
 import FragmentTwo from './pages/FragmentTwo';
@@ -52,7 +51,6 @@ const Dashboard = () => {
       {page === 'fragment_1' && <FragmentOne onSuccess={handleSuccessfulFragment} />}
       {page === 'fragment_2' && <FragmentTwo onSuccess={handleSuccessfulFragment} />}
       {page === 'fragment_3' && <FragmentThree />}
-      {page === 'fragment_4' && <FragmentFour />}
       {page === 'protocol' && <ExecuteProtocol />}
       <CRTFirework isVisible={showFirework} onAnimationComplete={() => setShowFirework(false)} />
     </>

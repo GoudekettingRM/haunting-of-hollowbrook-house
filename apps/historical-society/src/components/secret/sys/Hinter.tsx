@@ -15,7 +15,7 @@ const HintSystem = ({
   helpButtonText?: string;
   hints: string[];
   className?: string;
-  fragment: '1' | '2' | '3' | '4';
+  fragment: '1' | '2' | '3' | 'protocol-execution';
 }) => {
   const [showingNewLine, setShowingNewLine] = useState(false);
   const {
@@ -25,8 +25,8 @@ const HintSystem = ({
     setFragmentTwoNextHintNumber,
     fragmentThreeNextHintNumber,
     setFragmentThreeNextHintNumber,
-    fragmentFourNextHintNumber,
-    setFragmentFourNextHintNumber,
+    protocolExecutionNextHintNumber,
+    setProtocolExecutionNextHintNumber,
   } = useFragmentsContext();
   const [nextHintToShow, setNextHintToShow] = useState(() => {
     switch (fragment) {
@@ -36,8 +36,9 @@ const HintSystem = ({
         return fragmentTwoNextHintNumber;
       case '3':
         return fragmentThreeNextHintNumber;
-      case '4':
-        return fragmentFourNextHintNumber;
+      case 'protocol-execution':
+        console.log(protocolExecutionNextHintNumber);
+        return protocolExecutionNextHintNumber;
       default:
         return 1;
     }
@@ -55,8 +56,8 @@ const HintSystem = ({
         case '3':
           setFragmentThreeNextHintNumber(number);
           break;
-        case '4':
-          setFragmentFourNextHintNumber(number);
+        case 'protocol-execution':
+          setProtocolExecutionNextHintNumber(number);
           break;
       }
     },
@@ -114,7 +115,7 @@ const HintSystem = ({
               {/* Navigation button */}
               {nextHintToShow <= hints.length && (
                 <div className='flex justify-end items-center'>
-                  <DashboardButton onClick={showNextHint}>
+                  <DashboardButton onClick={showNextHint} disabled={showingNewLine}>
                     {nextHintToShow === hints.length ? 'Reveal Answer' : 'Next Hint'}
                   </DashboardButton>
                 </div>

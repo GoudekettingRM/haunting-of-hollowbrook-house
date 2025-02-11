@@ -1,13 +1,27 @@
 'use client';
-import { FormEvent, useState } from 'react';
+import DashboardButton from '@/components/DashboardButton';
+import TypingAnimation from '@/components/TypingAnimation';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useMemo, useState } from 'react';
+import AudioPlayer from '../AudioElement';
+import { useFragmentsContext } from '../context/useFragmentsContext';
 import { usePuzzleAnswerContext } from '../context/usePuzzleAnswersContext';
 import DashboardInput from '../DashboardInput';
+import HintSystem from '../Hinter';
 
 const ExecuteProtocol = () => {
-  const { frequencyOne, frequencyTwo, frequencyThree } = usePuzzleAnswerContext();
-  const [freqOnePhaseShift, setFreqOnePhaseShift] = useState('');
-  const [freqTwoPhaseShift, setFreqTwoPhaseShift] = useState('');
-  const [freqThreePhaseShift, setFreqThreePhaseShift] = useState('');
+  const {
+    frequencyOne,
+    frequencyTwo,
+    frequencyThree,
+    freqOnePhaseShift,
+    freqTwoPhaseShift,
+    freqThreePhaseShift,
+    setFreqOnePhaseShift,
+    setFreqThreePhaseShift,
+    setFreqTwoPhaseShift,
+  } = usePuzzleAnswerContext();
+  const [showFragmentContent, setShowFragmentContent] = useState(false);
+  const { accessedProtocolExecutionOnce, setAccessedProtocolExecutionOnce } = useFragmentsContext();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,109 +34,176 @@ const ExecuteProtocol = () => {
       freqThreePhaseShift,
     };
 
+    console.log(state);
     return state;
   };
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className='mt-4 w-full h-1'></div>
-      <div className='flex gap-10'>
-        <label className='flex gap-4 items-center' htmlFor='frequencyOne'>
-          <span className='block'>Frequency 1</span>
-          <div className='flex gap-1 items-center'>
-            <DashboardInput
-              disabled
-              placeholder='______'
-              name='frequencyOne'
-              id='frequencyOne'
-              value={frequencyOne || undefined}
-              className='text-right tracking-[0.3em]'
-            />
-            <span className='block'>Hz</span>
-          </div>
-        </label>
-        <label className='flex gap-4 items-center' htmlFor='frequencyOnePhaseShift'>
-          <span className='block'>Phase Shift</span>
-          <div className='flex gap-1 items-center'>
-            <DashboardInput
-              placeholder='___'
-              inputMode='numeric'
-              pattern='[0-9]*'
-              name='frequencyOnePhaseShift'
-              id='frequencyOnePhaseShift'
-              value={freqOnePhaseShift}
-              className='text-right tracking-[0.3em]'
-              onChange={(e) => setFreqOnePhaseShift(e.target.value)}
-            />
-            <span className='block text-3xl'>°</span>
-          </div>
-        </label>
-      </div>
 
-      <div className='flex gap-10'>
-        <label className='flex gap-4 items-center' htmlFor='frequencyTwo'>
-          <span className='block'>Frequency 2</span>
-          <div className='flex gap-1 items-center'>
-            <DashboardInput
-              disabled
-              placeholder='______'
-              name='frequencyTwo'
-              id='frequencyTwo'
-              value={frequencyTwo || undefined}
-              className='text-right tracking-[0.3em]'
-            />
-            <span className='block'>Hz</span>
+  const showFinalPuzzle = useMemo(() => {
+    return !!frequencyOne && !!frequencyTwo && !!frequencyThree;
+  }, [frequencyOne, frequencyTwo, frequencyThree]);
+
+  const handleChange = (
+    fn: Dispatch<SetStateAction<number | null>>,
+  ): ((event: ChangeEvent<HTMLInputElement>) => void) => {
+    return (event) => {
+      if (event.target.value === '' || isNaN(Number(event.target.value)) || Number(event.target.value) < 0) {
+        fn(null);
+      } else {
+        fn(Number(event.target.value));
+      }
+    };
+  };
+
+  return (
+    <>
+      {showFragmentContent && (
+        <HintSystem
+          className='absolute top-0 right-0'
+          hints={[
+            'Is there another place where you found an audio fragment?',
+            'You can find the first audio fragment in the initial E-mail from Robin.',
+            'What is the significance of the quiet parts in the audio fragments?',
+            'What happens if you play both audio fragments at the same time?',
+            'What needs to happen to the phase shifts to cancel out the frequencies?',
+            'What are the phase shifts for the three frequencies mentioned in the audio fragments?',
+            'What do you get when you adjust the phase shifts mentioned with the correction mentioned?',
+            'If you add 180 to the mentioned phase shifts, what do you get?',
+            'The correct phase shifts for canceling out the frequencies are 180 + 32, 147 + 180, and 89 + 180, respectively.',
+          ]}
+          fragment='protocol-execution'
+        />
+      )}
+      {showFinalPuzzle && (
+        <>
+          <TypingAnimation
+            lines={[
+              "You did it. You found all the frequencies. We're so close to severing the connection.",
+              'The last thing to do it figure out the right phase shifts to cancel out the signal.',
+              "I don't remember them myself, but Margaret mentioned there was a recording of her and a friend of hers discussing them. Unfortunately I could only recover half of the conversation...",
+              "I'm sure you can figure it out.",
+            ]}
+            completed={accessedProtocolExecutionOnce || showFragmentContent}
+            onComplete={() => {
+              setShowFragmentContent(true);
+              setAccessedProtocolExecutionOnce(true);
+            }}
+            showTransmissionLabels
+          />
+          {showFragmentContent && (
+            <>
+              <AudioPlayer src='/MargaretPartSpacedNoised.mp3' className='max-w-80 mx-auto' />
+            </>
+          )}
+        </>
+      )}
+      <form onSubmit={handleSubmit} className='flex items-center justify-center flex-wrap'>
+        <div className='mt-4 w-full h-1'></div>
+        <div className='flex gap-10 mb-4'>
+          <label className='flex gap-2 flex-col items-start' htmlFor='frequencyOne'>
+            <span className='block'>Frequency 1</span>
+            <div className='flex gap-1 items-center'>
+              <DashboardInput
+                disabled
+                placeholder='______'
+                name='frequencyOne'
+                id='frequencyOne'
+                value={frequencyOne || undefined}
+                className='text-right tracking-[0.3em]'
+              />
+              <span className='block'>Hz</span>
+            </div>
+          </label>
+          <label className='flex gap-2 flex-col items-start' htmlFor='frequencyOnePhaseShift'>
+            <span className='block'>Phase Shift</span>
+            <div className='flex gap-1 items-center'>
+              <DashboardInput
+                placeholder='___'
+                inputMode='numeric'
+                pattern='[0-9]*'
+                name='frequencyOnePhaseShift'
+                id='frequencyOnePhaseShift'
+                value={freqOnePhaseShift ?? ''}
+                className='text-right tracking-[0.3em]'
+                onChange={handleChange(setFreqOnePhaseShift)}
+              />
+              <span className='block text-3xl'>°</span>
+            </div>
+          </label>
+        </div>
+
+        <div className='flex gap-10 mb-4'>
+          <label className='flex gap-2 flex-col items-start' htmlFor='frequencyTwo'>
+            <span className='block'>Frequency 2</span>
+            <div className='flex gap-1 items-center'>
+              <DashboardInput
+                disabled
+                placeholder='______'
+                name='frequencyTwo'
+                id='frequencyTwo'
+                value={frequencyTwo || undefined}
+                className='text-right tracking-[0.3em]'
+              />
+              <span className='block'>Hz</span>
+            </div>
+          </label>
+          <label className='flex gap-2 flex-col items-start' htmlFor='frequencyTwoPhaseShift'>
+            <span className='block'>Phase Shift</span>
+            <div className='flex gap-1 items-center'>
+              <DashboardInput
+                placeholder='___'
+                inputMode='numeric'
+                pattern='[0-9]*'
+                name='frequencyTwoPhaseShift'
+                id='frequencyTwoPhaseShift'
+                value={freqTwoPhaseShift ?? ''}
+                className='text-right tracking-[0.3em]'
+                onChange={handleChange(setFreqTwoPhaseShift)}
+              />
+              <span className='block text-3xl'>°</span>
+            </div>
+          </label>
+        </div>
+        <div className='flex gap-10 mb-2'>
+          <label className='flex gap-2 flex-col items-start' htmlFor='frequencyThree'>
+            <span className='block'>Frequency 3</span>
+            <div className='flex gap-1 items-center'>
+              <DashboardInput
+                disabled
+                placeholder='______'
+                name='frequencyThree'
+                id='frequencyThree'
+                value={frequencyThree || undefined}
+                className='text-right tracking-[0.3em]'
+              />
+              <span className='block'>Hz</span>
+            </div>
+          </label>
+          <label className='flex gap-2 flex-col items-start' htmlFor='frequencyThreePhaseShift'>
+            <span className='block'>Phase Shift</span>
+            <div className='flex gap-1 items-center'>
+              <DashboardInput
+                placeholder='___'
+                inputMode='numeric'
+                pattern='[0-9]*'
+                name='frequencyThreePhaseShift'
+                id='frequencyThreePhaseShift'
+                value={freqThreePhaseShift ?? ''}
+                className='text-right tracking-[0.3em]'
+                onChange={handleChange(setFreqThreePhaseShift)}
+              />
+              <span className='block text-3xl'>°</span>
+            </div>
+          </label>
+        </div>
+        {showFinalPuzzle && (
+          <div className='w-full flex justify-center'>
+            <DashboardButton type='submit' className='mt-4'>
+              Sever the connection
+            </DashboardButton>
           </div>
-        </label>
-        <label className='flex gap-4 items-center' htmlFor='frequencyTwoPhaseShift'>
-          <span className='block'>Phase Shift</span>
-          <div className='flex gap-1 items-center'>
-            <DashboardInput
-              placeholder='___'
-              inputMode='numeric'
-              pattern='[0-9]*'
-              name='frequencyTwoPhaseShift'
-              id='frequencyTwoPhaseShift'
-              value={freqTwoPhaseShift}
-              className='text-right tracking-[0.3em]'
-              onChange={(e) => setFreqTwoPhaseShift(e.target.value)}
-            />
-            <span className='block text-3xl'>°</span>
-          </div>
-        </label>
-      </div>
-      <div className='flex gap-10'>
-        <label className='flex gap-4 items-center' htmlFor='frequencyThree'>
-          <span className='block'>Frequency 3</span>
-          <div className='flex gap-1 items-center'>
-            <DashboardInput
-              disabled
-              placeholder='______'
-              name='frequencyThree'
-              id='frequencyThree'
-              value={frequencyThree || undefined}
-              className='text-right tracking-[0.3em]'
-            />
-            <span className='block'>Hz</span>
-          </div>
-        </label>
-        <label className='flex gap-4 items-center' htmlFor='frequencyThreePhaseShift'>
-          <span className='block'>Phase Shift</span>
-          <div className='flex gap-1 items-center'>
-            <DashboardInput
-              placeholder='___'
-              inputMode='numeric'
-              pattern='[0-9]*'
-              name='frequencyThreePhaseShift'
-              id='frequencyThreePhaseShift'
-              value={freqThreePhaseShift}
-              className='text-right tracking-[0.3em]'
-              onChange={(e) => setFreqThreePhaseShift(e.target.value)}
-            />
-            <span className='block text-3xl'>°</span>
-          </div>
-        </label>
-      </div>
-    </form>
+        )}
+      </form>
+    </>
   );
 };
 export default ExecuteProtocol;

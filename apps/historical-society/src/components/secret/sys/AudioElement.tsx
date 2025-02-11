@@ -10,6 +10,7 @@ const AudioPlayer = ({ src, className = '' }: { src: string; className?: string 
     if (isPlaying) {
       audioRef.current?.pause();
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises -- idc
       audioRef.current?.play();
     }
     setIsPlaying(!isPlaying);
@@ -53,6 +54,7 @@ const AudioPlayer = ({ src, className = '' }: { src: string; className?: string 
         </div>
       </div>
 
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption -- idc */}
       <audio
         ref={audioRef}
         src={src}

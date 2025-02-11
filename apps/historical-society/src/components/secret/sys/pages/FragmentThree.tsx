@@ -31,7 +31,6 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
     setFrequencyThree(147577);
     setCompletedPuzzles((prev) => [...prev, 'wikipedia_search']);
 
-    // console.log('Value!', value);
     onSuccess();
   };
 

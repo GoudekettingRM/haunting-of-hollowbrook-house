@@ -95,7 +95,6 @@ export const WithDisappearingLetters = ({ children, config, className = '' }: Wi
         processed[key] = processedContent;
       }
     });
-    console.log('processed nodes', processed);
     setProcessedElements(processed);
   }, [config?.skipClasses, config?.skipElements]);
 

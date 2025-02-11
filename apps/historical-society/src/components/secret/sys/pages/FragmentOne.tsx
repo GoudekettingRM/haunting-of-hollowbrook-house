@@ -32,7 +32,6 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
     setFrequencyOne(847392);
     setCompletedPuzzles((prev) => [...prev, 'newspaper_archive']);
 
-    // console.log('Value!', value);
     onSuccess();
   };
 

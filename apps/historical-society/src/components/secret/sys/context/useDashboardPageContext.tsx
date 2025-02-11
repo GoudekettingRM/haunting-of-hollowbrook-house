@@ -17,12 +17,15 @@ interface DashboardPageContextType {
   setPage: Dispatch<SetStateAction<TPage>>;
   completedPuzzles: TPuzzles[];
   setCompletedPuzzles: Dispatch<SetStateAction<TPuzzles[]>>;
+  finished: boolean;
+  setFinished: Dispatch<SetStateAction<boolean>>;
 }
 
 const DashboardPageContext = createContext<DashboardPageContextType | undefined>(undefined);
 
 export function DashboardPageContextProvider({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
+  const [finished, setFinished] = useState(false);
   const [page, setPage] = useState<TPage>('dashboard');
   const [completedPuzzles, setCompletedPuzzles] = useState<TPuzzles[]>([]);
 
@@ -31,6 +34,7 @@ export function DashboardPageContextProvider({ children }: { children: React.Rea
     const state = {
       completedPuzzles,
       page,
+      finished,
     };
     Cookies.set(DASHBOARD_CONTEXT_COOKIE_NAME, JSON.stringify(state), DEFAULT_OPTIONS);
   }, [completedPuzzles, page]);
@@ -42,16 +46,20 @@ export function DashboardPageContextProvider({ children }: { children: React.Rea
       const state: {
         completedPuzzles: TPuzzles[];
         page: TPage;
+        finished: boolean;
       } = JSON.parse(cookie);
 
       setPage(state.page);
       setCompletedPuzzles(state.completedPuzzles);
+      setFinished(state.finished);
     }
     setLoaded(true);
   }, []);
 
   return (
-    <DashboardPageContext.Provider value={{ page, setPage, completedPuzzles, setCompletedPuzzles }}>
+    <DashboardPageContext.Provider
+      value={{ page, setPage, completedPuzzles, setCompletedPuzzles, finished, setFinished }}
+    >
       {children}
     </DashboardPageContext.Provider>
   );

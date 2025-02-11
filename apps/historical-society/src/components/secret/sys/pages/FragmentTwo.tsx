@@ -32,7 +32,6 @@ function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
     setFrequencyTwo(258350);
     setCompletedPuzzles((prev) => [...prev, 'emf_readings']);
 
-    // console.log('Value!', value);
     onSuccess();
   };
   return (

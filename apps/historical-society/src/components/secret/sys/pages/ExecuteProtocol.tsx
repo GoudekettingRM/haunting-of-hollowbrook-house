@@ -3,6 +3,7 @@ import DashboardButton from '@/components/DashboardButton';
 import TypingAnimation from '@/components/TypingAnimation';
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useMemo, useState } from 'react';
 import AudioPlayer from '../AudioElement';
+import { useDashboardPageContext } from '../context/useDashboardPageContext';
 import { useFragmentsContext } from '../context/useFragmentsContext';
 import { usePuzzleAnswerContext } from '../context/usePuzzleAnswersContext';
 import DashboardInput from '../DashboardInput';
@@ -22,6 +23,7 @@ const ExecuteProtocol = () => {
   } = usePuzzleAnswerContext();
   const [showFragmentContent, setShowFragmentContent] = useState(false);
   const { accessedProtocolExecutionOnce, setAccessedProtocolExecutionOnce } = useFragmentsContext();
+  const { setFinished } = useDashboardPageContext();
 
   const [error, setError] = useState('');
 
@@ -43,7 +45,7 @@ const ExecuteProtocol = () => {
       .filter(Boolean);
 
     if (shifts.length === 0) {
-      console.log('Correct phase shifts');
+      setFinished(true);
     }
 
     const errorMessage = shifts.map((shift, index) => {

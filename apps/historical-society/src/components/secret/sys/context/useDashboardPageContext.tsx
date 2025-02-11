@@ -7,6 +7,7 @@ import { TPage } from '../types';
 export type TPuzzles =
   | 'newspaper_archive'
   | 'emf_readings'
+  | 'wikipedia_search'
   | 'document_scan' // archive pdf -> blue light -> frequency
   | 'apparitions_image'
   | 'audio_recordings';

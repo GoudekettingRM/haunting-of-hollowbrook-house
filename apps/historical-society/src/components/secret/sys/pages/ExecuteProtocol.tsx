@@ -68,7 +68,7 @@ const ExecuteProtocol = () => {
             'What are the phase shifts for the three frequencies mentioned in the audio fragments?',
             'What do you get when you adjust the phase shifts mentioned with the correction mentioned?',
             'If you add 180 to the mentioned phase shifts, what do you get?',
-            'The correct phase shifts for canceling out the frequencies are 180 + 32, 147 + 180, and 89 + 180, respectively.',
+            'The correct phase shifts for canceling out the frequencies are 32 + 180 (212), 147 + 180 (327), and 89 + 180 (269), respectively.',
           ]}
           fragment='protocol-execution'
         />
@@ -80,7 +80,7 @@ const ExecuteProtocol = () => {
               "You did it. You found all the frequencies. We're so close to severing the connection.",
               'The last thing to do it figure out the right phase shifts to cancel out the signal.',
               "I don't remember them myself, but Margaret mentioned there was a recording of her and a friend of hers discussing them. Unfortunately I could only recover half of the conversation...",
-              "I'm sure you can figure it out.",
+              "I'm sure you can figure it out. Once you have the correct phase shifts, you can finally sever the connection and end the agony we have been in for the last decades.",
             ]}
             completed={accessedProtocolExecutionOnce || showFragmentContent}
             onComplete={() => {

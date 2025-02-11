@@ -47,18 +47,6 @@ const Buttons = () => {
             Fragment 3
           </DashboardButton>
         )}
-        {frequencyThree !== null && (
-          <DashboardButton
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                setPage('fragment_4');
-              }
-            }}
-            onClick={() => setPage('fragment_4')}
-          >
-            Fragment 4
-          </DashboardButton>
-        )}
       </div>
       <div className='w-full h-[1px] bg-[#0f0] mb-4' />
 
@@ -73,16 +61,18 @@ const Buttons = () => {
         >
           Messages
         </DashboardButton>
-        <DashboardButton
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              setPage('protocol');
-            }
-          }}
-          onClick={() => setPage('protocol')}
-        >
-          Protocol
-        </DashboardButton>
+        {frequencyThree !== null && (
+          <DashboardButton
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                setPage('protocol');
+              }
+            }}
+            onClick={() => setPage('protocol')}
+          >
+            Protocol
+          </DashboardButton>
+        )}
       </div>
     </div>
   );

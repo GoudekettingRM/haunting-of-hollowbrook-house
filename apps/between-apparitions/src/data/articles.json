@@ -6,7 +6,7 @@
     "month": "01",
     "day": "27",
     "images": [
-      "https://images.pexels.com/photos/19123685/pexels-photo-19123685/free-photo-of-black-and-white-photograph-of-a-rocky-coast-with-a-lighthouse.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "/images/point-pleasant-lighthouse.webp",
       "https://images.pexels.com/photos/29359452/pexels-photo-29359452/free-photo-of-rusted-metal-door-with-padlocks-and-chains.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "/images/thomas-phelps.jpg",
       "/images/emf-reader-25.1.png"
@@ -218,7 +218,7 @@
     "month": "06",
     "day": "29",
     "images": [
-      "https://images.pexels.com/photos/19123685/pexels-photo-19123685/free-photo-of-black-and-white-photograph-of-a-rocky-coast-with-a-lighthouse.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "/images/point-pleasant-lighthouse.webp",
       "https://cache.getarchive.net/Prod/thumb/cdn12/L3Bob3RvLzIwMTYvMTIvMzEvc3BpcmFsLXN0YWlycy1zdGFpcmNhc2UtNGQ4YjVmLTEwMjQuanBn/960/720/jpg",
       "/images/emf-reader-8.1.png"
     ],
@@ -338,7 +338,11 @@
     "year": "2001",
     "month": "12",
     "day": "18",
-    "images": [],
+    "images": [
+      "/images/underwater-church.jpg",
+      "/images/underwater-church-diver.jpg",
+      "/images/underwater-houses.webp"
+    ],
     "paragraphs": [
       "Last week, I received an unusual request from the Sterling Valley Water Authority. During a routine sonar survey of their reservoir, technicians recorded what they described as 'impossible acoustic anomalies' - clear human voices emanating from depths of over 100 feet, in areas where no divers were present.",
 
@@ -348,13 +352,17 @@
 
       "Using advanced hydrophone equipment, we captured something extraordinary. Between 2 AM and 4 AM, when the reservoir's surface is completely still, distinct conversations can be heard from the submerged town square. These aren't the garbled sounds typical of underwater acoustics - they're clear voices speaking in perfect 1940s dialect about the impending flood.",
 
-      "More compelling still were the photographs. Using specialized underwater imaging equipment, we captured images of strange light phenomena around the submerged church steeple. These lights appear to move with purpose, following paths that match the town's old street layout.",
+      "After much negotiation with the Water Authority, they allowed a single supervised dive to document the preservation state of the structures. Descending into the murky depths was like entering a time capsule. The cold water had preserved everything with unsettling clarity. Most haunting was the church itself, the way it loomed over the town square. Visibility wasn't optimal though and I only managed to capture the buildings individually. Overview shots just came back murky. The dive lasted only thirty minutes, but those glimpses of a community frozen in time left an impression that will stay with me for years. Our dive supervisor seemed unusually anxious to return to the surface, though she wouldn't explain why. It wasn't until we reviewed our diving equipment's audio recording that we understood her concern - underneath our breathing apparatus and the standard underwater sounds, we could clearly hear children's laughter and what sounded like a game of hopscotch being played in the submerged playground.",
+
+      "image:1:The church in Sterling Valley, submerged beneath the reservoir waters. The church basement is believed to hold the 'community vault.'",
 
       "The most remarkable evidence came during our third night. As we positioned our equipment near the church's location, we recorded what sounded like a town meeting - multiple voices discussing the reservoir project as if it hadn't happened yet. The conversation mentioned specific details about the relocation plans that we later verified through historical records.",
 
       "What sets this case apart is the precision of the acoustic phenomena. The voices consistently emerge from exact locations where buildings once stood, and the conversations always relate to events that occurred in those specific places. It's as if the water itself has somehow preserved these moments in time.",
 
-      "While further investigation is limited by the technical challenges of underwater research, I've shared my findings with several marine acoustic experts. The reservoir's unique geology and the preserved state of the town below may help explain why these acoustic anomalies persist, but the clarity and historical accuracy of the voices remain unexplained."
+      "While further investigation is limited by the technical challenges of underwater research, I've shared my findings with several marine acoustic experts. The reservoir's unique geology and the preserved state of the town below may help explain why these acoustic anomalies persist, but the clarity and historical accuracy of the voices remain unexplained.",
+
+      "image:2:Some of the houses in Sterling Valley, submerged beneath the reservoir waters."
     ],
     "keywords": [
       "reservoir",
@@ -376,10 +384,7 @@
     "year": "2002",
     "month": "06",
     "day": "28",
-    "images": [
-      "https://images.pexels.com/photos/19123685/pexels-photo-19123685/free-photo-of-black-and-white-photograph-of-a-rocky-coast-with-a-lighthouse.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/emf-reader-35.1.png"
-    ],
+    "images": ["/images/point-pleasant-lighthouse.webp", "/images/emf-reader-35.1.png"],
     "paragraphs": [
       "I hadn't planned to revisit the Point Pleasant case, but a series of emails from local resident Michael Dawson demanded attention. Dawson, who discovered my earlier articles about the lighthouse while researching unusual weather patterns in the area, reported something extraordinary: the lighthouse has been experiencing what locals call 'ghost storms' – peculiar electrical storms with heat lightning but no thunder, accompanied by dense, localized fog that seems to form only around the lighthouse.",
       "According to Dawson's detailed observations, these phenomena began in early June, coinciding with several sightings of St. Elmo's fire atop the lighthouse tower – a rare electrical phenomenon typically seen only during severe maritime storms. What caught my attention wasn't just the weather anomalies, but Dawson's EMF readings taken during these events.",
@@ -410,16 +415,51 @@
       "maritime mystery"
     ]
   },
+
+  {
+    "slug": "vanishing-gardens",
+    "title": "The Shifting Grounds of Blackwood Estate",
+    "year": "2002",
+    "month": "09",
+    "day": "12",
+    "images": [],
+    "paragraphs": [
+      "Paranormal investigation often leads me to unexpected places, but none quite as peculiar as the gardens of Blackwood Estate in rural Vermont. What began as a consultation about unusual plant growth patterns evolved into one of my most perplexing cases of environmental anomalies.",
+
+      "The estate's current owner, Dr. Eleanor Blackwood, contacted me after discovering that sections of the formal gardens would inexplicably rearrange themselves overnight. Not just plants growing in new patterns, but entire pathways and stone features appearing to shift position between sunset and sunrise.",
+
+      "Blackwood Estate was designed in 1898 by renowned landscape architect Helena Blackwood, Eleanor's great-grandmother, who was known for her innovative approach to garden design. Historical records show that Helena disappeared while working on the garden's elaborate maze in 1912, leaving behind a series of cryptic notebooks filled with unusual geometric calculations.",
+
+      "During my first night of observation, we witnessed something extraordinary. At exactly 11:42 PM, several rose bushes began to emit a faint, greenish luminescence. More remarkably, the gravel paths started to shift, forming patterns that precisely matched drawings found in Helena's notebooks - designs that were never implemented during her lifetime.",
+
+      "The phenomenon intensified during the full moon. Using time-lapse photography, we documented stone benches moving several feet without any visible force, and topiary shapes altering their forms. Most intriguingly, these changes would revert by sunrise, though never quite to their original positions.",
+
+      "A breakthrough came when we discovered Helena's original survey markers buried beneath decades of growth. The markers formed a complex geometric pattern that only becomes apparent when viewed from the estate's tower. When overlaid with her notebook sketches, they reveal a design that seems to follow principles of sacred geometry.",
+
+      "The most compelling evidence emerged during our final night. A heavy fog rolled in, and through it, witnesses reported seeing the figure of a woman in Victorian gardening attire, methodically measuring distances between plants. The figure vanished when approached, but left behind fresh survey markers that matched Helena's original specifications exactly.",
+
+      "While I've investigated cases involving moving objects before, the scale and precision of the Blackwood phenomena set it apart. These aren't random occurrences - they follow specific patterns laid out in Helena's notebooks, as if the garden itself is trying to complete her unfinished work."
+    ],
+    "keywords": [
+      "gardens",
+      "landscape architecture",
+      "Vermont",
+      "sacred geometry",
+      "disappearance",
+      "Victorian era",
+      "moving objects",
+      "historical estate",
+      "paranormal investigation",
+      "family mystery"
+    ]
+  },
   {
     "slug": "point-pleasant-final-silence",
     "title": "Point Pleasant Lighthouse: The Final Reading",
     "year": "2003",
     "month": "06",
     "day": "27",
-    "images": [
-      "https://images.pexels.com/photos/19123685/pexels-photo-19123685/free-photo-of-black-and-white-photograph-of-a-rocky-coast-with-a-lighthouse.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/emf-reader-0.1.png"
-    ],
+    "images": ["/images/point-pleasant-lighthouse.webp", "/images/emf-reader-0.1.png"],
     "paragraphs": [
       "Sometimes, the most profound moments in paranormal investigation come not with a bang, but with silence. After last year's unprecedented surge in activity at Point Pleasant Lighthouse, I've made one final visit to the site. What I found – or rather, what I didn't find – marks the end of this particular investigation.",
 

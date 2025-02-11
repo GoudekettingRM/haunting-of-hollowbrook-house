@@ -58,7 +58,7 @@ const ExecuteProtocol = () => {
   };
 
   const showFinalPuzzle = useMemo(() => {
-    return !!frequencyOne && !!frequencyTwo && !!frequencyThree;
+    return Boolean(frequencyOne) && Boolean(frequencyTwo) && Boolean(frequencyThree);
   }, [frequencyOne, frequencyTwo, frequencyThree]);
 
   const handleChange = (

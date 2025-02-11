@@ -70,3 +70,7 @@ FREQUENCY ONE SHOULD BE SET TO EIGHT FOUR SEVEN THREE NINE TWO HERTZ
 
 # EMF Readers
 25 8 35 0
+
+# Wikipedia puzzle
+https://tinyurl.com/monte-cristo-homestead
+longitude: 147577

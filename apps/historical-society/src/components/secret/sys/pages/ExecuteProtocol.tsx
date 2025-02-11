@@ -23,19 +23,36 @@ const ExecuteProtocol = () => {
   const [showFragmentContent, setShowFragmentContent] = useState(false);
   const { accessedProtocolExecutionOnce, setAccessedProtocolExecutionOnce } = useFragmentsContext();
 
+  const [error, setError] = useState('');
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const state = {
-      frequencyOne,
-      frequencyTwo,
-      frequencyThree,
-      freqOnePhaseShift,
-      freqTwoPhaseShift,
-      freqThreePhaseShift,
-    };
 
-    console.log(state);
-    return state;
+    const answers = [212, 327, 269];
+
+    const shifts = [freqOnePhaseShift, freqTwoPhaseShift, freqThreePhaseShift]
+      .map((freq, index) => {
+        if (freq === null) {
+          return 'missing';
+        }
+        if (freq !== answers[index]) {
+          return 'incorrect';
+        }
+        return null;
+      })
+      .filter(Boolean);
+
+    if (shifts.length === 0) {
+      console.log('Correct phase shifts');
+    }
+
+    const errorMessage = shifts.map((shift, index) => {
+      if (shift === 'missing') {
+        return `Frequency ${index + 1} phase shift is missing`;
+      }
+      return `Frequency ${index + 1} phase shift is incorrect`;
+    });
+    setError(errorMessage.join(', '));
   };
 
   const showFinalPuzzle = useMemo(() => {
@@ -91,7 +108,7 @@ const ExecuteProtocol = () => {
           />
           {showFragmentContent && (
             <>
-              <AudioPlayer src='/MargaretPartSpacedNoised.mp3' className='max-w-80 mx-auto' />
+              <AudioPlayer src='/MargaretPartSpacedNoised.mp3' className='max-w-80 mx-auto !mt-4' />
             </>
           )}
         </>
@@ -207,6 +224,11 @@ const ExecuteProtocol = () => {
               Sever the connection
             </DashboardButton>
           </div>
+        )}
+        {error && (
+          <p className="w-full justify-center before:content-['⚠'] flex items-center before:relative before:top-[1px] before:inline-block before:mr-2 mt-4 mr-[3ch]">
+            {error}
+          </p>
         )}
       </form>
     </>

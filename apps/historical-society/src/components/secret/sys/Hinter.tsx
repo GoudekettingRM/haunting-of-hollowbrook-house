@@ -37,7 +37,6 @@ const HintSystem = ({
       case '3':
         return fragmentThreeNextHintNumber;
       case 'protocol-execution':
-        console.log(protocolExecutionNextHintNumber);
         return protocolExecutionNextHintNumber;
       default:
         return 1;

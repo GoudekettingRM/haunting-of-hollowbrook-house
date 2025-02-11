@@ -28,7 +28,9 @@ const PixelBreakdown = ({ onFinishAnimation }: PixelBreakdownProps) => {
   const [showFifthLine, setShowFifthLine] = useState(false);
   const [end, setEnd] = useState(false);
   const shuffle = (a: number[]) => {
-    var j, x, i;
+    let j: number;
+    let x: number;
+    let i: number;
     for (i = a.length - 1; i > 0; i--) {
       j = Math.floor(Math.random() * (i + 1));
       x = a[i];

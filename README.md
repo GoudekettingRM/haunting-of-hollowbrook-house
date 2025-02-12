@@ -56,3 +56,7 @@ This Turborepo has some additional tools already setup for you:
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+
+### What if deploy fails on vercel because the 500 or 404 prerender fails?
+1. For each app; `npm i react@latest react-dom@latest next@latest --save --workspace=<app-name>`
+2. Check each package and install `react@latest`, `react-dom@latest`, or `next@latest` there too. (`npm i <package>@latest --save(-dev/-peer) --workspace=packages/<package-name>`)

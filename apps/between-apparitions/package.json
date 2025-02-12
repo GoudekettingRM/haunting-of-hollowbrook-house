@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 4003",
-    "build": "node ./prepare_build.js && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,8 +13,8 @@
     "@repo/utils": "*",
     "next": "^15.1.7",
     "openai": "^4.75.0",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1"
   },

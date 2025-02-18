@@ -22,22 +22,18 @@ taking                     18.   10-3-22-3-65
 each                       19.   20-2-22-7-62
 first                      20.   2-11-21-3-20
 character                  21.   15-5-22-5-40
-
-
-read:         15 1 22 11 17
-article:       5 4 22 1 29
-about:         1 9 21 3 9
 Margaret:     25 7 22 2 1
 
-use:          15 10 21 2 25
-the:           2 11 21 10 2
-last:         25 7 22 8 22
-link:         15 5 22 10 33
+read:          15 1 22 11 17
+article:        5 4 22 1 29
+about:          1 9 21 3 9
+investigation:  1 9 21 4 2
+equipment:     20 2 22 5 46
 
-take:         22 2 22 6 59
-each:         20 2 22 7 62
-first:         2 11 21 3 20
-character:    15 5 22 5 40
+take:          22 2 22 6 59
+each:          20 2 22 7 62
+first:          2 11 21 3 20
+character:     15 5 22 5 40
 
 
 Rich paragraphs with chosen words
@@ -50,7 +46,7 @@ Once you reveal what is true
 Enter it where search is due
 
 
-Leads to: Edgar is still alive
+Leads to: we are still alive
 
 # Newspaper archives
 

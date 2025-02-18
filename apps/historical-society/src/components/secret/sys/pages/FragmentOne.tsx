@@ -81,12 +81,12 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
               <p className='flex justify-between w-full my-4 md:my-0 flex-col items-center'>
                 <span className='block'>Whispering Hollows Gazette:</span>
                 <Link
-                  href={`${process.env.NEXT_PUBLIC_GAZETTE_URL}/archives?q=hollowbrook`}
+                  href={`${process.env.NEXT_PUBLIC_GAZETTE_URL}/whispering-hollows-gazette?q=hollowbrook`}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='underline hover:underline-offset-4 transition-all duration-300 ease-in-out my-2'
                 >
-                  {`${process.env.NEXT_PUBLIC_GAZETTE_URL}/archives?q=hollowbrook`}
+                  {`${process.env.NEXT_PUBLIC_GAZETTE_URL}/whispering-hollows-gazette?q=hollowbrook`}
                 </Link>
               </p>
               <form className='flex items-end mx-auto w-fit flex-col gap-y-2' onSubmit={onSubmit}>

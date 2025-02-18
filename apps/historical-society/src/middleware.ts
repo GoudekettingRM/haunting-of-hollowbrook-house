@@ -37,11 +37,11 @@ export function middleware(request: NextRequest) {
     // Set both cookies in headers
     response.headers.append(
       'Set-Cookie',
-      `${PLAYER_NAME_COOKIE_NAME}=${nParam}; Path=/; Max-Age=${DEFAULT_OPTIONS.expires}; SameSite=Lax`,
+      `${PLAYER_NAME_COOKIE_NAME}=${nParam}; Path=/; Max-Age=${DEFAULT_OPTIONS.expires as number}; SameSite=Lax`,
     );
     response.headers.append(
       'Set-Cookie',
-      `${PLAYER_EMAIL_COOKIE_NAME}=${eParam}; Path=/; Max-Age=${DEFAULT_OPTIONS.expires}; SameSite=Lax`,
+      `${PLAYER_EMAIL_COOKIE_NAME}=${eParam}; Path=/; Max-Age=${DEFAULT_OPTIONS.expires as number}; SameSite=Lax`,
     );
 
     return response;

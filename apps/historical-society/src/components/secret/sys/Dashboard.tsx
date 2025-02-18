@@ -45,7 +45,7 @@ const Dashboard = () => {
     if (name) setPlayerName(name);
     if (email) {
       setPlayerEmail(email);
-      const confirmed = JSON.parse(emailConf || 'false');
+      const confirmed: boolean = JSON.parse(emailConf || 'false');
       setEmailConfirmed(confirmed);
       setShowEmailConfirm(!confirmed);
     }

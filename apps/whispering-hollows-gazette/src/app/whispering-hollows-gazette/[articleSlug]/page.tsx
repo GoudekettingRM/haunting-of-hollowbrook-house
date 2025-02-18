@@ -18,7 +18,7 @@ const ArticlePage = async (props: ArticlePageProps) => {
   return (
     <div className='max-w-4xl mx-auto p-8 font-serif'>
       <div className='mb-8'>
-        <Link href='/archives?q=hollowbrook' className='text-blue-800 hover:underline text-sm'>
+        <Link href='/whispering-hollows-gazette?q=hollowbrook' className='text-blue-800 hover:underline text-sm'>
           ← Return to Archive
         </Link>
       </div>
@@ -47,7 +47,7 @@ const ArticlePage = async (props: ArticlePageProps) => {
       <footer className='text-sm text-gray-600'>
         <p>
           From the Archives of the{' '}
-          <Link href='https://whhs.goudeketting.nl/' className='underline'>
+          <Link href='https://whhs.info/' className='underline'>
             Whispering Hollows Historical Society
           </Link>
         </p>

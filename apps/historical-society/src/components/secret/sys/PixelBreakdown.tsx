@@ -16,7 +16,7 @@ const animation = {
 const COLUMN_COUNT = 50;
 
 interface PixelBreakdownProps {
-  onFinishAnimation: () => void;
+  onFinishAnimation: () => Promise<void>;
 }
 
 const PixelBreakdown = ({ onFinishAnimation }: PixelBreakdownProps) => {
@@ -136,7 +136,7 @@ const PixelBreakdown = ({ onFinishAnimation }: PixelBreakdownProps) => {
               setStart(false);
               setEnd(true);
               setTimeout(() => {
-                onFinishAnimation();
+                onFinishAnimation().catch(console.error);
               }, 5000);
             }, 2000);
           }}

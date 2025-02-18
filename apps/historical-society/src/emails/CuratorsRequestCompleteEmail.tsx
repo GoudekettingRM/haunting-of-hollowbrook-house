@@ -15,9 +15,9 @@ const CuratorsRequestCompleteEmail = ({ name }: { name: string }) => {
             it should.
           </Text>
           <Text style={text}>
-            Robin, our regular website maintainer, is quite impressed too. I'm sure he will get in touch with you. He
-            had been trying to track down the root cause of these issues for weeks without success. Whatever changes you
-            made seem to have resolved everything. I realize these may have been unusual technical issues, and I
+            Robin, our regular website maintainer, is quite impressed too. I&apos;m sure he will get in touch with you.
+            He had been trying to track down the root cause of these issues for weeks without success. Whatever changes
+            you made seem to have resolved everything. I realize these may have been unusual technical issues, and I
             appreciate you taking them seriously and responding so quickly. The Historical Society&apos;s website is
             crucial for our work, and having it functioning properly again is a huge relief.
           </Text>

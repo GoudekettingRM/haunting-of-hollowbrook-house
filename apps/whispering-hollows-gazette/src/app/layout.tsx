@@ -29,7 +29,7 @@ export const metadata = {
     title: 'The Whispering Hollows Gazette Archive',
     description:
       'Digital archives of The Whispering Hollows Gazette, documenting the historical issues of our beloved local newspaper.',
-    url: 'https://gazette.goudeketting.nl/',
+    url: 'https://archives.whhs.info/',
     siteName: 'The Whispering Hollows Gazette Archive',
     locale: 'en_US',
     type: 'website',

@@ -42,7 +42,7 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
         const randomValue = random();
 
         if (randomValue > 0.5) {
-          return randomValue > 0.75 ? 'rotate-3' : '-rotate-3';
+          return randomValue > 0.75 ? 'rotate-2' : '-rotate-2';
         }
         return randomValue > 0.75 ? `rotate-1` : `-rotate-1`;
       };

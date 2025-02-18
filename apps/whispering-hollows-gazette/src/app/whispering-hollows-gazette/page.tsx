@@ -64,7 +64,7 @@ const ArchivesPage = async (props: { searchParams: Promise<{ q?: string }> }) =>
             <div className='w-24 text-gray-600 shrink-0'>[{article.date}]</div>
             <div>
               <Link
-                href={`/archives/${article.filename}?title=${encodeURIComponent(article.title)}&date=${article.date}`}
+                href={`/whispering-hollows-gazette/${article.filename}?title=${encodeURIComponent(article.title)}&date=${article.date}`}
                 className='text-blue-800 hover:underline visited:text-purple-900'
                 rel='noopener noreferrer'
               >
@@ -79,7 +79,7 @@ const ArchivesPage = async (props: { searchParams: Promise<{ q?: string }> }) =>
       <footer className='text-sm text-gray-600'>
         <p>
           Archive maintained by{' '}
-          <Link href='https://whhs.goudeketting.nl/' className='underline'>
+          <Link href='https://whhs.info/' className='underline'>
             Whispering Hollows Historical Society
           </Link>
         </p>

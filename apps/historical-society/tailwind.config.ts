@@ -11,7 +11,7 @@ const config: Pick<Config, 'content' | 'presets' | 'safelist' | 'darkMode' | 'pl
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   presets: [sharedConfig],
-  safelist: ['rotate-3', 'rotate-1', '-rotate-1', '-rotate-3', 'right-8', 'left-8'],
+  safelist: ['rotate-2', 'rotate-1', '-rotate-1', '-rotate-2', 'right-8', 'left-8'],
   plugins: [require('tailwindcss-animate')],
   theme: {
     extend: {

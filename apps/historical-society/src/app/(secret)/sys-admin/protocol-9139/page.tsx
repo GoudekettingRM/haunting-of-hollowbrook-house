@@ -21,8 +21,7 @@ export default function ConsolePage() {
   const onFinish = async () => {
     const name = Cookies.get(PLAYER_NAME_COOKIE_NAME) || '';
     const email = Cookies.get(PLAYER_EMAIL_COOKIE_NAME) || '';
-    console.log('name', name);
-    console.log('email', email);
+
     await sendCompleteEmail(email, name);
     // Cookies.set(STATUS_COOKIE_NAME, 'fixed');
     // window.location.reload();

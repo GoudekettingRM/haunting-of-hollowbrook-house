@@ -14,7 +14,13 @@
     },
     "historical-society#build": {
       "dependsOn": ["^build"],
-      "env": ["API_ORIGIN_AUTHENTICATION", "RESEND_API_KEY", "NEXT_PUBLIC_GAZETTE_URL"],
+      "env": [
+        "API_ORIGIN_AUTHENTICATION",
+        "RESEND_API_KEY",
+        "NEXT_PUBLIC_GAZETTE_URL",
+        "GOUDEKETTING_BASE_URL",
+        "NODE_ENV"
+      ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "between-apparitions#build": {

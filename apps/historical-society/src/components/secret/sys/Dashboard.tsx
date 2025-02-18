@@ -41,11 +41,11 @@ const Dashboard = () => {
   useEffect(() => {
     const name = Cookies.get(PLAYER_NAME_COOKIE_NAME);
     const email = Cookies.get(PLAYER_EMAIL_COOKIE_NAME);
-    const emailConfirmed = Cookies.get(PLAYER_EMAIL_CONFIRMED_COOKIE_NAME);
+    const emailConf = Cookies.get(PLAYER_EMAIL_CONFIRMED_COOKIE_NAME);
     if (name) setPlayerName(name);
     if (email) {
       setPlayerEmail(email);
-      const confirmed = JSON.parse(emailConfirmed || 'false');
+      const confirmed = JSON.parse(emailConf || 'false');
       setEmailConfirmed(confirmed);
       setShowEmailConfirm(!confirmed);
     }
@@ -94,7 +94,7 @@ const Dashboard = () => {
           {/* Name Section */}
           {!playerName ? (
             <form onSubmit={handleNameSubmit} className='space-y-2'>
-              <div>I didn't catch your name, what was it again?</div>
+              <div>I didn&apos;t catch your name, what was it again?</div>
               <div className='flex gap-2'>
                 <DashboardInput
                   type='text'

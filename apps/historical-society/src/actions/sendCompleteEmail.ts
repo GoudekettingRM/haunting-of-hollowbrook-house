@@ -31,7 +31,7 @@ export const sendCompleteEmail = async (email: string, name: string) => {
     });
 
     if (!goudekettingResponse.ok) {
-      const errorResponse = await goudekettingResponse.json();
+      const errorResponse = (await goudekettingResponse.json()) as { message: string };
       throw new Error(errorResponse.message);
     }
 

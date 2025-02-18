@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
     if (success) {
       return NextResponse.json({ message: `Game started for ${body.name}, ${body.email}` }, { status: 200 });
     }
+    console.error('Failed to send email:', error);
     return NextResponse.json(
       { error, message: `Trying to start the Curator's Request for ${body.name}, ${body.email}, but failed.` },
       { status: 500 },

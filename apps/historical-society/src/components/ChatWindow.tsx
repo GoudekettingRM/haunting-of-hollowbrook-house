@@ -103,10 +103,7 @@ function ChatWindow() {
       setShowWantToChatMessage(false);
       setHintRequested(state.hintRequested);
       setNextHintToShow(state.nextHintToShow);
-
-      if (state.shownMessages) {
-        setMessages(state.shownMessages);
-      }
+      setMessages(state.shownMessages);
 
       if (state.isDoneTyping) {
         setCurrentMessageIndex(state.currentMessageIndex);

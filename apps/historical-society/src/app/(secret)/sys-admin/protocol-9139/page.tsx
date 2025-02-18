@@ -7,6 +7,7 @@ import Dashboard from '@/components/secret/sys/Dashboard';
 import PixelBreakdown from '@/components/secret/sys/PixelBreakdown';
 import { PLAYER_EMAIL_COOKIE_NAME, PLAYER_NAME_COOKIE_NAME, STATUS_COOKIE_NAME } from '@/utils/cookieConfig';
 import { isBugged } from '@/utils/isBugged';
+import { preventDanglingPromise } from '@repo/utils/preventDanglingPromise';
 import Cookies from 'js-cookie';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -60,7 +61,7 @@ export default function ConsolePage() {
                 ) : (
                   <Dashboard />
                 )}
-                {finished && <PixelBreakdown onFinishAnimation={onFinish} />}
+                {finished && <PixelBreakdown onFinishAnimation={preventDanglingPromise(onFinish)} />}
               </>
             </div>
           </div>

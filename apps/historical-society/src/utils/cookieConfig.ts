@@ -2,6 +2,9 @@ import Cookies from 'js-cookie';
 
 const PREFIX = 'whhs';
 
+export const PLAYER_NAME_COOKIE_NAME = `${PREFIX}.player.name`;
+export const PLAYER_EMAIL_COOKIE_NAME = `${PREFIX}.player.email`;
+export const PLAYER_EMAIL_CONFIRMED_COOKIE_NAME = `${PREFIX}.player.emailConfirmed`;
 export const STATUS_COOKIE_NAME = `${PREFIX}.status`;
 export const CHAT_STATE_COOKIE_NAME = `${PREFIX}.chat.state`;
 export const DASHBOARD_CONTEXT_COOKIE_NAME = `${PREFIX}.context.dashboard`;

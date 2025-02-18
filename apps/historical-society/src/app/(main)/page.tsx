@@ -1,10 +1,20 @@
 // https://www.namecheap.com/domains/registration/results/?domain=whisperinghollowshistory.org
 'use client';
 import SwingingDiv from '@/components/SwingingBoard';
+import { DEFAULT_OPTIONS, PLAYER_EMAIL_COOKIE_NAME, PLAYER_NAME_COOKIE_NAME } from '@/utils/cookieConfig';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 import ArticleCard from '../../components/ArticleCard';
 import articles from './blog/articles.json';
 
 export default function HomePage() {
+  useEffect(() => {
+    const email = Cookies.get(PLAYER_EMAIL_COOKIE_NAME) || '';
+    const name = Cookies.get(PLAYER_NAME_COOKIE_NAME) || '';
+    Cookies.set(PLAYER_EMAIL_COOKIE_NAME, email, DEFAULT_OPTIONS);
+    Cookies.set(PLAYER_NAME_COOKIE_NAME, name, DEFAULT_OPTIONS);
+  }, []);
+
   return (
     <div className='pt-4 max-w-screen-lg'>
       {/* Hero Section */}

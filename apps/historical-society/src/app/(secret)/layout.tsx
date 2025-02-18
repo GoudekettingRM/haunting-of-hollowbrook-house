@@ -10,10 +10,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
-      <body className='bg-black text-white selection:bg-[#0f0] selection:bg-opacity-20 sys-admin'>
-        <SystemAdminProviders>{children}</SystemAdminProviders>
-      </body>
-    </html>
+    <div className='bg-black text-white selection:bg-[#0f0] selection:bg-opacity-20 sys-admin'>
+      <SystemAdminProviders>{children}</SystemAdminProviders>
+    </div>
   );
 }

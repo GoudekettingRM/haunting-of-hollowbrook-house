@@ -1,6 +1,6 @@
-import { Body, Head, Html, Preview, Section, Text } from '@react-email/components';
+import { Body, Head, Html, Link, Preview, Section, Text } from '@react-email/components';
 
-const ContactRequestConfirmation = ({ name }: { name: string }) => {
+const CuratorsRequestEmail = ({ name, email }: { name: string; email: string }) => {
   return (
     <Html lang='en'>
       <Head />
@@ -10,8 +10,8 @@ const ContactRequestConfirmation = ({ name }: { name: string }) => {
           <Text style={text}>Dear {name},</Text>
           <Text style={text}>
             Thank you for reaching out and offering your assistance with our technical issues. We&apos;ve been
-            experiencing some very unusual problems with the Historical Society&apos;s website (www.whhs.info) over the
-            past week.
+            experiencing some very unusual problems with the Historical Society&apos;s website (
+            <Link href={`www.whhs.info?n=${name}&e=${email}`}>www.whhs.info</Link>) over the past week.
           </Text>
           <Text style={text}>
             Initially, we thought it was just typical website glitches, but things have escalated. Content seems to be
@@ -39,18 +39,18 @@ const ContactRequestConfirmation = ({ name }: { name: string }) => {
           <br />
           Whispering Hollows Historical Society
           <br />
-          www.whhs.info
+          <Link href={`www.whhs.info?n=${name}&e=${email}`}>www.whhs.info</Link>
           <br />
           <br />
           Paranormal Investigation & Research
           <br />
-          www.betweenapparitions.net
+          <Link href='www.betweenapparitions.net'>www.betweenapparitions.net</Link>
         </Text>
       </Body>
     </Html>
   );
 };
-export default ContactRequestConfirmation;
+export default CuratorsRequestEmail;
 
 const main = {
   backgroundColor: '#ffffff',

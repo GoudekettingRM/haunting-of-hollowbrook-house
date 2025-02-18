@@ -5,7 +5,7 @@ import { useDashboardPageContext } from '@/components/secret/sys/context/useDash
 import { useGeneralSysAdminContext } from '@/components/secret/sys/context/useGeneralSysAdminContext';
 import Dashboard from '@/components/secret/sys/Dashboard';
 import PixelBreakdown from '@/components/secret/sys/PixelBreakdown';
-import { PLAYER_EMAIL_COOKIE_NAME, PLAYER_NAME_COOKIE_NAME } from '@/utils/cookieConfig';
+import { PLAYER_EMAIL_COOKIE_NAME, PLAYER_NAME_COOKIE_NAME, STATUS_COOKIE_NAME } from '@/utils/cookieConfig';
 import { isBugged } from '@/utils/isBugged';
 import Cookies from 'js-cookie';
 import { notFound } from 'next/navigation';
@@ -23,8 +23,8 @@ export default function ConsolePage() {
     const email = Cookies.get(PLAYER_EMAIL_COOKIE_NAME) || '';
 
     await sendCompleteEmail(email, name);
-    // Cookies.set(STATUS_COOKIE_NAME, 'fixed');
-    // window.location.reload();
+    Cookies.set(STATUS_COOKIE_NAME, 'fixed');
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -49,9 +49,6 @@ export default function ConsolePage() {
           </div>
           <div className='h-full w-full max-h-[80dvh] overflow-y-auto'>
             <div className='space-y-2 font-mono text-[#0f0] p-2'>
-              <button type='button' onClick={() => onFinish()}>
-                finish
-              </button>
               <>
                 {!bootComplete ? (
                   <BootSequence

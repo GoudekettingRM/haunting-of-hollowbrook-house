@@ -7,7 +7,7 @@ export const sendEmail = async (email: string, name: string) => {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const response = await resend.emails.send({
-      from: 'James Chen <curator@goudeketting.nl>',
+      from: 'James Chen <curator@whhs.info>',
       to: `${name} <${email}>`,
       bcc: 'Robin Goudeketting <r.goudeketting@gmail.com>',
       subject: 'Technical Issues - Need Your Expertise',

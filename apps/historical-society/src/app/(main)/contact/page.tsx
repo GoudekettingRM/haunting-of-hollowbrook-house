@@ -67,7 +67,7 @@ function ContactPage() {
               </div>
               <div className='flex items-center gap-2'>
                 <Mail className='h-5 w-5' />
-                <p>info@whisperinghollowshistory.org</p>
+                <p>curator@whhs.info</p>
               </div>
             </div>
           </div>

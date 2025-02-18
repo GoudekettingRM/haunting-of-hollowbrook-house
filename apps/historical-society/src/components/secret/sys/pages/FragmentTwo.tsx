@@ -46,7 +46,7 @@ function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
             'His blog is hosted on www.betweenapparitions.net',
             'You should be able to search for the lighthouse articles on his blog, in his blog archive.',
             'The first article is called "The Abandoned Lighthouse of Point Pleasant", search for that.',
-            'There are four articles about the Lighthouse at Point Pleasant. Each article should have a picture of his EMF reader in there.',
+            'There are four articles about the Lighthouse at Point Pleasant. Each article should have a picture of a so-called EMF (electromagnetic field) reader in there.',
             'The EMF readings combined should tell you the second frequency. I made sure to keep the correct numbers in order, chronologically.',
             'The first EMF reading is 25, the second reading is 8, the third reading is 35, and the last one is 0. Enter 258350 in the input field on the page.',
           ]}
@@ -58,8 +58,8 @@ function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
         <TypingAnimation
           lines={[
             "Great, you got the first frequency. Let's move on to the next one.",
-            "I couldn't manage to get the second frequency also in the newspaper, but I a way to generate some electromagnetic interference at a lighthouse.",
-            'I figured if I could make it look like some paranormal activity was happening there, and the local news would pick it up. I think it worked, because I see that a man named James Chen went there four times to investigate.',
+            "I couldn't manage to get the second frequency in the newspaper as well... However, I found a way to generate some electromagnetic interference.",
+            'I found a nice place, a lighthouse, and figured if I could make it look like some sort of paranormal activity was happening there, the local news would pick it up and attract paranormal investigators. I think it worked, because I see that a man named James Chen went there four times to investigate.',
             'I think he wrote an article about it every single time, but I could not find where he posted these.',
             'If you can find out where he posted these articles about his trips to the lighthouse, I am sure you will find the second frequency.',
           ]}

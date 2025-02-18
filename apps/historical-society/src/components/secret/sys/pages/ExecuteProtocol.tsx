@@ -79,6 +79,7 @@ const ExecuteProtocol = () => {
         <HintSystem
           className='absolute top-0 right-0'
           hints={[
+            'It seems this audio fragment is only one half of the conversation. There should be another audio fragment somewhere.',
             'Is there another place where you found an audio fragment?',
             'You can find the first audio fragment in the initial E-mail from Robin.',
             'What is the significance of the quiet parts in the audio fragments?',
@@ -97,8 +98,8 @@ const ExecuteProtocol = () => {
           <TypingAnimation
             lines={[
               "You did it. You found all the frequencies. We're so close to severing the connection.",
-              'The last thing to do it figure out the right phase shifts to cancel out the signal.',
-              "I don't remember them myself, but Margaret mentioned there was a recording of her and a friend of hers discussing them. Unfortunately I could only recover half of the conversation...",
+              "The last thing to do it figure out the right phase shifts to cancel out the signal. We both don't remember the exact values... It has been so long...",
+              'Margaret mentioned there was a recording of her and a friend of hers discussing them. Unfortunately I could only recover half of the conversation...',
               "I'm sure you can figure it out. Once you have the correct phase shifts, you can finally sever the connection and end the agony we have been in for the last decades.",
             ]}
             completed={accessedProtocolExecutionOnce || showFragmentContent}

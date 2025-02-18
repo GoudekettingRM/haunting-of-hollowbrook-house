@@ -42,12 +42,11 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
           className='absolute top-0 right-0'
           hints={[
             'Where words cross, the answer lies',
-            'Letters that seem scrambled, hide the truth',
-            'Each character yearns to be shifted',
+            'The scrambled letters at the bottom of the page, hide the truth',
+            'Each character needs to be shifted',
             'What is the solution to the crossword?',
-            'Caesar prefers to be worshipped.',
             'How many letters does the solution to the crossword have?',
-            'What happens if you shift the letters in the solution by the same number of letters as the solution itself?',
+            'What happens if you shift the letters by the number of letters of the solution of the crossword?',
             'If you shift the letters of the first word, it reveals `frequency`.',
             'The answer to the Caesar cipher is; Frequency one should be set to eight four seven three nine two Hertz. Fill in this number (847392) in the input field on the page.',
           ]}
@@ -58,7 +57,7 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
       <div className='!mt-6'>
         <TypingAnimation
           lines={[
-            "I managed to hide the first fragment in the newspaper. It's interesting what I can access in your timeline from where I am.",
+            "I managed to hide the first frequency in the newspaper. It's interesting what I can access in your timeline from where I am.",
             "Time works differently here, it's not linear like for you. Unfortunately, that also means I'm not sure what edition it was I hid it in.",
             "However, I am pretty sure that it was one of the articles about my old house. Start at the following link and from there I assume you'll find it.",
           ]}

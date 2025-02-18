@@ -20,10 +20,10 @@ import FragmentTwo from './pages/FragmentTwo';
 import Messages from './pages/Messages';
 
 const encourageMessages = [
-  "I've managed to put the first location of the fragments here. Please hurry...",
-  'Good, you found the first one. I also tracked down the second location. I linked it below.',
-  'You are doing well. I found the third fragment, hurry, I cannot keep this dashboard open for long...',
-  "Good job! I found the last one too. Quickly now, once you're done, execute the protocol. We're so close...",
+  'Click the button below to get started on the first frequency. Please hurry...',
+  'Good, you found the first one. I linked the next one below.',
+  'You are doing well. Let\s get started on the third frequency.',
+  "Good job! I found the last one too. Quickly now, figure out how to execute the protocol. We're so close...",
 ];
 
 const Dashboard = () => {

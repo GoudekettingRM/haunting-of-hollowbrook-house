@@ -41,7 +41,7 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
           className='absolute top-0 right-0'
           hints={[
             'Where would you be able to find information about Christopher Crawley?',
-            'Try searching for the Christopher Crawley on Google.',
+            'Try searching for Christopher Crawley on Google.',
             'If you cannot find anything that seems to fit, try adding Australia to the search query.',
             'Can you find a homestead located in Australia that was built by Christopher William Crawley?',
             "The homestead we're looking for is the Monte Cristo Homestead in Junee Australia.",

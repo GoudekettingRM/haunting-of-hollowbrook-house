@@ -42,7 +42,11 @@ function Navbar() {
 
   return (
     <nav className='flex flex-col p-4'>
-      <Link href='/' className='text-2xl' title='Whispering Hollows Historical Society'>
+      <Link
+        href='/'
+        className={`text-2xl ${isBugged ? 'animate-bounce' : ''}`}
+        title='Whispering Hollows Historical Society'
+      >
         <span className='block'>
           WHHS<span className='text-4xl'>.</span>
         </span>

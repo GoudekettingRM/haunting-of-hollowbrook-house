@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Article } from './ArticleCard';
+import SwingingDiv from './SwingingBoard';
 import { useBuggingContext } from './useBuggingContext';
 
 const createSeededRandom = (seed: string) => {
@@ -81,8 +82,8 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
                 ? ''
                 : itemRandom() > 0.5
                   ? itemRandom() > 0.75
-                    ? 'rotate-3'
-                    : '-rotate-3'
+                    ? 'rotate-2'
+                    : '-rotate-2'
                   : itemRandom() > 0.75
                     ? `rotate-1`
                     : `-rotate-1`;
@@ -140,7 +141,10 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
 
   return (
     <>
-      <Link href='/blog' className='text-sm text-medium-wood hover:text-dark-wood mb-4'>
+      <Link
+        href='/blog'
+        className={`text-sm text-medium-wood hover:text-dark-wood mb-4 ${isBugged ? 'rotate-[120deg] mt-10 inline-block' : ''}`}
+      >
         ‹ Back to overview
       </Link>
       <h1 className='text-3xl mb-6 mt-3 text-dark-wood'>{article.title}</h1>
@@ -162,11 +166,21 @@ const ArticlePageContent = ({ article }: { article: Article }) => {
       </div>
 
       <div className='flex flex-wrap gap-1 mt-8 text-sm italic'>
-        {article.tags.map((tag) => (
-          <span key={tag} className='py-1 px-2 rounded-md bg-light-wood text-white'>
-            {tag}
-          </span>
-        ))}
+        {article.tags.map((tag) => {
+          if (isBugged) {
+            return (
+              <SwingingDiv key={tag} originSide='right'>
+                <span className='py-1 px-2 rounded-md bg-light-wood text-white'>{tag}</span>
+              </SwingingDiv>
+            );
+          }
+
+          return (
+            <span key={tag} className='py-1 px-2 rounded-md bg-light-wood text-white'>
+              {tag}
+            </span>
+          );
+        })}
       </div>
     </>
   );

@@ -5,10 +5,12 @@ import { useMemo, useState } from 'react';
 import allArticles from '../app/(main)/blog/articles.json';
 import ArticleCard, { Article } from './ArticleCard';
 import SwingingDiv from './SwingingBoard';
+import { useBuggingContext } from './useBuggingContext';
 
 const ARTICLES_PER_PAGE = 6;
 
 const BlogIndexPage = () => {
+  const { isBugged } = useBuggingContext();
   const searchParams = useSearchParams() as { get: (str: string) => string | undefined };
   const articlesToShow = useMemo<Article[]>(() => {
     const search = searchParams.get('search');
@@ -93,7 +95,7 @@ const BlogIndexPage = () => {
   return (
     <div className='pt-4'>
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center max-w-screen-lg mb-6 gap-4 px-4 sm:pl-0'>
-        <h1 className='text-4xl text-dark-wood'>Recent Posts</h1>
+        <h1 className={`text-4xl text-dark-wood ${isBugged ? 'rotate-180 w-full' : ''}`}>Recent Posts</h1>
       </div>
       <ul className='space-y-4 mb-8'>
         {currentArticles.map((article) => {

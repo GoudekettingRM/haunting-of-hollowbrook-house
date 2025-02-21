@@ -22,7 +22,7 @@ import Messages from './pages/Messages';
 const encourageMessages = [
   'Click the button below to get started on the first frequency. Please hurry...',
   'Good, you found the first one. I linked the next one below.',
-  'You are doing well. Let\s get started on the third frequency.',
+  "You are doing well. Let's get started on the third frequency.",
   "Good job! I found the last one too. Quickly now, figure out how to execute the protocol. We're so close...",
 ];
 

@@ -1,4 +1,3 @@
-import CursorFollower from '@/components/CursorFollower';
 import { BuggingProvider } from '@/components/useBuggingContext';
 import type { Metadata } from 'next';
 import ChatWindow from '../../components/ChatWindow';
@@ -95,7 +94,6 @@ export default function RootLayout({
 }>) {
   return (
     <BuggingProvider>
-      <CursorFollower />
       <div className='flex-grow grid grid-cols-1 sm:grid-cols-8 lg:grid-cols-12 gap-4 shrink-0 basis-full bg-parchment text-dark-wood'>
         <aside className='col-span-1 sm:col-span-2'>
           <Navbar />

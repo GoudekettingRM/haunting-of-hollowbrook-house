@@ -9,6 +9,7 @@ interface TypingAnimationProps {
   showTransmissionLabels?: boolean;
   className?: string;
   linePrefix?: string;
+  bottomRefElement?: HTMLDivElement | null;
 }
 
 const TypingAnimation = ({
@@ -20,7 +21,9 @@ const TypingAnimation = ({
   showTransmissionLabels = false,
   className = '',
   linePrefix = '> ',
+  bottomRefElement,
 }: TypingAnimationProps) => {
+  const [executedOnComplete, setExecutedOnComplete] = useState(false);
   const [typing, setTyping] = useState(false);
   const [currentLine, setCurrentLine] = useState('');
   const [completedLines, setCompletedLines] = useState<string[]>(completed ? lines : []);
@@ -30,7 +33,10 @@ const TypingAnimation = ({
   useEffect(() => {
     if (currentLineIndex >= lines.length) {
       setTyping(false);
-      onComplete?.();
+      if (!executedOnComplete) {
+        onComplete?.();
+        setExecutedOnComplete(true);
+      }
       return;
     }
 
@@ -51,6 +57,7 @@ const TypingAnimation = ({
     const timeout = setTimeout(() => {
       setCurrentLine((prev) => prev + currentMessageLine[currentCharIndex]);
       setCurrentCharIndex((prev) => prev + 1);
+      bottomRefElement?.scrollIntoView({ behavior: 'smooth' });
     }, typingSpeed);
 
     return () => clearTimeout(timeout);

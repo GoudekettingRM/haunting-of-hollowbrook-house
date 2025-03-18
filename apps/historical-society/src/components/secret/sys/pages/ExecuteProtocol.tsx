@@ -46,6 +46,7 @@ const ExecuteProtocol = () => {
 
     if (shifts.length === 0) {
       setFinished(true);
+      return;
     }
 
     const errorMessage = shifts.map((shift, index) => {

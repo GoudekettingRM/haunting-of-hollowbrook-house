@@ -1,7 +1,7 @@
 'use client';
 import DashboardButton from '@/components/DashboardButton';
 import TypingAnimation from '@/components/TypingAnimation';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDashboardPageContext } from './context/useDashboardPageContext';
 import { useGeneralSysAdminContext } from './context/useGeneralSysAdminContext';
 
@@ -20,6 +20,7 @@ interface InitialMessagesProps {
 }
 
 function InitialMessages({ completed = false }: InitialMessagesProps) {
+  const bottomRef = useRef<HTMLDivElement>(null);
   const { setPage } = useDashboardPageContext();
   const { setInitialAccessComplete, initialTypingAnimationCompleted, setInitialTypingAnimationCompleted } =
     useGeneralSysAdminContext();
@@ -34,6 +35,7 @@ function InitialMessages({ completed = false }: InitialMessagesProps) {
     <div className='space-y-2'>
       <TypingAnimation
         lines={secretMessages}
+        bottomRefElement={bottomRef.current}
         completed={completed || initialTypingAnimationCompleted}
         onComplete={handleTypingComplete}
         showTransmissionLabels={true}
@@ -54,6 +56,7 @@ function InitialMessages({ completed = false }: InitialMessagesProps) {
           Let&apos;s do this
         </DashboardButton>
       )}
+      <div ref={bottomRef} />
     </div>
   );
 }

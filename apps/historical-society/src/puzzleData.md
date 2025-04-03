@@ -79,6 +79,7 @@ longitude: 147577
 # Entrance Puzzle
 arches, bollards, compass, merlons, towers
 2 4 18 7 2
+241872
 
 # phase shifts
 212

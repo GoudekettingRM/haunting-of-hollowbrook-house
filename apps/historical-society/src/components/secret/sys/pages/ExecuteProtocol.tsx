@@ -115,7 +115,7 @@ const ExecuteProtocol = () => {
               <AudioPlayer src='/MargaretPartSpacedNoised.mp3' className='max-w-80 mx-auto !mt-4' />
               <form onSubmit={handleSubmit} className='flex items-center justify-center flex-wrap'>
                 <div className='mt-4 w-full h-1'></div>
-                <div className={`flex gap-10 mb-4 ${showFinalPuzzle ? '' : 'mx-auto shrink-0'}`}>
+                <div className='flex gap-10 mb-4 mx-auto shrink-0'>
                   <label className='flex gap-2 flex-col items-start' htmlFor='frequencyOne'>
                     <span className='block'>Frequency 1</span>
                     <div className='flex gap-1 items-center'>
@@ -130,27 +130,26 @@ const ExecuteProtocol = () => {
                       <span className='block'>Hz</span>
                     </div>
                   </label>
-                  {showFinalPuzzle && (
-                    <label className='flex gap-2 flex-col items-start' htmlFor='frequencyOnePhaseShift'>
-                      <span className='block'>Phase Shift</span>
-                      <div className='flex gap-1 items-center'>
-                        <DashboardInput
-                          placeholder='___'
-                          inputMode='numeric'
-                          pattern='[0-9]*'
-                          name='frequencyOnePhaseShift'
-                          id='frequencyOnePhaseShift'
-                          value={freqOnePhaseShift ?? ''}
-                          className='text-right tracking-[0.3em]'
-                          onChange={handleChange(setFreqOnePhaseShift)}
-                        />
-                        <span className='block text-3xl'>°</span>
-                      </div>
-                    </label>
-                  )}
+
+                  <label className='flex gap-2 flex-col items-start' htmlFor='frequencyOnePhaseShift'>
+                    <span className='block'>Phase Shift</span>
+                    <div className='flex gap-1 items-center'>
+                      <DashboardInput
+                        placeholder='___'
+                        inputMode='numeric'
+                        pattern='[0-9]*'
+                        name='frequencyOnePhaseShift'
+                        id='frequencyOnePhaseShift'
+                        value={freqOnePhaseShift ?? ''}
+                        className='text-right tracking-[0.3em]'
+                        onChange={handleChange(setFreqOnePhaseShift)}
+                      />
+                      <span className='block text-3xl'>°</span>
+                    </div>
+                  </label>
                 </div>
 
-                <div className={`flex gap-10 mb-4 ${showFinalPuzzle ? '' : 'mx-auto shrink-0'}`}>
+                <div className='flex gap-10 mb-4 mx-auto shrink-0'>
                   <label className='flex gap-2 flex-col items-start' htmlFor='frequencyTwo'>
                     <span className='block'>Frequency 2</span>
                     <div className='flex gap-1 items-center'>
@@ -165,26 +164,24 @@ const ExecuteProtocol = () => {
                       <span className='block'>Hz</span>
                     </div>
                   </label>
-                  {showFinalPuzzle && (
-                    <label className='flex gap-2 flex-col items-start' htmlFor='frequencyTwoPhaseShift'>
-                      <span className='block'>Phase Shift</span>
-                      <div className='flex gap-1 items-center'>
-                        <DashboardInput
-                          placeholder='___'
-                          inputMode='numeric'
-                          pattern='[0-9]*'
-                          name='frequencyTwoPhaseShift'
-                          id='frequencyTwoPhaseShift'
-                          value={freqTwoPhaseShift ?? ''}
-                          className='text-right tracking-[0.3em]'
-                          onChange={handleChange(setFreqTwoPhaseShift)}
-                        />
-                        <span className='block text-3xl'>°</span>
-                      </div>
-                    </label>
-                  )}
+                  <label className='flex gap-2 flex-col items-start' htmlFor='frequencyTwoPhaseShift'>
+                    <span className='block'>Phase Shift</span>
+                    <div className='flex gap-1 items-center'>
+                      <DashboardInput
+                        placeholder='___'
+                        inputMode='numeric'
+                        pattern='[0-9]*'
+                        name='frequencyTwoPhaseShift'
+                        id='frequencyTwoPhaseShift'
+                        value={freqTwoPhaseShift ?? ''}
+                        className='text-right tracking-[0.3em]'
+                        onChange={handleChange(setFreqTwoPhaseShift)}
+                      />
+                      <span className='block text-3xl'>°</span>
+                    </div>
+                  </label>
                 </div>
-                <div className={`flex gap-10 mb-2 ${showFinalPuzzle ? '' : 'mx-auto shrink-0'}`}>
+                <div className='flex gap-10 mb-2 mx-auto shrink-0'>
                   <label className='flex gap-2 flex-col items-start' htmlFor='frequencyThree'>
                     <span className='block'>Frequency 3</span>
                     <div className='flex gap-1 items-center'>
@@ -199,32 +196,28 @@ const ExecuteProtocol = () => {
                       <span className='block'>Hz</span>
                     </div>
                   </label>
-                  {showFinalPuzzle && (
-                    <label className='flex gap-2 flex-col items-start' htmlFor='frequencyThreePhaseShift'>
-                      <span className='block'>Phase Shift</span>
-                      <div className='flex gap-1 items-center'>
-                        <DashboardInput
-                          placeholder='___'
-                          inputMode='numeric'
-                          pattern='[0-9]*'
-                          name='frequencyThreePhaseShift'
-                          id='frequencyThreePhaseShift'
-                          value={freqThreePhaseShift ?? ''}
-                          className='text-right tracking-[0.3em]'
-                          onChange={handleChange(setFreqThreePhaseShift)}
-                        />
-                        <span className='block text-3xl'>°</span>
-                      </div>
-                    </label>
-                  )}
+                  <label className='flex gap-2 flex-col items-start' htmlFor='frequencyThreePhaseShift'>
+                    <span className='block'>Phase Shift</span>
+                    <div className='flex gap-1 items-center'>
+                      <DashboardInput
+                        placeholder='___'
+                        inputMode='numeric'
+                        pattern='[0-9]*'
+                        name='frequencyThreePhaseShift'
+                        id='frequencyThreePhaseShift'
+                        value={freqThreePhaseShift ?? ''}
+                        className='text-right tracking-[0.3em]'
+                        onChange={handleChange(setFreqThreePhaseShift)}
+                      />
+                      <span className='block text-3xl'>°</span>
+                    </div>
+                  </label>
                 </div>
-                {showFinalPuzzle && (
-                  <div className='w-full flex justify-center'>
-                    <DashboardButton type='submit' className='mt-4'>
-                      Sever the connection
-                    </DashboardButton>
-                  </div>
-                )}
+                <div className='w-full flex justify-center'>
+                  <DashboardButton type='submit' className='mt-4'>
+                    Sever the connection
+                  </DashboardButton>
+                </div>
                 {error && (
                   <p className="w-full justify-center before:content-['⚠'] flex items-center before:relative before:top-[1px] before:inline-block before:mr-2 mt-4 mr-[3ch]">
                     {error}

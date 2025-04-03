@@ -36,19 +36,19 @@ const ArchivesPage = async (props: { searchParams: Promise<{ q?: string }> }) =>
       filename: 'hbtl-19031980',
     },
     {
-      date: '1981-06-16',
+      date: '1983-03-15',
       title: 'History Repeats at Hollowbrook House',
-      filename: 'hbtl-16061981',
+      filename: 'hbtl-15031983',
     },
     {
-      date: '2002-06-15',
+      date: '2004-03-15',
       title: 'Second Hollowbrook Disappearance Case Closed',
-      filename: 'hbtl-15062002',
+      filename: 'hbtl-15032004',
     },
     {
-      date: '2005-10-15',
+      date: '2008-10-15',
       title: 'Hollowbrook House Enters New Era',
-      filename: 'hbtl-15062005',
+      filename: 'hbtl-15102008',
     },
   ].reverse();
 

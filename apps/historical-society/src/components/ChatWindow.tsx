@@ -27,21 +27,14 @@ function ChatWindow() {
   const [hintRequested, setHintRequested] = useState(false);
   const [nextHintToShow, setNextHintToShow] = useState(0);
   const baseMessages = [
-    'Hey you!',
-    'Please help me.. I am stuck..',
-    'I need your help to get out of here. If you are willing to help, follow these instructions:',
-    'Rich paragraphs with chosen words',
-    'Hide secrets meant to be disturbed',
-    'In fives, the numbers hold their sway',
-    "Like clockwork marking time's display",
-    'The last two show the path to trace',
-    'First down, then right across the space',
-    'Once you reveal what is true',
-    'Enter it where search is due',
+    'Hey you! Please help me.. I am stuck..\n\nIf you are willing to help, follow these instructions:',
+    'Rich paragraphs with chosen words\nHide secrets meant to be disturbed',
+    "In fives, the numbers hold their sway\nLike clockwork marking time's display",
+    'The last two show the path to trace\nFirst down, then right across the space',
+    'Once you reveal what is true\nEnter it where search is due',
     '15 1 22 11 17 5 4 22 1 29 1 9 21 3 9 1 9 21 4 2 20 2 22 5 46',
     '22 2 22 6 59 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
-    'If you are who I think you are, you will know what to do',
-    'I hope to see you on the other side',
+    'If you are who I think you are, you will know what to do. I hope to see you on the other side.',
   ];
 
   const [messages, setMessages] = useState(baseMessages);
@@ -237,7 +230,7 @@ function ChatWindow() {
     <>
       {isChatOpen ? (
         <div className='fixed top-0 w-full h-[calc(100dvh-65px)] sm:h-[444px] sm:top-auto sm:right-4 sm:bottom-28 sm:w-fit'>
-          <div className='bg-parchment rounded-b-lg sm:rounded-lg h-full drop-shadow-lg w-full min-w-full sm:min-w-80 sm:w-80 transition-all duration-300 ease-in-out opacity-100 translate-y-0'>
+          <div className='bg-parchment rounded-b-lg sm:rounded-lg h-full drop-shadow-lg w-full min-w-full sm:min-w-80 sm:w-96 transition-all duration-300 ease-in-out opacity-100 translate-y-0'>
             <div className='bg-parchment text-dark-wood p-4 sm:rounded-t-lg flex justify-between items-center border border-medium-wood'>
               <h2 className='text-lg font-semibold'>Messages</h2>
               <button
@@ -255,7 +248,9 @@ function ChatWindow() {
             <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain border border-medium-wood border-t-0 rounded-bl-lg'>
               {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
                 <div key={i} className='mb-2 flex justify-start'>
-                  <div className='max-w-[80%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>{msg}</div>
+                  <div className='max-w-[80%] rounded-lg p-3 bg-white whitespace-pre-wrap text-dark-wood rounded-bl-none'>
+                    {msg}
+                  </div>
                 </div>
               ))}
               {isTyping && (

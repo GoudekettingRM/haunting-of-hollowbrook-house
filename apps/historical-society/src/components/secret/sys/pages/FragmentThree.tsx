@@ -1,6 +1,7 @@
 'use client';
 import DashboardButton from '@/components/DashboardButton';
 import TypingAnimation from '@/components/TypingAnimation';
+import Link from 'next/link';
 import { FormEvent, useState } from 'react';
 import { useDashboardPageContext } from '../context/useDashboardPageContext';
 import { useFragmentsContext } from '../context/useFragmentsContext';
@@ -24,11 +25,11 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
       return;
     }
 
-    if (Number(value) !== 147577) {
+    if (Number(value) !== 241872) {
       setError('There seems to be an issue with the frequency... Try again...');
       return;
     }
-    setFrequencyThree(147577);
+    setFrequencyThree(241872);
     setCompletedPuzzles((prev) => [...prev, 'wikipedia_search']);
 
     onSuccess();
@@ -40,15 +41,15 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
         <HintSystem
           className='absolute top-0 right-0'
           hints={[
-            'Where would you be able to find information about Christopher Crawley?',
-            'Try searching for Christopher Crawley on Google.',
-            'If you cannot find anything that seems to fit, try adding Australia to the search query.',
-            'Can you find a homestead located in Australia that was built by Christopher William Crawley?',
-            "The homestead we're looking for is the Monte Cristo Homestead in Junee Australia.",
-            'Here is the link to information about the Monte Cristo Homestead: https://tinyurl.com/monte-cristo-homestead',
-            'The frequency we are looking for is the longitude of the Monte Cristo Homestead.',
-            'Longitude is a coordinate that specifies the east-west position of a point on the Earth, indicated with the letter `E` or `W`.',
-            'The longitude of the Monte Cristo Homestead is 147.577°E. This is the six-digit frequency we are looking for.',
+            'Make sure to look at the article of March 15, 2004. That shows the entrance to the estate.',
+            'Can you find some numbers in the article related to the entrance to the estate?',
+            'What countable elements are there?',
+            'In the image caption, you are being told most numbers.',
+            "Don't forget, we need 6 digits.",
+            'The elements of interest are the arches, towers, merlons, bollards, and the compass.',
+            'The numbers related to these are, respectively, 2, 2, 7, 4, and 18.',
+            'What could it mean to order them alphabetically?',
+            'If you order the names alphabetically, you get: arches, bollards, compass, merlons, and towers. This gives you the frequency: 2 4 18 7 2.',
           ]}
           fragment='3'
         />
@@ -58,11 +59,10 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
         <TypingAnimation
           lines={[
             "Exquisite! You've made it to the final fragment. This one is a bit tricky, but I'm sure you can handle it.",
-            "I couldn't insert any information in your timeline this time, but I did find a different way to get you the information you need.",
-            'An old friend of mine used to live in a homestead in Australia. A crazy fellow he was. Quite eccentric if I say so myself, but a good friend nonetheless.',
-            'I cannot recall exactly what he called his home, but I do remember it was named after a famous novel. I think it had something to do with a `count` of some sort. He was a bit of a bookworm.',
-            'Anyways, I believe the frequency we are looking for is the longitude of the homestead, it matches the frequency we are looking for exactly.',
-            'Oh, I almost forgot! That friend of mine was called Christopher. Christopher Crawley.',
+            'Margaret and I worked together on this one. The last frequency is hidden in the entrance to the estate.',
+            'We hid it in plain sight, but you need to know where to look.',
+            'Each element of the entrance is a number in the frequency, and by ordering them alphabetically, you find the answer.',
+            'It was even in the newspaper, but you still need to know where to look.',
           ]}
           completed={accessedFragmentThreeOnce || showFragmentContent}
           onComplete={() => {
@@ -74,8 +74,19 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
         {showFragmentContent && (
           <>
             <div className='w-full h-[1px] bg-[#0f0] !my-4' />
-            <div className='mt-8'>
-              <form className='flex items-start w-fit flex-col gap-y-2' onSubmit={onSubmit}>
+            <div className='grid grid-cols-1 md:grid-cols-2 w-full'>
+              <p className='flex justify-between w-full my-4 md:my-0 flex-col items-center'>
+                <span className='block'>Whispering Hollows Gazette:</span>
+                <Link
+                  href={`${process.env.NEXT_PUBLIC_GAZETTE_URL}/whispering-hollows-gazette?q=hollowbrook`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='underline hover:underline-offset-4 transition-all duration-300 ease-in-out my-2'
+                >
+                  {`${process.env.NEXT_PUBLIC_GAZETTE_URL}/whispering-hollows-gazette?q=hollowbrook`}
+                </Link>
+              </p>
+              <form className='flex items-end mx-auto w-fit flex-col gap-y-2' onSubmit={onSubmit}>
                 <div>
                   <DashboardInput
                     placeholder='______'

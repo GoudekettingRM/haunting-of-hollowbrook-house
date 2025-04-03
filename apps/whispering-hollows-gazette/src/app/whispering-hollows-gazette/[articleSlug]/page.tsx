@@ -36,7 +36,7 @@ const ArticlePage = async (props: ArticlePageProps) => {
 
       <div className='w-full h-[min(800px,80dvh)] bg-gray-100'>
         <iframe
-          src={`https://res.cloudinary.com/robin-random-files/image/upload/v1731403634/${articleSlug.replace('hbtl-', '')}.pdf#toolbar=0&navpanes=0`}
+          src={`https://res.cloudinary.com/robin-random-files/image/upload/${articleSlug.replace('hbtl-', '')}.pdf#toolbar=0&navpanes=0`}
           className='w-full h-full'
           title={`Whispering Hollows Gazette - ${date}`}
         />

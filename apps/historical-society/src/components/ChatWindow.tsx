@@ -248,14 +248,14 @@ function ChatWindow() {
             <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain border border-medium-wood border-t-0 rounded-bl-lg'>
               {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
                 <div key={i} className='mb-2 flex justify-start'>
-                  <div className='max-w-[80%] rounded-lg p-3 bg-white whitespace-pre-wrap text-dark-wood rounded-bl-none'>
+                  <div className='max-w-[90%] rounded-lg p-3 bg-white whitespace-pre-wrap text-dark-wood rounded-bl-none'>
                     {msg}
                   </div>
                 </div>
               ))}
               {isTyping && (
                 <div className='mb-4 flex justify-start'>
-                  <div className='max-w-[80%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>
+                  <div className='max-w-[90%] rounded-lg p-3 bg-white text-dark-wood rounded-bl-none'>
                     <div className='flex gap-1'>
                       <div
                         className='h-2 w-2 bg-dark-wood rounded-full mt-1 animate-bounce'

@@ -61,8 +61,8 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
             "Exquisite! You've made it to the final fragment. This one is a bit tricky, but I'm sure you can handle it.",
             'Margaret and I worked together on this one. The last frequency is hidden in the entrance to the estate.',
             'We hid it in plain sight, but you need to know where to look.',
-            'Each element of the entrance is a number in the frequency, and by ordering them alphabetically, you find the answer.',
-            'It was even in the newspaper, but you still need to know where to look.',
+            'Each element of is a number in the frequency, and by ordering them alphabetically, you find the answer.',
+            'It was even in the newspaper. I linked it below for you again in case you need it.',
           ]}
           completed={accessedFragmentThreeOnce || showFragmentContent}
           onComplete={() => {

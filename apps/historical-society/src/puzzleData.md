@@ -72,9 +72,9 @@ FREQUENCY ONE IS EIGHT FOUR SEVEN THREE NINE TWO HZ
 25 8 35 0
 258350
 
-# Wikipedia puzzle
+<!-- # Wikipedia puzzle
 https://tinyurl.com/monte-cristo-homestead
-longitude: 147577
+longitude: 147577 -->
 
 # Entrance Puzzle
 arches, bollards, compass, merlons, towers

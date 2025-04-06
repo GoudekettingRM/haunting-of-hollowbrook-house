@@ -32,8 +32,8 @@ function ChatWindow() {
     "In fives, the numbers hold their sway\nLike clockwork marking time's display",
     'The last two show the path to trace\nFirst down, then right across the space',
     'Once you reveal what is true\nEnter it where search is due',
-    '15 1 22 11 17 5 4 22 1 29 1 9 21 3 9 1 9 21 4 2 20 2 22 5 46',
-    '22 2 22 6 59 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
+    '15 1 22 11 17 5 4 22 1 29 1 9 21 4 9 1 9 21 5 2 20 2 22 5 46',
+    '20 2 22 6 59 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
     'If you are who I think you are, you will know what to do. I hope to see you on the other side.',
   ];
 

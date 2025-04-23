@@ -28,7 +28,7 @@ function ChatWindow() {
   const [nextHintToShow, setNextHintToShow] = useState(0);
   const baseMessages = [
     'Hey you! Please help me.. I am stuck..\n\nIf you are willing to help, follow these instructions:',
-    'Rich paragraphs with chosen words\nHide secrets meant to be disturbed',
+    'Long texts with deliberate phrasing\nConceal messages worth embracing',
     "In fives, the numbers hold their sway\nLike clockwork marking time's display",
     'The last two show the path to trace\nFirst down, then right across the space',
     'Once you reveal what is true\nEnter it where search is due',
@@ -40,8 +40,8 @@ function ChatWindow() {
   const [messages, setMessages] = useState(baseMessages);
 
   const hints = [
-    'Where would you find rich paragraphs on this site?',
-    'Rich paragraphs could also be seen as articles.',
+    'Where would you find long texts on this site?',
+    'Long texts could also be seen as articles.',
     'The numbers are in groups of five. What could that mean?',
     'What could the first three numbers (of a group of five numbers) represent?',
     'If you write the first three numbers like this ../../.., what does it look like?',

@@ -15,7 +15,7 @@ const Aside = () => {
           <Image src='/images/james-chen-portrait.png' width={200} height={200} alt='' className='w-full h-auto' />
         </div>
         <p className='prose font-minerva text-base/tight mt-4 text-justify'>
-          I started my research into the unknown back in the mid 90&apos;s. I was a young - but ambitions - anthropology
+          I started my research into the unknown back in the mid 90&apos;s. I was a young - but ambitious - anthropology
           student. During one of my classes I got introduced to the different beliefs people have. I felt in my bones
           that this was not always merely about belief.
         </p>

@@ -3,7 +3,7 @@ import DashboardButton from '@/components/DashboardButton';
 import TypingAnimation from '@/components/TypingAnimation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Terminal, XIcon } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFragmentsContext } from './context/useFragmentsContext';
 
 const HintSystem = ({
@@ -17,7 +17,9 @@ const HintSystem = ({
   className?: string;
   fragment: '1' | '2' | '3' | 'protocol-execution';
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [showingNewLine, setShowingNewLine] = useState(false);
+
   const {
     fragmentOneNextHintNumber,
     setFragmentOneNextHintNumber,
@@ -28,7 +30,9 @@ const HintSystem = ({
     protocolExecutionNextHintNumber,
     setProtocolExecutionNextHintNumber,
   } = useFragmentsContext();
-  const [nextHintToShow, setNextHintToShow] = useState(() => {
+
+  // Get the current hint number from context based on fragment
+  const getContextHintNumber = useCallback(() => {
     switch (fragment) {
       case '1':
         return fragmentOneNextHintNumber;
@@ -41,8 +45,24 @@ const HintSystem = ({
       default:
         return 1;
     }
-  });
+  }, [
+    fragment,
+    fragmentOneNextHintNumber,
+    fragmentTwoNextHintNumber,
+    fragmentThreeNextHintNumber,
+    protocolExecutionNextHintNumber,
+  ]);
 
+  // Update nextHintToShow when context changes or dialog opens
+  const [nextHintToShow, setNextHintToShow] = useState(getContextHintNumber());
+
+  useEffect(() => {
+    if (isOpen) {
+      setNextHintToShow(getContextHintNumber());
+    }
+  }, [isOpen, getContextHintNumber]);
+
+  // Update context when hint number changes
   const updateContextMethod = useCallback(
     (number: number) => {
       switch (fragment) {
@@ -60,14 +80,20 @@ const HintSystem = ({
           break;
       }
     },
-    [fragment],
+    [
+      fragment,
+      setFragmentOneNextHintNumber,
+      setFragmentTwoNextHintNumber,
+      setFragmentThreeNextHintNumber,
+      setProtocolExecutionNextHintNumber,
+    ],
   );
-  const [isOpen, setIsOpen] = useState(false);
 
   const showNextHint = () => {
     if (nextHintToShow <= hints.length) {
-      setNextHintToShow(nextHintToShow + 1);
-      updateContextMethod(nextHintToShow + 1);
+      const newHintNumber = nextHintToShow + 1;
+      setNextHintToShow(newHintNumber);
+      updateContextMethod(newHintNumber);
       setShowingNewLine(true);
     }
   };
@@ -76,6 +102,11 @@ const HintSystem = ({
     setNextHintToShow(2);
     updateContextMethod(2);
     setShowingNewLine(true);
+  };
+
+  // Handle animation completion
+  const handleAnimationComplete = () => {
+    setShowingNewLine(false);
   };
 
   return (
@@ -108,7 +139,7 @@ const HintSystem = ({
               <TypingAnimation
                 lines={hints.slice(0, nextHintToShow - 1)}
                 completed={!showingNewLine}
-                onComplete={() => setShowingNewLine(false)}
+                onComplete={handleAnimationComplete}
               />
 
               {/* Navigation button */}

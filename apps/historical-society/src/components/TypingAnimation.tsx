@@ -23,27 +23,47 @@ const TypingAnimation = ({
   linePrefix = '> ',
   bottomRefElement,
 }: TypingAnimationProps) => {
-  const [executedOnComplete, setExecutedOnComplete] = useState(false);
-  const [typing, setTyping] = useState(false);
+  // Track if we're in typing mode
+  const [typing, setTyping] = useState(!completed);
+
+  // Current partially-typed line
   const [currentLine, setCurrentLine] = useState('');
+
+  // Completed lines that are fully displayed
   const [completedLines, setCompletedLines] = useState<string[]>(completed ? lines : []);
+
+  // Current indexes
   const [currentLineIndex, setCurrentLineIndex] = useState(completed ? lines.length : 0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
+  // Reset animation when completed prop changes
   useEffect(() => {
-    if (currentLineIndex >= lines.length) {
+    if (completed) {
       setTyping(false);
-      if (!executedOnComplete) {
+      setCompletedLines(lines);
+      setCurrentLineIndex(lines.length);
+      setCurrentLine('');
+      setCurrentCharIndex(0);
+    }
+  }, [completed, lines]);
+
+  // Main typing effect
+  useEffect(() => {
+    // If we've typed all lines, finish animation
+    if (currentLineIndex >= lines.length) {
+      if (typing) {
+        setTyping(false);
         onComplete?.();
-        setExecutedOnComplete(true);
       }
       return;
     }
 
+    // Start typing if not already
     if (!typing) setTyping(true);
 
     const currentMessageLine = lines[currentLineIndex];
 
+    // If we've finished the current line
     if (currentCharIndex === currentMessageLine.length) {
       const timeout = setTimeout(() => {
         setCompletedLines((prev) => [...prev, currentMessageLine]);
@@ -54,6 +74,7 @@ const TypingAnimation = ({
       return () => clearTimeout(timeout);
     }
 
+    // Type the next character
     const timeout = setTimeout(() => {
       setCurrentLine((prev) => prev + currentMessageLine[currentCharIndex]);
       setCurrentCharIndex((prev) => prev + 1);
@@ -61,7 +82,7 @@ const TypingAnimation = ({
     }, typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [currentLineIndex, currentCharIndex, lines, typing, typingSpeed, linePauseTime, onComplete]);
+  }, [currentLineIndex, currentCharIndex, lines, typing, typingSpeed, linePauseTime, onComplete, bottomRefElement]);
 
   const isTransmissionLabel = (line: string) => line.startsWith('[') && line.endsWith(']');
 

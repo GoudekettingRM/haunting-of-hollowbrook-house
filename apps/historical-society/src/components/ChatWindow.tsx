@@ -28,7 +28,7 @@ function ChatWindow() {
   const [nextHintToShow, setNextHintToShow] = useState(0);
   const baseMessages = [
     'Hey you! Please help me.. I am stuck..\n\nIf you are willing to help, follow these instructions:',
-    'Long texts with deliberate phrasing\nConceal messages worth embracing',
+    'Long texts with deliberate phrasing\nConceal a message worth embracing',
     "In fives, the numbers hold their sway\nLike clockwork marking time's display",
     'The last two show the path to trace\nFirst down, then right across the space',
     'Once you reveal what is true\nEnter it where search is due',

@@ -21,8 +21,8 @@ const ExecuteProtocol = () => {
     setFreqThreePhaseShift,
     setFreqTwoPhaseShift,
   } = usePuzzleAnswerContext();
-  const [showFragmentContent, setShowFragmentContent] = useState(false);
   const { accessedProtocolExecutionOnce, setAccessedProtocolExecutionOnce } = useFragmentsContext();
+  const [showFragmentContent, setShowFragmentContent] = useState(accessedProtocolExecutionOnce);
   const { setFinished } = useDashboardPageContext();
 
   const [error, setError] = useState('');

@@ -10,9 +10,9 @@ import DashboardInput from '../DashboardInput';
 import HintSystem from '../Hinter';
 
 function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
-  const [showFragmentContent, setShowFragmentContent] = useState(false);
   const { setCompletedPuzzles } = useDashboardPageContext();
   const { accessedFragmentThreeOnce, setAccessedFragmentThreeOnce } = useFragmentsContext();
+  const [showFragmentContent, setShowFragmentContent] = useState(accessedFragmentThreeOnce);
   const { frequencyThree, setFrequencyThree } = usePuzzleAnswerContext();
   const [value, setValue] = useState(frequencyThree !== null ? frequencyThree.toString() : '');
   const [error, setError] = useState('');
@@ -62,6 +62,7 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
             'Margaret and I worked together on this one. The last frequency is hidden in the entrance to the estate.',
             'We hid it in plain sight, but you need to know where to look.',
             'Each element is a number in the frequency, and by ordering them alphabetically, you find the answer.',
+            'Hiding one of the numbers in our family seal — our compass — was my idea, I am still pretty proud of that one.',
             'It was even in the newspaper. I linked it below for you again in case you need it.',
           ]}
           completed={accessedFragmentThreeOnce || showFragmentContent}

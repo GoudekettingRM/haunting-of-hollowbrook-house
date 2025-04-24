@@ -10,9 +10,9 @@ import DashboardInput from '../DashboardInput';
 import HintSystem from '../Hinter';
 
 function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
-  const [showFragmentContent, setShowFragmentContent] = useState(false);
   const { setCompletedPuzzles } = useDashboardPageContext();
   const { accessedFragmentTwoOnce, setAccessedFragmentTwoOnce } = useFragmentsContext();
+  const [showFragmentContent, setShowFragmentContent] = useState(accessedFragmentTwoOnce);
   const { frequencyTwo, setFrequencyTwo } = usePuzzleAnswerContext();
   const [value, setValue] = useState(frequencyTwo !== null ? frequencyTwo.toString() : '');
   const [error, setError] = useState('');

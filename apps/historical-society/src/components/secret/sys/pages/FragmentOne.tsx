@@ -44,11 +44,10 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
             'Where words cross, the answer lies',
             'The scrambled letters at the bottom of the page, hide the truth',
             'Each character needs to be shifted',
-            'What is the solution to the crossword?',
-            'How many letters does the solution to the crossword have?',
-            'What happens if you shift the letters by the number of letters of the solution of the crossword?',
-            'If you shift the letters of the first word, it reveals `frequency`.',
-            'The answer to the Caesar cipher is; Frequency one should be set to eight four seven three nine two Hertz. Fill in this number (847392) in the input field on the page.',
+            'How many tries did it take me to hide the frequency?',
+            'What happens if you work your way backwards through the alphabet using that number?',
+            'If you shift the letters of the first word 7 characters (e.g. M becomes F), it reveals `frequency`.',
+            'The answer to the Caesar cipher is; Frequency one is eight four seven three nine two Hertz. Fill in this number (847392) in the input field on the page.',
           ]}
           fragment='1'
         />
@@ -60,6 +59,7 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
             "I managed to hide the first frequency in the newspaper. It's interesting what I can access in your timeline from where I am.",
             "Time works differently here, it's not linear like for you. Unfortunately, that also means I'm not sure what edition it was I hid it in.",
             "However, I am pretty sure that it was one of the articles about my old house. Start at the following link and from there I assume you'll find it.",
+            'The one thing I know it took me a whopping seven (7!) tries... Once you find it, just work your way backwards.',
           ]}
           completed={accessedFragmentOneOnce || showFragmentContent}
           onComplete={() => setShowFragmentContent(true)}

@@ -34,7 +34,7 @@ function ChatWindow() {
     '15 10 21  6 13\n30 10 42 12 26\n 5  4 22  1  3\n 1  9 21  4  9\n 2 18 42  8 18\n 1  9 21  5  2\n20  2 22  5  7',
     '20  2 22  6 19\n20  2 22  7 13\n40  4 44 14 26\n 2 11 21  3 12\n20  6 22  2 19\n15  5 22  5 17\n30 10 44 10 34',
     'Oh, that is odd. I thought I had it all figured out, but seems that even after all this time, I still got it wrong.',
-    "It seems there are a few mistakes in the numbers. I\'m convinced you won\'t get distracted by those. They make no sense.",
+    "It seems there are a few mistakes in the numbers. I'm convinced you won't get distracted by those. They make no sense.",
     "Once you've decoded the full instructions, follow them to find the hidden message. Then search for that message exactly as you found it, and we'll establish contact.",
     'If you are who I think you are, you will know what to do. I hope to see you on the other side.',
   ];

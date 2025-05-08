@@ -98,10 +98,13 @@ const ExecuteProtocol = () => {
         <>
           <TypingAnimation
             lines={[
-              "You did it. You found all the frequencies. We're so close to severing the connection.",
-              "The last thing to do it figure out the right phase shifts to cancel out the signal. We both don't remember the exact values... It has been so long...",
-              'Margaret mentioned there was a recording of her and a friend of hers discussing them. Unfortunately I could only recover half of the conversation...',
-              "I'm sure you can figure it out. Once you have the correct phase shifts, you can finally sever the connection and end the agony we have been in for the last decades.",
+              "You did it. You found all the frequencies. We're so close to severing the connection. All that is left is to cancel out the signal.",
+              'We need to change the phase of frequencies to create destructive interference. Like waves in a pool - when one goes up and another goes down in the same spot, the water becomes flat. With our frequencies it works the same way.',
+              'You just collected the original frequencies and now we need to shift them by 180 degrees. For example, if the original signal was sent at 10 degrees before, it should now be set to 190 degrees.',
+              'The result will be destructive interference - when the original signal goes up, our new phase-shifted signal goes down. This should be enough to sever the connection.',
+              "We only need the right values. We both don't remember them. It has been so long...",
+              'Margaret mentioned there was a recording of her and a friend of hers discussing them. Unfortunately I could only recover half of the conversation.',
+              'If you can find the other half, you should be able to figure out what the original phases where and adjust them by 180 degrees. Once you do that, you can finally sever the connection and end the agony we have been in for the last decades.',
             ]}
             completed={accessedProtocolExecutionOnce || showFragmentContent}
             onComplete={() => {
@@ -112,7 +115,7 @@ const ExecuteProtocol = () => {
           />
           {showFragmentContent && (
             <>
-              <AudioPlayer src='/MargaretPartSpacedNoised.mp3' className='max-w-80 mx-auto !mt-4' />
+              <AudioPlayer src='/HarryPartSpacedNoised.mp3' className='max-w-80 mx-auto !mt-4' />
               <form onSubmit={handleSubmit} className='flex items-center justify-center flex-wrap'>
                 <div className='mt-4 w-full h-1'></div>
                 <div className='flex gap-10 mb-4 mx-auto shrink-0'>

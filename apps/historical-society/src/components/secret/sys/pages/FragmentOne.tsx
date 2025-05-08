@@ -41,10 +41,9 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
         <HintSystem
           className='absolute top-0 right-0'
           hints={[
-            'Where words cross, the answer lies',
             'The scrambled letters at the bottom of the page, hide the truth',
             'Each character needs to be shifted',
-            'How many tries did it take me to hide the frequency?',
+            'How many steps did it I take to hide the frequency?',
             'What happens if you work your way backwards through the alphabet using that number?',
             'If you shift the letters of the first word 7 characters (e.g. M becomes F), it reveals `frequency`.',
             'The answer to the Caesar cipher is; Frequency one is eight four seven three nine two Hertz. Fill in this number (847392) in the input field on the page.',
@@ -58,8 +57,9 @@ function FragmentOne({ onSuccess }: { onSuccess: () => void }) {
           lines={[
             "I managed to hide the first frequency in the newspaper. It's interesting what I can access in your timeline from where I am.",
             "Time works differently here, it's not linear like for you. Unfortunately, that also means I'm not sure what edition it was I hid it in.",
-            "However, I am pretty sure that it was one of the articles about my old house. Start at the following link and from there I assume you'll find it.",
-            'The one thing I know it took me a whopping seven (7!) tries... Once you find it, just work your way backwards.',
+            'However, I am pretty sure that it was one of the articles about my old house. I remember seeing a crossword puzzle on the page.',
+            "Start at the following link and from there I assume you'll find it.",
+            "It took me a whopping seven steps to get it in properly, but I'm confident there are no mistakes. Once you find it, just work your way backwards.",
           ]}
           completed={accessedFragmentOneOnce || showFragmentContent}
           onComplete={() => setShowFragmentContent(true)}

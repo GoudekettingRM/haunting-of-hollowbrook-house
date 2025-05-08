@@ -24,16 +24,17 @@ first                      20.   2-11-21-3-20
 character                  21.   15-5-22-5-40
 Margaret:     25 7 22 2 1
 
-read:          15 1 22 11 17
-article:        5 4 22 1 29
+read:          15 10 21 6 13
+article:        5 4 22 1 3
 about:          1 9 21 4 9
 investigation:  1 9 21 5 2
-equipment:     20 2 22 5 46
+equipment:     20 2 22 5 7
 
-take:          20 2 22 6 59
-each:          20 2 22 7 62
-first:          2 11 21 3 20
-character:     15 5 22 5 40
+take:          20 2 22 6 19
+each:          20 2 22 7 13
+first:          2 11 21 3 12
+bullet-point:  20 6 22 2 19
+character:     15 5 22 5 17
 
 
 Rich paragraphs with chosen words

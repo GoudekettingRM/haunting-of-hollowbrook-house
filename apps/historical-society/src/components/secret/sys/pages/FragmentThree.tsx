@@ -59,10 +59,10 @@ function FragmentThree({ onSuccess }: { onSuccess: () => void }) {
         <TypingAnimation
           lines={[
             "Exquisite! You've made it to the final fragment. This one is a bit tricky, but I'm sure you can handle it.",
-            'Margaret and I worked together on this one. The last frequency is hidden in the entrance to the estate.',
+            'Margaret and I worked together to hide the last frequency in the entrance to the estate.',
             'We hid it in plain sight, but you need to know where to look.',
             'Each element is a number in the frequency, and by ordering them alphabetically, you find the answer.',
-            'Hiding one of the numbers in our family seal — our compass — was my idea, I am still pretty proud of that one.',
+            'Hiding one of the numbers in our family seal — our compass — was my idea, I am still pretty proud of that.',
             'It was even in the newspaper. I linked it below for you again in case you need it.',
           ]}
           completed={accessedFragmentThreeOnce || showFragmentContent}

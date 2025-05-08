@@ -60,7 +60,7 @@ function FragmentTwo({ onSuccess }: { onSuccess: () => void }) {
             "Great, you got the first frequency. Let's move on to the next one.",
             "I couldn't manage to get the second frequency in the newspaper as well... However, I found a way to generate some electromagnetic interference.",
             'I found a nice place, a lighthouse, and figured if I could make it look like some sort of paranormal activity was happening there, the local news would pick it up and attract paranormal investigators. I think it worked, because I see that a man named James Chen went there four times to investigate.',
-            'I think he wrote an article about it every single time, but I could not find where he posted these.',
+            'I think he wrote an article about it every single time. I could not find where he posted these, but it definitely was a personal blog.',
             'If you can find out where he posted these articles about his trips to the lighthouse, I am sure you will find the second frequency.',
           ]}
           completed={accessedFragmentTwoOnce || showFragmentContent}

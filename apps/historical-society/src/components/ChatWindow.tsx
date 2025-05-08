@@ -28,36 +28,31 @@ function ChatWindow() {
   const [nextHintToShow, setNextHintToShow] = useState(0);
   const baseMessages = [
     'Hey you! Please help me.. I am stuck..\n\nIf you are willing to help, follow these instructions:',
-    'Long texts with deliberate phrasing\nConceal a message worth embracing',
-    "In fives, the numbers hold their sway\nLike clockwork marking time's display",
-    'The last two show the path to trace\nFirst down, then right across the space',
-    'Once you reveal what is true\nEnter it where search is due',
-    '15 1 22 11 17 5 4 22 1 29 1 9 21 4 9 1 9 21 5 2 20 2 22 5 46',
-    '20 2 22 6 59 20 2 22 7 62 2 11 21 3 20 15 5 22 5 40',
+    "I've hidden a message in the articles on this site. I came up with a code, I am sure you can figure it out.",
+    'Let the first three numbers guide you towards the article and let the last two guide you within the article.',
+    "I hope the distortion of the website is not too much of a problem when counting. Sometimes paragraphs and words overlap, but there's not much I can do about that.",
+    '15 10 21  6 13\n30 10 42 12 26\n 5  4 22  1  3\n 1  9 21  4  9\n 2 18 42  8 18\n 1  9 21  5  2\n20  2 22  5  7',
+    '20  2 22  6 19\n20  2 22  7 13\n40  4 44 14 26\n 2 11 21  3 12\n20  6 22  2 19\n15  5 22  5 17\n30 10 44 10 34',
+    'Oh, that is odd. I thought I had it all figured out, but seems that even after all this time, I still got it wrong.',
+    "It seems there are a few mistakes in the numbers. I\'m convinced you won\'t get distracted by those. They make no sense.",
+    "Once you've decoded the full instructions, follow them to find the hidden message. Then search for that message exactly as you found it, and we'll establish contact.",
     'If you are who I think you are, you will know what to do. I hope to see you on the other side.',
   ];
 
   const [messages, setMessages] = useState(baseMessages);
 
   const hints = [
-    'Where would you find long texts on this site?',
-    'Long texts could also be seen as articles.',
-    'The numbers are in groups of five. What could that mean?',
-    'What could the first three numbers (of a group of five numbers) represent?',
+    'What could the first three numbers of a group of five numbers represent?',
     'If you write the first three numbers like this ../../.., what does it look like?',
     'The first three digits (of a group of five) is the date of an article.',
-    'The last two numbers are akin to coordinates in an article. If you count down, what would you be counting?',
-    'If you count the fourth number (of a group of five) down, you count the paragraphs.',
-    'If you count right across the space, what would you be counting?',
-    'If you take the first three digits, you get a date of an article, the other two numbers indicate the paragraph and word in that paragraph to look for.',
-    'ansIf you do this for all the numbers, you get the following message: "read article about investigation equipment, take each first character".',
+    'The entries of the code that have non-existent article dates can be safely ignored.',
+    'The last two numbers are akin to coordinates in an article.',
+    'The coordinates in the article are the paragraph and word in that paragraph.',
+    'ansIf find all words in their corresponding paragraphs in the right articles, you get the following message: "read article about investigation equipment, take each first bullet-point character".',
     'What article does this refer to?',
-    'What could be the first character that the message is referring to?',
     'Look for the article titled: The Evolution of Paranormal Investigation Equipment',
-    'What stands out in the article?',
-    'What happens if you look at the bullet points in the article?',
     'ansThe first letters of the bullet points spell out `WE ARE STILL ALIVE`.',
-    'Where would you enter this to search?',
+    'If you were to search for this on the website, how would you do this?',
     'ansThere is a search bar on the site. Enter the answer there.',
   ];
 
@@ -248,7 +243,9 @@ function ChatWindow() {
             <div className='h-[calc(100%-60px)] sm:h-96 p-4 w-full overflow-y-scroll overscroll-contain border border-medium-wood border-t-0 rounded-bl-lg'>
               {messages.slice(0, currentMessageIndex + 1).map((msg, i) => (
                 <div key={i} className='mb-2 flex justify-start'>
-                  <div className='max-w-[90%] rounded-lg p-3 bg-white whitespace-pre-wrap text-dark-wood rounded-bl-none'>
+                  <div
+                    className={`max-w-[90%] rounded-lg p-3 bg-white whitespace-pre-wrap text-dark-wood rounded-bl-none${!isNaN(Number(msg.substring(0, 2))) ? ' font-mono text-sm' : ''}`}
+                  >
                     {msg}
                   </div>
                 </div>
